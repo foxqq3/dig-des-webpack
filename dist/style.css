@@ -1,0 +1,163 @@
+/*!**************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/scss/variables.css ***!
+  \**************************************************************************/
+:root {
+  /* base colors */
+  --primary-default: #1F75CB;
+  --primary-hover: #1068BF;
+  --primary-active: #0B5CAD;
+  --primary-disabled: #DCDCDE;
+
+  --secondary-default: #FFFFFF;
+  --secondary-hover: #ECECEF;
+  --secondary-active: #DCDCDE;
+
+  --border-hover: rgba(18, 19, 22, 0.5);
+  --border-active: #1C1C1C;
+  --border-disabled: rgba(0, 0, 0, 0.15);
+  --border-default: rgba(0, 0, 0, 0.15);
+
+  --font-primary: #1C1C1C;
+  --font-secondary: #FFFFFF;
+  --font-disabled: #8E8E8E;
+  --font-placeholder: #D9D9D9;
+
+  --error: #EE4222;
+  --bronze: #9E6955;
+
+}
+/*!************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js!./src/scss/index.scss ***!
+  \************************************************************************************************************************************************************************************/
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: 400;
+  color: var(--font-primary);
+  background-color: var(--secondary-default);
+}
+
+ul li,
+menu li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li {
+  margin: 0;
+}
+
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+.button {
+  padding: 16px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.button_primary {
+  color: var(--font-secondary);
+  background-color: var(--primary-default);
+  border: 1px solid var(--primary-default);
+}
+.button_primary:hover {
+  background-color: var(--primary-hover);
+  border: 1px solid var(--primary-hover);
+}
+.button_primary:active {
+  background-color: var(--primary-active);
+  border: 1px solid var(--primary-active);
+}
+.button_primary:disabled {
+  color: var(--font-disabled);
+  background-color: var(--primary-disabled);
+  border: 1px solid var(--primary-disabled);
+}
+.button_secondary {
+  background-color: var(--secondary-default);
+  border: 1px solid var(--border-default);
+}
+.button_secondary:hover {
+  background-color: var(--secondary-hover);
+  border: 1px solid var(--border-hover);
+}
+.button_secondary:active {
+  background-color: var(--secondary-active);
+  border: 1px solid var(--border-active);
+}
+.button_secondary:disabled {
+  color: var(--font-disabled);
+  background-color: var(--secondary-default);
+  border: 1px solid var(--border-disabled);
+}
+.button_icon {
+  padding: 8px;
+  line-height: 0;
+}
+
+.wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 100vh;
+  padding: 16px;
+}
+
+.block {
+  height: 50px;
+  border: 1px solid black;
+}
+
+.item-none {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  gap: 12px;
+}

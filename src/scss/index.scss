@@ -1,0 +1,32 @@
+// @import 'elem.scss';
+@import 'variables.scss';
+@import './functions/function.scss';
+@import 'default-set.scss';
+
+//common components
+@import './components/button.scss';
+@import './components/avatar.scss';
+@import './components/status.scss';
+
+//main components
+@import '/src/js/components/navigation-panel/index.scss';
+@import '/src/js/components/task-item/index.scss';
+@import '/src/js/components/none-item/index.scss';
+
+
+// style for component
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: spacing(6);
+  min-height: 100vh;
+}
+
+.section-item{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: spacing(3);
+  height: 100%;
+  padding: 0 spacing(6);
+}
