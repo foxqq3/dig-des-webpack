@@ -8,6 +8,12 @@
     background-color: color('primary-default');
     border: 1px solid color('primary-default');
 
+    &_active {
+      color: color('font-secondary');
+      background-color: color('primary-active');
+      border: 1px solid color('primary-active');
+    }
+
     &:hover {
       background-color: color('primary-hover');
       border: 1px solid color('primary-hover');
@@ -29,6 +35,11 @@
     background-color: color('secondary-default');
     border: 1px solid color('border-default');
 
+    &_active {
+      background-color: color('secondary-active');
+      border: 1px solid color('border-active');
+    }
+
     &:hover {
       background-color: color('secondary-hover');
       border: 1px solid color('border-hover');
@@ -46,7 +57,7 @@
     }
   }
 
-  &_icon{
+  &_icon {
     padding: spacing(2);
     line-height: 0;
   }

@@ -1,32 +1,34 @@
-// @import 'elem.scss';
-@import 'variables.scss';
-@import './functions/function.scss';
-@import 'default-set.scss';
+@import '@/scss/variables.scss';
+@import '@/scss/functions/function.scss';
+@import '@/scss/default-set.scss';
 
 //common components
-@import './components/button.scss';
-@import './components/avatar.scss';
-@import './components/status.scss';
+@import '@/scss/components/button.scss';
+@import '@/scss/components/avatar.scss';
+@import '@/scss/components/status.scss';
+@import '@/scss/components/svg-icon.scss';
+@import '@/scss/components/dropdown-list.scss';
+
 
 //main components
-@import '/src/js/components/navigation-panel/index.scss';
-@import '/src/js/components/task-item/index.scss';
-@import '/src/js/components/none-item/index.scss';
+@import '@/js/components/navigation-panel/index.scss';
+@import '@/js/components/task-item/index.scss';
+@import '@/js/components/none-item/index.scss';
 
 
-// style for component
+// style for main page
 .page {
   display: flex;
   flex-direction: column;
   gap: spacing(6);
   min-height: 100vh;
-}
 
-.section-item{
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  gap: spacing(3);
-  height: 100%;
-  padding: 0 spacing(6);
+  &__section-items {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: spacing(3);
+    height: 100%;
+    padding: 0 spacing(6);
+  }
 }
