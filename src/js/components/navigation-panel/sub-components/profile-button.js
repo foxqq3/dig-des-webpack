@@ -5,10 +5,10 @@ import addDropdownList from '@/js/components/additional-components/dropdown-list
 
 export default function addProfileButton() {
   const buttonWrapper = createElement('div', {
-    className: 'navigation-panel__button-user-wrapper',
+    className: 'navigation-panel__profile-button-wrapper',
   });
-  const button = createElement('button', { className: 'navigation-panel__button-user'});
-  const buttonContent = createElement('div', {className: 'navigation-panel__button-user-content'})
+  const button = createElement('button', { className: 'profile-button profile-button_default'});
+  const buttonContent = createElement('div', {className: 'profile-button__content'})
   const dropdownList = ['Профиль', 'Выход'];
 
   button.setAttribute('data-browse','browse-profile');

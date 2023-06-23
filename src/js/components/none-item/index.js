@@ -12,7 +12,7 @@ export default function addNoneItem(typeItem) {
 
   if (typeItem.button === true) {
     const button = createElement('button', {
-      className: 'button  button_primary',
+      className: 'button  button_primary_default',
       textContent: 'Добавить',
     });
     noneItem.appendChild(button);

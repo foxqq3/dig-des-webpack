@@ -7,11 +7,11 @@ export default function addBrowseButton(browseList) {
     style: 'position: relative; display: inline-block;',
   });
   const button = createElement('button', {
-    className: 'button button_secondary button_icon item__browse-button',
+    className: 'button button_secondary_default button_icon item__browse-button',
   });
   button.insertAdjacentHTML(
     'beforeend',
-    `<div class="svg-icon__wrapper">
+    `<div class="svg-icon__wrapper" style="pointer-events: none;">
     <svg class="svg-icon">
       <use xlink:href="#browse"/>
     </svg>
