@@ -1,3 +1,5 @@
+//base set
+@import '@/scss/fonts.scss';
 @import '@/scss/variables.scss';
 @import '@/scss/functions/function.scss';
 @import '@/scss/default-set.scss';
@@ -10,12 +12,10 @@
 @import '@/scss/components/dropdown-list.scss';
 @import '@/scss/components/profile-button.scss';
 
-
 //main components
 @import '@/js/components/navigation-panel/index.scss';
 @import '@/js/components/task-item/index.scss';
 @import '@/js/components/none-item/index.scss';
-
 
 // style for main page
 .page {
