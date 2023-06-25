@@ -1,12 +1,21 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+ <div class="">tetestset</div>
+    <SvgIcon name="browse"></SvgIcon>
+
   </div>
 </template>
+
+<script>
+import SvgIcon from '@/components/SvgIcon.vue';
+
+export default {
+  components: {
+    SvgIcon,
+  }
+}
+
+</script>
 
 <style lang="scss">
 #app {
