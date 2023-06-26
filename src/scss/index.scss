@@ -5,16 +5,19 @@
 @import '@/scss/default-set.scss';
 
 //common components
-@import '@/scss/components/button.scss';
-@import '@/scss/components/avatar.scss';
-@import '@/scss/components/status.scss';
-@import '@/scss/components/svg-icon.scss';
-@import '@/scss/components/dropdown-list.scss';
+@import '@/components/button-vue/button.scss';
+@import '@/components/avatar-vue/avatar.scss';
+@import '@/components/svg-icon-vue/svg-icon.scss';
+@import '@/components/dropdown-list-vue/dropdown-list.scss';
+@import '@/components/status-vue/status.scss';
+
+
 @import '@/scss/components/profile-button.scss';
 
+
 //main components
-@import '@/js/components/navigation-panel/index.scss';
-@import '@/js/components/task-item/index.scss';
+@import '@/components/navigation-panel-vue/navigation-panel.scss';
+@import '@/components/item-vue/item.scss';
 @import '@/js/components/none-item/index.scss';
 
 // style for main page
@@ -31,6 +34,5 @@
     gap: spacing(3);
     height: 100%;
     padding: 0 spacing(6);
-    // gh
   }
 }

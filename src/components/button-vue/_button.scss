@@ -1,5 +1,5 @@
 .button {
-  padding: spacing(4) spacing(3);
+  padding: spacing(3) spacing(4);
   border-radius: 4px;
   cursor: pointer;
 
@@ -57,6 +57,7 @@
     background-color: color('secondary-active');
     border: 1px solid color('border-active');
   }
+
 
   &_icon {
     padding: spacing(2);
