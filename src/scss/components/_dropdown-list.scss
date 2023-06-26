@@ -1,0 +1,33 @@
+.dropdown-list {
+  position: absolute;
+  z-index: 10;
+  right: 0;
+  display: none;
+  padding-top: spacing(1);
+
+  &_active {
+    display: block;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: color(secondary-default);
+    padding: spacing(2);
+    box-shadow: color(dropdown-shadow);
+  }
+
+  &__item {
+    display: flex;
+    padding: spacing(2);
+    cursor: pointer;
+
+    &_error {
+      color: color(error);
+    }
+
+    &:hover {
+      background-color: color(secondary-hover);
+    }
+  }
+}

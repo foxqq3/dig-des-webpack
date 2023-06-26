@@ -1,0 +1,65 @@
+.button {
+  padding: spacing(4) spacing(3);
+  border-radius: 4px;
+  cursor: pointer;
+
+  &_primary_default {
+    color: color('font-secondary');
+    background-color: color('primary-default');
+    border: 1px solid color('primary-default');
+
+    &:hover {
+      background-color: color('primary-hover');
+      border: 1px solid color('primary-hover');
+    }
+
+    &:active {
+      background-color: color('primary-active');
+      border: 1px solid color('primary-active');
+    }
+
+    &:disabled {
+      color: color('font-disabled');
+      background-color: color('primary-disabled');
+      border: 1px solid color('primary-disabled');
+    }
+  }
+
+  &_primary_active {
+    color: color('font-secondary');
+    background-color: color('primary-active');
+    border: 1px solid color('primary-active');
+  }
+
+  &_secondary_default {
+    background-color: color('secondary-default');
+    border: 1px solid color('border-default');
+
+    &:hover {
+      background-color: color('secondary-hover');
+      border: 1px solid color('border-hover');
+    }
+
+    &:active {
+      background-color: color('secondary-active');
+      border: 1px solid color('border-active');
+    }
+
+    &:disabled {
+      color: color('font-disabled');
+      background-color: color('secondary-default');
+      border: 1px solid color('border-disabled');
+    }
+  }
+
+  &_secondary_active {
+    display: block;
+    background-color: color('secondary-active');
+    border: 1px solid color('border-active');
+  }
+
+  &_icon {
+    padding: spacing(2);
+    line-height: 0;
+  }
+}
