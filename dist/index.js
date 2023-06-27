@@ -60,7 +60,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ addMenuList)\n/* harmony export */ });\n/* harmony import */ var _js_helpers_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/js/helpers.js */ \"./src/js/helpers.js\");\n\nfunction addMenuList(menuItems) {\n  var ulList = (0,_js_helpers_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])('ul', {\n    className: 'navigation-panel__menu'\n  });\n  menuItems.map(function (item) {\n    var liItem = (0,_js_helpers_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])('li');\n    var aLink = (0,_js_helpers_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])('a', {\n      className: 'navigation-panel__menu-item',\n      textContent: item.name,\n      href: item.href\n    });\n    liItem.appendChild(aLink);\n    return ulList.appendChild(liItem);\n  });\n  return ulList;\n}\n\n//# sourceURL=webpack://dig-des-webpack/./src/js/components/navigation-panel/sub-components/menu-list.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ addMenuList)\n/* harmony export */ });\n/* harmony import */ var _js_helpers_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/js/helpers.js */ \"./src/js/helpers.js\");\n\nfunction addMenuList(menuItems) {\n  var ulList = (0,_js_helpers_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])('ul', {\n    className: 'navigation-panel__menu'\n  });\n  menuItems.map(function (item) {\n    var liItem = (0,_js_helpers_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])('li');\n    var aLink = (0,_js_helpers_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])('a', {\n      className: 'navigation-panel__menu-item navigation-panel__menu-item_default',\n      textContent: item.name,\n      href: item.href\n    });\n    liItem.appendChild(aLink);\n    return ulList.appendChild(liItem);\n  });\n  return ulList;\n}\n\n//# sourceURL=webpack://dig-des-webpack/./src/js/components/navigation-panel/sub-components/menu-list.js?");
 
 /***/ }),
 
@@ -83,6 +83,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ addNoneItem)\n/* harmony export */ });\n/* harmony import */ var _js_helpers_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/js/helpers.js */ \"./src/js/helpers.js\");\n/* harmony import */ var _js_register_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/js/register.js */ \"./src/js/register.js\");\n/* harmony import */ var _js_register_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_js_register_js__WEBPACK_IMPORTED_MODULE_1__);\n\n\nfunction addNoneItem(typeItem) {\n  var noneItem = (0,_js_helpers_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])('div', {\n    className: 'none-item'\n  });\n  var noneItemTitle = (0,_js_helpers_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])('span', {\n    className: 'none-item__title',\n    textContent: typeItem.title\n  });\n  noneItem.appendChild(noneItemTitle);\n  if (typeItem.button === true) {\n    var button = (0,_js_helpers_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])('button', {\n      className: 'button  button_primary_default',\n      textContent: 'Добавить'\n    });\n    noneItem.appendChild(button);\n  }\n  return noneItem;\n}\n\n//# sourceURL=webpack://dig-des-webpack/./src/js/components/none-item/index.js?");
+
+/***/ }),
+
+/***/ "./src/js/components/pages/add-page.js":
+/*!*********************************************!*\
+  !*** ./src/js/components/pages/add-page.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ addPage)\n/* harmony export */ });\n/* harmony import */ var _js_helpers_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/js/helpers.js */ \"./src/js/helpers.js\");\n/* harmony import */ var _js_components_none_item_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/js/components/none-item/index.js */ \"./src/js/components/none-item/index.js\");\n/* harmony import */ var _js_components_navigation_panel_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/js/components/navigation-panel/index.js */ \"./src/js/components/navigation-panel/index.js\");\n/* harmony import */ var _js_components_project_item_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/js/components/project-item/index.js */ \"./src/js/components/project-item/index.js\");\n/* harmony import */ var _js_components_task_item_index_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/js/components/task-item/index.js */ \"./src/js/components/task-item/index.js\");\n/* harmony import */ var _js_test_variables_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/js/test-variables.js */ \"./src/js/test-variables.js\");\n/* harmony import */ var _js_events_events_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/js/events/events.js */ \"./src/js/events/events.js\");\n//helper\n\n//components\n\n\n\n\n//variables for test\n\n//event functions\n\nfunction addPage() {\n  var app = document.querySelector('#app');\n  var page = (0,_js_helpers_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])('div', {\n    className: 'page'\n  });\n  var sectionItmes = (0,_js_helpers_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])('div', {\n    className: 'page__section-items'\n  });\n  page.appendChild((0,_js_components_navigation_panel_index_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(_js_test_variables_js__WEBPACK_IMPORTED_MODULE_5__.menuItems));\n  page.appendChild(sectionItmes);\n  sectionItmes.appendChild((0,_js_components_project_item_index_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(_js_test_variables_js__WEBPACK_IMPORTED_MODULE_5__.itemInfo));\n  sectionItmes.appendChild((0,_js_components_task_item_index_js__WEBPACK_IMPORTED_MODULE_4__[\"default\"])(_js_test_variables_js__WEBPACK_IMPORTED_MODULE_5__.itemInfo));\n  sectionItmes.appendChild((0,_js_components_none_item_index_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])({\n    title: 'Не создан ни один проект',\n    button: true\n  }));\n  app.appendChild(page);\n  (0,_js_events_events_js__WEBPACK_IMPORTED_MODULE_6__[\"default\"])();\n}\n\n//# sourceURL=webpack://dig-des-webpack/./src/js/components/pages/add-page.js?");
 
 /***/ }),
 
@@ -130,14 +141,47 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./src/js/events.js":
-/*!**************************!*\
-  !*** ./src/js/events.js ***!
-  \**************************/
+/***/ "./src/js/data-requests/add-data-requests.js":
+/*!***************************************************!*\
+  !*** ./src/js/data-requests/add-data-requests.js ***!
+  \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ addEvents)\n/* harmony export */ });\n/* harmony import */ var _js_events_toggle_browse__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/js/events/toggle-browse */ \"./src/js/events/toggle-browse.js\");\n\nfunction addEvents() {\n  var app = document.querySelector('#app');\n  app.addEventListener('click', function (event) {\n    var element = event.target;\n    var elementAtrubute = element.getAttribute('data-browse');\n    var buttonDropdown = '';\n    if (document.querySelector('.dropdown-list_active') !== null && !element.closest('.dropdown-list')) {\n      buttonDropdown = document.querySelector('.dropdown-list_active').previousSibling;\n      (0,_js_events_toggle_browse__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(buttonDropdown);\n    } else if (elementAtrubute !== null) {\n      buttonDropdown = element;\n      (0,_js_events_toggle_browse__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(buttonDropdown);\n    }\n  });\n}\n\n//# sourceURL=webpack://dig-des-webpack/./src/js/events.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ dataRequests)\n/* harmony export */ });\nfunction dataRequests() {\n  return new Promise(function (resolve, reject) {\n    var requestUrl = \"http://45.12.239.156:8081/api/login\";\n    var authorizationData = {\n      login: 'rozhdestvensky.d',\n      password: 'jc63fk'\n    };\n    var xhr = new XMLHttpRequest();\n    xhr.open('POST', requestUrl);\n    xhr.responseType = 'json';\n    xhr.setRequestHeader('Content-Type', 'application/json');\n    xhr.send(JSON.stringify(authorizationData));\n    xhr.onload = function () {\n      if (xhr.status === 200) {\n        resolve(xhr.response);\n      } else {\n        reject(xhr.response);\n      }\n    };\n  });\n}\n\n//# sourceURL=webpack://dig-des-webpack/./src/js/data-requests/add-data-requests.js?");
+
+/***/ }),
+
+/***/ "./src/js/events/add-dropdown.js":
+/*!***************************************!*\
+  !*** ./src/js/events/add-dropdown.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ addDropdown)\n/* harmony export */ });\n/* harmony import */ var _js_events_toggle_browse__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/js/events/toggle-browse */ \"./src/js/events/toggle-browse.js\");\n\nfunction addDropdown(element) {\n  var elementAtrubute = element.getAttribute('data-browse');\n  var buttonDropdown = '';\n  if (document.querySelector('.dropdown-list_active') !== null && !element.closest('.dropdown-list')) {\n    buttonDropdown = document.querySelector('.dropdown-list_active').previousSibling;\n    (0,_js_events_toggle_browse__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(buttonDropdown);\n  } else if (elementAtrubute !== null) {\n    buttonDropdown = element;\n    (0,_js_events_toggle_browse__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(buttonDropdown);\n  }\n}\n\n//# sourceURL=webpack://dig-des-webpack/./src/js/events/add-dropdown.js?");
+
+/***/ }),
+
+/***/ "./src/js/events/add-switch-menu.js":
+/*!******************************************!*\
+  !*** ./src/js/events/add-switch-menu.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ addSwitchMenu)\n/* harmony export */ });\n/* harmony import */ var _js_events_toggle_menu__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/js/events/toggle-menu */ \"./src/js/events/toggle-menu.js\");\n\nfunction addSwitchMenu(element) {\n  if (element.closest('.navigation-panel__menu-item') && !element.closest('.navigation-panel__menu-item_active')) {\n    var active = document.querySelector('.navigation-panel__menu-item_active');\n    if (active !== null) {\n      (0,_js_events_toggle_menu__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(active);\n    }\n    (0,_js_events_toggle_menu__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(element);\n  }\n}\n\n//# sourceURL=webpack://dig-des-webpack/./src/js/events/add-switch-menu.js?");
+
+/***/ }),
+
+/***/ "./src/js/events/events.js":
+/*!*********************************!*\
+  !*** ./src/js/events/events.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ addEvents)\n/* harmony export */ });\n/* harmony import */ var _js_events_add_dropdown_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/js/events/add-dropdown.js */ \"./src/js/events/add-dropdown.js\");\n/* harmony import */ var _js_events_add_switch_menu_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/js/events/add-switch-menu.js */ \"./src/js/events/add-switch-menu.js\");\n\n\nfunction addEvents() {\n  var app = document.querySelector('#app');\n  app.addEventListener('click', function (event) {\n    var element = event.target;\n    (0,_js_events_add_dropdown_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(element);\n    (0,_js_events_add_switch_menu_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(element);\n  });\n}\n\n//# sourceURL=webpack://dig-des-webpack/./src/js/events/events.js?");
 
 /***/ }),
 
@@ -149,6 +193,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ toggleBrowse)\n/* harmony export */ });\nfunction toggleBrowse(buttonDropdown) {\n  var dataBrowse = buttonDropdown.getAttribute('data-browse');\n  if (dataBrowse === 'browse-profile') {\n    buttonDropdown.classList.toggle('profile-button_default');\n    buttonDropdown.classList.toggle('profile-button_active');\n  } else if (dataBrowse === 'browse-item') {\n    buttonDropdown.classList.toggle('button_secondary_active');\n    buttonDropdown.classList.toggle('button_secondary_default');\n    buttonDropdown.classList.toggle('item__browse-button');\n  }\n  buttonDropdown.nextSibling.classList.toggle('dropdown-list_active');\n}\n\n//# sourceURL=webpack://dig-des-webpack/./src/js/events/toggle-browse.js?");
+
+/***/ }),
+
+/***/ "./src/js/events/toggle-menu.js":
+/*!**************************************!*\
+  !*** ./src/js/events/toggle-menu.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ toggleMenu)\n/* harmony export */ });\nfunction toggleMenu(element) {\n  element.classList.toggle('navigation-panel__menu-item_default');\n  element.classList.toggle('navigation-panel__menu-item_active');\n}\n\n//# sourceURL=webpack://dig-des-webpack/./src/js/events/toggle-menu.js?");
 
 /***/ }),
 
@@ -170,7 +225,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_helpers_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/js//helpers.js */ \"./src/js/helpers.js\");\n/* harmony import */ var _scss_index_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/scss/index.scss */ \"./src/scss/index.scss\");\n/* harmony import */ var _js_components_none_item_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/js/components/none-item/index.js */ \"./src/js/components/none-item/index.js\");\n/* harmony import */ var _js_components_navigation_panel_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/js/components/navigation-panel/index.js */ \"./src/js/components/navigation-panel/index.js\");\n/* harmony import */ var _js_components_project_item_index_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/js/components/project-item/index.js */ \"./src/js/components/project-item/index.js\");\n/* harmony import */ var _js_components_task_item_index_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/js/components/task-item/index.js */ \"./src/js/components/task-item/index.js\");\n/* harmony import */ var _js_test_variables_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/js/test-variables.js */ \"./src/js/test-variables.js\");\n/* harmony import */ var _js_events_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/js/events.js */ \"./src/js/events.js\");\n\n\n\n//components\n\n\n\n\n\n//variables for test\n\n\n//event functions\n\nvar app = document.querySelector('#app');\nvar page = (0,_js_helpers_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])('div', {\n  className: 'page'\n});\nvar sectionItmes = (0,_js_helpers_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])('div', {\n  className: 'page__section-items'\n});\npage.appendChild((0,_js_components_navigation_panel_index_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(_js_test_variables_js__WEBPACK_IMPORTED_MODULE_6__.menuItems));\npage.appendChild(sectionItmes);\nsectionItmes.appendChild((0,_js_components_project_item_index_js__WEBPACK_IMPORTED_MODULE_4__[\"default\"])(_js_test_variables_js__WEBPACK_IMPORTED_MODULE_6__.itemInfo));\nsectionItmes.appendChild((0,_js_components_task_item_index_js__WEBPACK_IMPORTED_MODULE_5__[\"default\"])(_js_test_variables_js__WEBPACK_IMPORTED_MODULE_6__.itemInfo));\nsectionItmes.appendChild((0,_js_components_none_item_index_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])({\n  title: 'Не создан ни один проект',\n  button: true\n}));\napp.appendChild(page);\n(0,_js_events_js__WEBPACK_IMPORTED_MODULE_7__[\"default\"])();\n\n//# sourceURL=webpack://dig-des-webpack/./src/js/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_components_pages_add_page_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/js/components/pages/add-page.js */ \"./src/js/components/pages/add-page.js\");\n/* harmony import */ var _scss_index_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/scss/index.scss */ \"./src/scss/index.scss\");\n/* harmony import */ var _js_data_requests_add_data_requests_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/js/data-requests/add-data-requests.js */ \"./src/js/data-requests/add-data-requests.js\");\n\n\n\n(0,_js_components_pages_add_page_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n(0,_js_data_requests_add_data_requests_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])().then(function (response) {\n  token = response.token;\n  console.log(token);\n});\n\n//# sourceURL=webpack://dig-des-webpack/./src/js/index.js?");
 
 /***/ }),
 
