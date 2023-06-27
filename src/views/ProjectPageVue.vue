@@ -2,8 +2,8 @@
   <div class="page">
     <NavigationPanelVue></NavigationPanelVue>
     <div class="page__section-items">
-      <ItemVue v-for="task in tasks" :key="task.id" :itemInfo="task"></ItemVue>
-      
+      <ItemVue v-for="project in projects" :key="project.id" :itemInfo="project"></ItemVue>
+      <ButtonVue type="primary" state="default"> </ButtonVue>
     </div>
   </div>
 </template>
@@ -13,10 +13,10 @@ import NavigationPanelVue from "@/components/navigation-panel-vue/NavigationPane
 import ButtonVue from "@/components/button-vue/ButtonVue.vue";
 import ItemVue from "@/components/item-vue/ItemVue.vue";
 
-import { dataTask } from "@/data-test/data-for-task.js";
+import {dataProject} from "@/data-test/data-for-project.js";
 
 export default {
-  name: "TaskPageVue",
+  name: "ProjectPageVue",
 
   components: {
     NavigationPanelVue,
@@ -26,7 +26,7 @@ export default {
 
   data() {
     return {
-      tasks: dataTask,
+      projects: dataProject,
     };
   },
 };

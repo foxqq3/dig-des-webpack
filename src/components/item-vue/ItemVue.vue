@@ -57,7 +57,7 @@ export default {
   props: {
     itemInfo: {
       type: Object,
-      required: true,
+      default: {}
     },
   },
 };
