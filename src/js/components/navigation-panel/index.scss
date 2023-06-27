@@ -14,6 +14,11 @@
   &__menu-item {
     display: inline-block;
     padding: spacing(3) spacing(4);
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+
+  &__menu-item_default {
     color: color('font-secondary');
     border: 1px solid color('secondary-default');
     border-radius: 4px;
@@ -31,9 +36,14 @@
     }
   }
 
+  &__menu-item_active {
+    color: color('font-primary');
+    background-color: color('secondary-active');
+    border-color: color('secondary-active');
+  }
+
   &__profile-button-wrapper {
     position: relative;
     display: inline-block;
   }
 }
-

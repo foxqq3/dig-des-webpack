@@ -13,13 +13,13 @@
     display: flex;
     flex-direction: column;
     background-color: color(secondary-default);
-    padding: spacing(2);
+    padding: spacing(2) 0;
     box-shadow: color(dropdown-shadow);
   }
 
   &__item {
     display: flex;
-    padding: spacing(2);
+    padding: spacing(2) spacing(4);
     cursor: pointer;
 
     &_error {

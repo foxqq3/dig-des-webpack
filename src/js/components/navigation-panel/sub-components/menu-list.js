@@ -6,7 +6,7 @@ export default function addMenuList(menuItems) {
   menuItems.map((item) => {
     const liItem = createElement('li');
     const aLink = createElement('a', {
-      className: 'navigation-panel__menu-item',
+      className: 'navigation-panel__menu-item navigation-panel__menu-item_default',
       textContent: item.name,
       href: item.href,
     });
