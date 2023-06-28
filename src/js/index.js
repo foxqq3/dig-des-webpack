@@ -7,6 +7,8 @@ import getProject from '@/js/data-requests/get-project-xhr.js';
 import setProject from '@/js/data-requests/set-project-xhr.js';
 import delProject from '@/js/data-requests/del-project-xhr.js';
 
+import createTask from '@/js/data-requests/create-task-xhr';
+
 addPage();
 
 localStorage.clear();
@@ -30,5 +32,7 @@ app.addEventListener('click', (event) => {
     setProject();
   } else if (element.closest('.js-del')) {
     delProject();
+  } else if (element.closest('.js-create-task')) {
+    createTask();
   }
 });

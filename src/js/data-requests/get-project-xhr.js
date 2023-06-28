@@ -1,6 +1,6 @@
 export default function createProject() {
   const xhr = new XMLHttpRequest();
-  const id = localStorage.getItem('_id');
+  const id = localStorage.getItem('_id-project');
   const requestUrl = `http://45.12.239.156:8081/api/projects/${id}`;
   xhr.open('GET', requestUrl);
   xhr.responseType = 'json';

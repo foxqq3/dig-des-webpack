@@ -44,6 +44,26 @@ export default function addPage() {
   sectionItmes.appendChild(button4);
   ////////////////////////////////////////
 
-
+  const button5 = createElement('button', {
+    className: 'button  button_primary_default js-create-task',
+    textContent: 'Создать XML',
+  });
+  const button6 = createElement('button', {
+    className: 'button  button_primary_default js-get-task',
+    textContent: 'Получить XML',
+  });
+  const button7 = createElement('button', {
+    className: 'button  button_primary_default js-set-task',
+    textContent: 'Редактировать XML',
+  });
+  const button8 = createElement('button', {
+    className: 'button  button_primary_default js-del-task',
+    textContent: 'Удалить XML',
+  });
+  sectionItmes.appendChild(button5);
+  sectionItmes.appendChild(button6);
+  sectionItmes.appendChild(button7);
+  sectionItmes.appendChild(button8);
+  ////////////////////////////////////////
 
 }

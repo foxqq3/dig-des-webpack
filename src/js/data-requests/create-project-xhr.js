@@ -14,7 +14,8 @@ export default function createProject() {
   xhr.onload = () => {
     if (xhr.status === 200) {
       console.log(xhr.response);
-      localStorage.setItem('_id', xhr.response._id);
+      localStorage.setItem('_id-project', xhr.response._id);
+      localStorage.setItem('_id-author', xhr.response.author);
     } else {
       xhr.response;
     }
