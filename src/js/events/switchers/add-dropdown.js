@@ -1,4 +1,4 @@
-import toggleBrowse from '@/js/events/toggle-browse';
+import toggleBrowse from '@/js/events/switchers/toggle-browse';
 
 export default function addDropdown(element) {
   const elementAtrubute = element.getAttribute('data-browse');

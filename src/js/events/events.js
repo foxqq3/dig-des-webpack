@@ -1,5 +1,6 @@
-import addDropdown from '@/js/events/add-dropdown.js';
-import addSwitchMenu from '@/js/events/add-switch-menu.js';
+import addDropdown from '@/js/events/switchers/add-dropdown.js';
+import addSwitchMenu from '@/js/events/switchers/add-switch-menu.js';
+import requestsButtons from '@/js/events/requests-buttons';
 
 export default function addEvents() {
   const app = document.querySelector('#app');
@@ -8,5 +9,6 @@ export default function addEvents() {
     const element = event.target;
     addDropdown(element);
     addSwitchMenu(element);
+    requestsButtons(element);
   });
 }

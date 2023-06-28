@@ -408,7 +408,18 @@ select {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
-  gap: 12px;
+  gap: 56px;
   height: 100%;
   padding: 0 24px;
+}
+.page__requests-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 20px;
+  -webkit-column-gap: 30px;
+     -moz-column-gap: 30px;
+          column-gap: 30px;
+}
+.page__h2 {
+  text-align: center;
 }

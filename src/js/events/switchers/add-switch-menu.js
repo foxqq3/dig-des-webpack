@@ -1,4 +1,4 @@
-import toggleMenu from '@/js/events/toggle-menu';
+import toggleMenu from '@/js/events/switchers/toggle-menu';
 
 export default function addSwitchMenu(element) {
   if (

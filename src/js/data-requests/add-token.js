@@ -1,4 +1,4 @@
-export default function dataRequests() {
+export default function addToken() {
   const requestUrl = `http://45.12.239.156:8081/api/login`;
   const authorizationData = {
     login: 'rozhdestvensky.d',
