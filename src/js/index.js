@@ -34,5 +34,7 @@ app.addEventListener('click', (event) => {
     delProject();
   } else if (element.closest('.js-create-task')) {
     createTask();
+  } else if (element.closest('.js-get-task')){
+    
   }
 });

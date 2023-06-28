@@ -17,7 +17,7 @@ export default function createProject() {
       localStorage.setItem('_id-project', xhr.response._id);
       localStorage.setItem('_id-author', xhr.response.author);
     } else {
-      xhr.response;
+      console.log(`Возникла ошибка ${xhr.status} ${xhr.statusText} `);
     }
   };
 

@@ -16,7 +16,7 @@ export default function dataRequests() {
     if (xhr.status === 200) {
       localStorage.setItem('token', xhr.response.token);
     } else {
-      xhr.response;
+      console.log(`Возникла ошибка ${xhr.status} ${xhr.statusText} `);
     }
   };
 }

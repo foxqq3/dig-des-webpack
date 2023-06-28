@@ -18,7 +18,7 @@ export default function createTask() {
       console.log(xhr.response);
       localStorage.setItem('_id-task', xhr.response._id);
     } else {
-      xhr.response;
+      console.log(`Возникла ошибка ${xhr.status} ${xhr.statusText} `);
     }
   };
 

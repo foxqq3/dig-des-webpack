@@ -13,7 +13,7 @@ export default function delProject() {
     if (xhr.status === 200) {
       console.log(xhr.response);
     } else {
-      console.log(xhr.response);
+      console.log(`Возникла ошибка ${xhr.status} ${xhr.statusText} `);
     }
   };
 
