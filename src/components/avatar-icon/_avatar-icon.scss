@@ -1,0 +1,20 @@
+.avatar-icon {
+  position: relative;
+  display: flex;
+  z-index: 1;
+  min-width: 24px;
+  height: 24px;
+  background-color: color('primary-disabled');
+  border-radius: 50%;
+
+  &__image {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}

@@ -1,0 +1,7 @@
+.dropdown-list {
+  display: flex;
+  flex-direction: column;
+  padding: spacing(2) 0;
+  background-color: color(secondary-default);
+  box-shadow: color(dropdown-shadow);
+}

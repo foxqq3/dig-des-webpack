@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    <!-- <TaskPageVue></TaskPageVue> -->
-    <ProjectPageVue></ProjectPageVue>
+    <TaskPage></TaskPage>
+    <!-- <ProjectPage></ProjectPage> -->
   </div>
 </template>
 
 <script>
-import TaskPageVue from "@/views/TaskPageVue.vue";
-import ProjectPageVue from "@/views/ProjectPageVue.vue";
+import TaskPage from "@/views/TaskPage.vue";
+import ProjectPage from "@/views/ProjectPage.vue";
 
 export default {
   components: {
-    TaskPageVue,
-    ProjectPageVue
+    TaskPage,
+    ProjectPage
   },
 };
 </script>

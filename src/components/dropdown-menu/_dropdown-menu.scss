@@ -1,0 +1,12 @@
+.dropdown-menu {
+  display: inline-block;
+  position: relative;
+
+  &__wrapper {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    display: block;
+    padding-top: spacing(1);
+  }
+}

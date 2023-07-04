@@ -1,0 +1,15 @@
+.navigation-panel {
+  z-index: 10;
+  position: sticky;
+  display: flex;
+  justify-content: flex-end;
+  gap: spacing(6);
+  background-color: color('primary-default');
+  padding: spacing(6);
+
+  &__menu {
+    display: flex;
+    gap: spacing(6);
+  }
+}
+

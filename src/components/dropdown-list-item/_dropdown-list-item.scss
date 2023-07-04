@@ -1,0 +1,38 @@
+.dropdown-list-item {
+  display: flex;
+  gap: spacing(2);
+  padding: spacing(2) spacing(4);
+  cursor: pointer;
+
+  &.active {
+    background-color: color('secondary-active');
+
+    &:hover {
+      background-color: color('secondary-active');
+    }
+  }
+
+  &.error {
+    color: color('error');
+  }
+
+  &:hover {
+    background-color: color('secondary-hover');
+
+    & .dropdown-list-item__svg {
+      color: color('border-hover');
+    }
+
+    & .dropdown-list-item__svg.active {
+      color: color('primary-hover');
+    }
+  }
+  &__svg {
+    line-height: 0;
+    color: color('border-default');
+
+    &.active {
+      color: color('primary-default');
+    }
+  }
+}

@@ -1,0 +1,146 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: spacing(2);
+  height: 42px;
+  min-width: 42px;
+  padding: 0 spacing(4);
+  border-radius: 4px;
+  cursor: pointer;
+
+  &_small {
+    padding: 0;
+  }
+
+  &_primary {
+    color: color('font-secondary');
+    background-color: color('primary-default');
+    border: 1px solid color('primary-default');
+
+    &:hover {
+      background-color: color('primary-hover');
+      border: 1px solid color('primary-hover');
+    }
+
+    &:active {
+      background-color: color('primary-active');
+      border: 1px solid color('primary-active');
+    }
+
+    &:disabled {
+      color: color('font-disabled');
+      background-color: color('primary-disabled');
+      border: 1px solid color('primary-disabled');
+    }
+
+    &.active {
+      color: color('font-secondary');
+      background-color: color('primary-active');
+      border: 1px solid color('primary-active');
+
+      &:active {
+        background-color: color('primary-active');
+        border: 1px solid color('primary-active');
+      }
+    }
+  }
+
+  &_secondary {
+    background-color: color('secondary-default');
+    border: 1px solid color('border-default');
+
+    &:hover {
+      background-color: color('secondary-hover');
+      border: 1px solid color('border-hover');
+    }
+
+    &:active {
+      background-color: color('secondary-active');
+      border: 1px solid color('border-active');
+    }
+
+    &:disabled {
+      color: color('font-disabled');
+      background-color: color('secondary-default');
+      border: 1px solid color('border-disabled');
+    }
+
+    &.active {
+      background-color: color('secondary-active');
+      border: 1px solid color('border-active');
+
+      &:hover {
+        background-color: color('secondary-hover');
+        border: 1px solid color('border-hover');
+      }
+    }
+  }
+
+  &_menu {
+    background-color: transparent;
+    color: color('font-secondary');
+    border: 1px solid color('secondary-default');
+    border-radius: 4px;
+
+    &:hover {
+      color: color('font-primary');
+      background-color: color('secondary-hover');
+      border-color: color('secondary-hover');
+    }
+
+    &:active {
+      color: color('font-primary');
+      background-color: color('secondary-default');
+      border-color: color('secondary-default');
+    }
+
+    &.active {
+      color: color('font-primary');
+      background-color: color('secondary-active');
+      border-color: color('secondary-active');
+
+      &:hover {
+        color: color('font-primary');
+        background-color: color('secondary-hover');
+        border-color: color('secondary-hover');
+      }
+    }
+  }
+
+  &_profile {
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: color('secondary-default');
+
+    &:hover {
+      color: color('secondary-default');
+      border-color: color('secondary-default');
+    }
+
+    &:active {
+      color: color('secondary-active');
+      border-color: color('secondary-default');
+      background-color: color('secondary-default');
+    }
+
+    &.active {
+      color: color('secondary-active');
+      border-color: color('secondary-default');
+      background-color: color('secondary-default');
+
+      &:hover {
+        color: color('secondary-active');
+        border-color: color('secondary-hover');
+        background-color: color('secondary-hover');
+      }
+    }
+  }
+
+  &__svg-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+  }
+}

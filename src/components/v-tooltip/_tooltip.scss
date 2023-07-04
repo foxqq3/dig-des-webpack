@@ -1,0 +1,22 @@
+.tooltip {
+  display: inline-block;
+  position: relative;
+
+  &__content-wrapper{
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    display: block;
+    max-width: 400px;
+    padding-top: spacing(2);
+  }
+
+  &__text{
+    display: block;
+    padding: spacing(4);
+    box-shadow: color('dropdown-shadow');
+    background-color: color('secondary-default');
+  }
+}

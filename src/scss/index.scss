@@ -4,21 +4,8 @@
 @import '@/scss/functions/function.scss';
 @import '@/scss/default-set.scss';
 
-//common components
-@import '@/components/button-vue/button.scss';
-@import '@/components/avatar-vue/avatar.scss';
-@import '@/components/svg-icon-vue/svg-icon.scss';
-@import '@/components/dropdown-list-vue/dropdown-list.scss';
-@import '@/components/status-vue/status.scss';
+@import '@/scss/components.scss';
 
-
-@import '@/scss/components/profile-button.scss';
-
-
-//main components
-@import '@/components/navigation-panel-vue/navigation-panel.scss';
-@import '@/components/item-vue/item.scss';
-@import '@/components/item-none-vue/item-none.scss';
 
 // style for main page
 .page {
