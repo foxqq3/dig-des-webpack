@@ -10,6 +10,7 @@
     <DropdownMenu
       :buttonSettings="buttonSettings"
       :dropdownItemSettings="dropdownItemSettings"
+
     />
   </header>
 </template>
@@ -37,14 +38,12 @@ export default {
       },
       dropdownItemSettings: [
         {
-          id: 1,
+          value: 1,
           name: "Профиль",
-          isActive: false,
         },
         {
-          id: 2,
+          value: 2,
           name: "Выход",
-          isActive: false,
         },
       ],
     };

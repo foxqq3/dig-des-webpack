@@ -1,11 +1,12 @@
 <template>
   <ul class="dropdown-list">
-    <li v-for="item in dropdownItemCorrect" :key="item.id" @click="select(item)">
+    <li v-for="option in options" :key="option.value">
       <DropdownListItem
-        :content="item.name"
-        :isActive="item.isActive"
-        :isError="item.isError"
+        :content="option.name"
+        :isActive="option.isActive"
+        :isError="option.isError"
         :isCheckbox="isMultiple"
+        @click="handleSelect(option)"
       />
     </li>
   </ul>
@@ -22,64 +23,45 @@ export default {
   },
 
   props: {
+    value: {
+      type: [String, Number, Array],
+      required: true,
+    },
     isMultiple: {
       type: Boolean,
       default: false,
     },
     dropdownItemSettings: {
       type: Array,
-      default: [],
+      default: () => [],
     },
   },
 
-  data() {
-    return {
-      dropdownItemCorrect: this.dropdownItemSettings,
-    };
-  },
-
   computed: {
-    isCheckbox() {
-      if (this.mode === "multiple") {
-        return true;
-      } else {
-        return false;
-      }
+    options() {
+      return this.dropdownItemSettings.map((item) => ({
+        ...item,
+        isActive: this.isMultiple
+          ? this.value.includes(item.value)
+          : this.value === item.value,
+      }));
     },
   },
 
   methods: {
-    select(item) {
+    handleSelect(item) {
+      let value = null;
       if (this.isMultiple) {
-        this.dropdownItemCorrect = this.dropdownItemCorrect.map(function (element) {
-          if (item.id === element.id) {
-            element.isActive = !element.isActive;
-            return element;
-          } else {
-            return element;
-          }
-        });
+        if (item.isActive) {
+          value = this.value.filter((value) => value !== item.value);
+        } else {
+          value = [...this.value, item.value];
+        }
       } else {
-        this.dropdownItemCorrect = this.dropdownItemCorrect.map(function (element) {
-          if (item.id === element.id) {
-            element.isActive = true;
-            return element;
-          } else if (element.isActive === true) {
-            element.isActive = false;
-            return element;
-          } else {
-            return element;
-          }
-        });
+        value = item.value;
       }
+      this.$emit("input", value);
     },
-  },
-
-  mounted() {
-    this.dropdownItemCorrect = this.dropdownItemCorrect.map(function (element) {
-       element.isActive = false;
-       return element;
-    });
   },
 };
 </script>

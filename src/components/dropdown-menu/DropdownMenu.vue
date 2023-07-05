@@ -1,19 +1,20 @@
 <template>
-  <div class="dropdown-menu">
+  <div v-click-outside="hideList" class="dropdown-menu">
     <VButton
       :image="buttonSettings.image"
-      :svgName="arrowSvg"
+      :svgName="buttonSvg"
       :theme="buttonSettings.theme"
       :isSmall="buttonSettings.isSmall"
       :text="buttonSettings.text"
       :isActive="isDropdownListActive"
       @click="clickButtonDropdown(isDropdownListActive)"
     />
-    <div class="dropdown-menu__wrapper">
+    <div class="dropdown-menu__wrapper" data-dropdown="dropdown">
       <DropdownList
         v-if="isDropdownListActive"
+        v-model="select"
         :dropdownItemSettings="dropdownItemSettings"
-        :isMultiple="isDropdownItemMultiple"
+        :isMultiple="isDropdownListMultiple"
       />
     </div>
   </div>
@@ -34,36 +35,46 @@ export default {
   props: {
     buttonSettings: {
       type: Object,
-      default: {},
+      default: () => ({}),
     },
 
-    isDropdownItemMultiple: {
+    isDropdownListMultiple: {
       type: Boolean,
       default: false,
     },
 
     dropdownItemSettings: {
       type: Array,
-      defaule: [],
+      defaule: () => [],
     },
   },
 
   data() {
     return {
+      select: this.isDropdownListMultiple ? [] : "",
       isDropdownListActive: false,
-      arrowSvg: this.buttonSettings.svgName,
     };
   },
 
-  methods: {
-    clickButtonDropdown(isDropdownListActive) {
-      this.isDropdownListActive = !this.isDropdownListActive;
-      this.$emit("clickButtonDropdown", isDropdownListActive);
-      if (this.arrowSvg === "arrow-down") {
-        this.arrowSvg = "arrow-up";
-      } else if (this.arrowSvg === "arrow-up") {
-        this.arrowSvg = "arrow-down";
+  computed: {
+    buttonSvg() {
+      if (this.buttonSettings.svgName === "arrow-down" && this.isActive) {
+        return "arrrow-up";
+      } else {
+        return this.buttonSettings.svgName;
       }
+    },
+  },
+
+  methods: {
+    clickButtonDropdown() {
+      this.isDropdownListActive = !this.isDropdownListActive;
+      this.$emit("clickButton", this.isDropdownListActive);
+    },
+
+    hideList() {
+      this.isDropdownListActive = false;
+      this.$emit("clickOutside", this.isDropdownListActive);
     },
   },
 };

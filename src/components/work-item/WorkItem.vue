@@ -1,15 +1,19 @@
 <template>
-  <div class="work-item">
+  <div
+    class="work-item"
+    @mouseenter="handleMouseEnterItem"
+    @mouseleave="handleMouseLeaveItem"
+  >
     <div class="work-item__info">
       <div class="work-item__name-wrapper">
-        <span class="work-item__name" :title="info.title" @mouseenter="handleMouseEnter">
+        <span class="work-item__name" :title="info.title">
           {{ info.title }}
         </span>
         <AvatarIcon v-if="info.type === 'task'" person="Джон Траволта" />
       </div>
       <div class="work-item__description">
         <div class="work-item__description-wrapper">
-          <span class="work-item__number" :title="info.id" @mouseenter="handleMouseEnter">
+          <span class="work-item__number" :title="info.id">
             {{ info.id }}
           </span>
           <span class="work-item__state">
@@ -22,14 +26,13 @@
         </span>
       </div>
     </div>
-    <div :class="browseButtonClasses">
-      <DropdownMenu
-        :buttonSettings="buttonSettings"
-        :isDropdownItemMultiple="false"
-        :dropdownItemSettings="dropdownItemSettings"
-        @clickButtonDropdown="clickButtonDropdown"
-      />
-    </div>
+    <DropdownMenu
+      v-if="dropdownStatus || hoverStatus"
+      :buttonSettings="buttonSettings"
+      :dropdownItemSettings="dropdownItemSettings"
+      @clickOutside="handleClickOutside"
+      @clickButton="handleClickButton"
+    />
   </div>
 </template>
 
@@ -61,50 +64,49 @@ export default {
 
       dropdownItemSettings: [
         {
-          id: 1,
+          value: 1,
           name: "Редактировать",
         },
         {
-          id: 2,
+          value: 2,
           name: "Удалить",
           isError: true,
         },
       ],
 
-      dropdownStatus: null,
+      dropdownStatus: false,
+      hoverStatus: false,
     };
   },
 
   props: {
     info: {
       type: Object,
-      default: {},
+      default: () => {},
     },
   },
 
   methods: {
-    handleMouseEnter(event) {
-      console.log(event.target);
-      const isTextClamped = (element) => element.scrollHeight > element.clientHeight;
-      console.log(isTextClamped(event.target));
-      return isTextClamped;
+    // handleMouseEnter(event) {
+    //   console.log(event.target);
+    //   const isTextClamped = (element) => element.scrollHeight > element.clientHeight;
+    //   console.log(isTextClamped(event.target));
+    //   return isTextClamped;
+    // },
+    handleClickButton(status) {
+      this.dropdownStatus = status;
     },
 
-    clickButtonDropdown(status) {
-      this.dropdownStatus = !status;
-      console.log(this.dropdownStatus);
-      return isTextClamped;
+    handleClickOutside(status) {
+      this.dropdownStatus = status;
     },
-  },
 
-  computed: {
-    browseButtonClasses() {
-      return [
-        "work-item__browse-button-wrapper",
-        {
-          active: this.dropdownStatus,
-        },
-      ];
+    handleMouseEnterItem() {
+      this.hoverStatus = true;
+    },
+
+    handleMouseLeaveItem() {
+      this.hoverStatus = false;
     },
   },
 };

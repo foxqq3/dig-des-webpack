@@ -53,17 +53,4 @@
   &__state {
     color: color('font-disabled');
   }
-
-  &__browse-button-wrapper {
-    display: none;
-    z-index: 10;
-
-    &.active {
-      display: block;
-    }
-  }
-
-  &:hover &__browse-button-wrapper {
-    display: block;
-  }
 }

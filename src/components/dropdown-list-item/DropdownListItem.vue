@@ -1,5 +1,5 @@
 <template>
-  <span :class="classItem">
+  <span :class="classItem" @click="handleSelect">
     <span v-if="isCheckbox" :class="classSvg">
       <VSvgIcon :name="currentSvg" />
     </span>
@@ -62,6 +62,12 @@ export default {
           active: this.isActive,
         },
       ];
+    },
+  },
+
+  methods: {
+    handleSelect() {
+      this.$emit("click");
     },
   },
 };

@@ -2,7 +2,7 @@
   <button :class="classButton" @click="click">
     <AvatarIcon v-if="image" person="Джон Траволта" />
     {{ text }}
-    <div v-if="svgName" :class="classSvgWrapper">
+    <div v-if="svgName" class="button__svg-wrapper">
       <VSvgIcon :name="svgName" />
     </div>
   </button>
@@ -60,10 +60,6 @@ export default {
           button_small: this.isSmall,
         },
       ];
-    },
-
-    classSvgWrapper() {
-      return ["button__svg-wrapper", {}];
     },
   },
 
