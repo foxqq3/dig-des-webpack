@@ -10,7 +10,6 @@
     <DropdownMenu
       :buttonSettings="buttonSettings"
       :dropdownItemSettings="dropdownItemSettings"
-
     />
   </header>
 </template>
@@ -36,6 +35,7 @@ export default {
         svgName: "arrow-down",
         theme: "profile",
       },
+
       dropdownItemSettings: [
         {
           value: 1,

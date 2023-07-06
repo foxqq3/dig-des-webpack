@@ -35,7 +35,7 @@
     border-radius: 0;
     border-bottom: 1px solid color('font-placeholder');
 
-    &:disabled{
+    &:disabled {
       background-color: color('secondary-default');
     }
   }
@@ -48,6 +48,18 @@
     position: relative;
     width: 100%;
     height: min-content;
+
+    &:hover .input {
+      border-color: color('border-hover');
+
+      &:active {
+        border-color: color('border-active');
+      }
+      
+      &:focus {
+        border-color: color('border-active');
+      }
+    }
   }
 
   &__svg {
@@ -59,6 +71,10 @@
     gap: spacing(2);
     height: 100%;
     padding: 0 spacing(2);
+
+    &:hover + .input {
+      border-color: color('border-active');
+    }
   }
 
   &__svg-clear {
@@ -72,7 +88,7 @@
     color: color('font-disabled');
     cursor: pointer;
 
-    &.disabled{
+    &.disabled {
       color: color('font-placeholder');
     }
   }

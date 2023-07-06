@@ -39,7 +39,7 @@ export default {
     },
     svgName: {
       type: String,
-      default: null,
+      default: '',
     },
     image: {
       type: String,

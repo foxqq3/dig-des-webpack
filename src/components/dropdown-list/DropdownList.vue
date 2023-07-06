@@ -27,10 +27,12 @@ export default {
       type: [String, Number, Array],
       required: true,
     },
+
     isMultiple: {
       type: Boolean,
       default: false,
     },
+    
     dropdownItemSettings: {
       type: Array,
       default: () => [],

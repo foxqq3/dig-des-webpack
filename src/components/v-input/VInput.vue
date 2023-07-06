@@ -6,7 +6,7 @@
       placeholder="поиск"
       :class="classInput"
       :disabled="isDisabled"
-       @input="handleInput"
+      @input="handleInput"
     />
     <div v-if="isSearch" class="input__svg">
       <div class="input__svg-clear">
@@ -78,6 +78,7 @@ export default {
         "input",
         {
           small: this.isSmall,
+          error: this.isError,
         },
       ];
     },

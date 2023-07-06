@@ -8,5 +8,15 @@
     right: 0;
     display: block;
     padding-top: spacing(1);
+
+    &.select {
+      width: 100%;
+    }
+
+    &.sort-select {
+      width: calc(100% - 42px);
+      left: 0;
+      right: auto;
+    }
   }
 }
