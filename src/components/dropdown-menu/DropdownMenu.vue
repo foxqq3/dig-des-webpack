@@ -59,10 +59,8 @@ export default {
   computed: {
     buttonSvg() {
       if (this.buttonSettings.svgName === "arrow-down" && this.isDropdownListActive) {
-        console.log('Сработало')
         return "arrow-up";
       } else {
-         console.log('не сработало')
         return this.buttonSettings.svgName;
       }
     },

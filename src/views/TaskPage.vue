@@ -2,7 +2,8 @@
   <div class="page">
     <NavigationPanel></NavigationPanel>
     <div class="page__section-items">
-      <WorkItem v-for="task in tasks" :key="task.id" :info="task"></WorkItem>
+      <PanelFilterWorkItems />
+      <WorkItem v-for="task in tasks" :key="task.id" :info="task" />
     </div>
   </div>
 </template>
@@ -10,6 +11,7 @@
 <script>
 import NavigationPanel from "@/components/navigation-panel/NavigationPanel.vue";
 import WorkItem from "@/components/work-item/WorkItem.vue";
+import PanelFilterWorkItems from "@/components/panel-filter-work-items/PanelFilterWorkItems.vue";
 
 import { dataTask } from "@/data-test/data-for-task.js";
 
@@ -19,6 +21,7 @@ export default {
   components: {
     NavigationPanel,
     WorkItem,
+    PanelFilterWorkItems,
   },
 
   data() {

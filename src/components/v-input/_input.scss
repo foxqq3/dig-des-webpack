@@ -1,0 +1,79 @@
+.input {
+  width: 100%;
+  height: 42px;
+  padding: 0 spacing(3);
+  border-radius: 4px;
+  background-color: color('secondary-default');
+  border: 1px solid color('border-default');
+  outline: none;
+
+  &::placeholder {
+    color: color('font-placeholder');
+  }
+
+  &:hover {
+    border-color: color('border-hover');
+  }
+
+  &:active {
+    border-color: color('border-active');
+  }
+
+  &:focus {
+    border-color: color('border-active');
+  }
+
+  &:disabled {
+    color: color('font-disabled');
+    border-color: color('border-disabled');
+    background-color: color('primary-disabled');
+  }
+
+  &.small {
+    height: 32px;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid color('font-placeholder');
+
+    &:disabled{
+      background-color: color('secondary-default');
+    }
+  }
+
+  &.error {
+    border-color: color('error');
+  }
+
+  &__wrapper {
+    position: relative;
+    width: 100%;
+    height: min-content;
+  }
+
+  &__svg {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    gap: spacing(2);
+    height: 100%;
+    padding: 0 spacing(2);
+  }
+
+  &__svg-clear {
+    line-height: 0;
+    color: color('border-default');
+    cursor: pointer;
+  }
+
+  &__svg-search {
+    line-height: 0;
+    color: color('font-disabled');
+    cursor: pointer;
+
+    &.disabled{
+      color: color('font-placeholder');
+    }
+  }
+}

@@ -1,7 +1,7 @@
 <template>
-    <svg class="svg-icon" width="24px" height="24px">
-      <use :xlink:href="'#'+ this.name" />
-    </svg>
+  <svg class="svg-icon" width="24px" height="24px" @click="handleClickSvg">
+    <use :xlink:href="'#' + this.name" />
+  </svg>
 </template>
 
 <script>
@@ -22,5 +22,11 @@ export default {
       return "#" + this.name;
     },
   },
+
+  methods:{
+    handleClickSvg(){
+      this.$emit('click')
+    }
+  }
 };
 </script>
