@@ -1,6 +1,7 @@
-.dropdown-menu {
+.dropdown-select {
   display: inline-block;
   position: relative;
+  width: 100%;
 
   &__wrapper {
     position: absolute;
@@ -8,12 +9,9 @@
     right: 0;
     display: block;
     padding-top: spacing(1);
+    width: 100%;
 
-    &.select {
-      width: 100%;
-    }
-
-    &.sort-select {
+    &.sort {
       width: calc(100% - 42px);
       left: 0;
       right: auto;

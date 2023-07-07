@@ -1,8 +1,8 @@
 <template>
   <div class="page">
     <NavigationPanel></NavigationPanel>
+    <PanelFilterWorkItems />
     <div class="page__section-items">
-      <PanelFilterWorkItems />
       <WorkItem v-for="task in tasks" :key="task.id" :info="task" />
     </div>
   </div>

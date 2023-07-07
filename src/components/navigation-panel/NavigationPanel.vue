@@ -7,7 +7,7 @@
         </li>
       </ul>
     </nav>
-    <DropdownMenu
+    <DropdownButton
       :buttonSettings="buttonSettings"
       :dropdownItemSettings="dropdownItemSettings"
     />
@@ -16,14 +16,15 @@
 
 <script>
 import VButton from "@/components/v-button/VButton.vue";
-import DropdownMenu from "@/components/dropdown-menu/DropdownMenu.vue";
+
+import DropdownButton from "@/components/dropdown-button/DropdpwnButton.vue";
 
 export default {
   name: "NavigationPanel",
 
   components: {
     VButton,
-    DropdownMenu,
+    DropdownButton,
   },
 
   data() {
@@ -32,7 +33,6 @@ export default {
 
       buttonSettings: {
         image: "Траволта",
-        svgName: "arrow-down",
         theme: "profile",
       },
 

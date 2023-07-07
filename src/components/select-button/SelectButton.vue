@@ -1,13 +1,13 @@
 <template>
-  <div class="select-button">
-    <button :class="classButtonSwither" @click="handleSelectClick">
+  <div class="select-button__wrapper">
+    <button :class="classButtonSelect" @click="handleSelectClick">
       {{ currentValue }}
-      <div class="select-button__switсher-svg">
-        <VSvgIcon :name="svgNameSwitcher" />
+      <div class="select-button__svg">
+        <VSvgIcon :name="svgSelect" />
       </div>
     </button>
-    <button v-if="isSort" class="select-button__sort" @click="handleSortClick">
-      <VSvgIcon :name="svgNameSort" />
+    <button v-if="sort" class="select-button__sort" @click="handleSortClick">
+      <VSvgIcon :name="svgSort" />
     </button>
   </div>
 </template>
@@ -21,9 +21,9 @@ export default {
   components: { VSvgIcon },
 
   props: {
-    isSort: {
-      type: Boolean,
-      default: false,
+    sort: {
+      type: String,
+      default: null,
     },
 
     selectedValue: {
@@ -62,19 +62,35 @@ export default {
       if (this.selectedValue) {
         return this.selectedValue;
       } else {
-        return this.defaultValue
+        return this.defaultValue;
       }
     },
 
-    classButtonSwither() {
+    classButtonSelect() {
       return [
-        "select-button__switcher",
+        "select-button",
         {
           active: this.isActive,
-          double: this.isSort,
+          double: this.sort,
           empty: !this.selectedValue,
         },
       ];
+    },
+
+    svgSelect() {
+      if (this.isActive) {
+        return "arrow-up";
+      } else {
+        return "arrow-down";
+      }
+    },
+
+    svgSort() {
+      if (this.sort === "up") {
+        return "sort-up";
+      } else if (this.sort === "down") {
+        return "sort-down";
+      }
     },
   },
 

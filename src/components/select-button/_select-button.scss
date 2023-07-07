@@ -1,55 +1,54 @@
 .select-button {
   display: flex;
-  height: min-content;
+  align-items: center;
+  justify-content: space-between;
+  height: 42px;
   width: 100%;
+  padding: 0 spacing(2) 0 spacing(3);
+  border-radius: 4px;
+  background-color: color('secondary-default');
+  border: 1px solid color('border-default');
+  white-space: nowrap;
+  cursor: pointer;
+  overflow: hidden;
 
-  &__switcher {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 42px;
-    width: 100%;
-    padding: 0 spacing(2) 0 spacing(3);
-    border-radius: 4px;
-    background-color: color('secondary-default');
-    border: 1px solid color('border-default');
-    white-space: nowrap;
-    cursor: pointer;
-
-    &:disabled {
-      color: color('font-disabled');
-      background-color: color('primary-disabled');
-      border-color: color('border-disabled');
-    }
-
-    &:hover {
-      z-index: 1;
-      background-color: color('secondary-hover');
-      border-color: color('border-hover');
-    }
-
-    &:active {
-      background-color: color('secondary-active');
-      border-color: color('border-active');
-    }
-
-    &.empty {
-      color: color('font-placeholder');
-    }
-
-    &.active {
-      z-index: 1;
-      border-color: color('border-active');
-    }
-
-    &.double {
-      border-radius: 4px 0 0 4px;
-
-
-    }
+  &:disabled {
+    color: color('font-disabled');
+    background-color: color('primary-disabled');
+    border-color: color('border-disabled');
   }
 
-  &__switсher-svg {
+  &:hover {
+    z-index: 1;
+    background-color: color('secondary-hover');
+    border-color: color('border-hover');
+  }
+
+  &:active {
+    background-color: color('secondary-active');
+    border-color: color('border-active');
+  }
+
+  &.empty {
+    color: color('font-placeholder');
+  }
+
+  &.active {
+    z-index: 1;
+    border-color: color('border-active');
+  }
+
+  &.double {
+    border-radius: 4px 0 0 4px;
+  }
+
+  &__wrapper {
+    display: flex;
+    height: min-content;
+    width: 100%;
+  }
+
+  &__svg {
     line-height: 0;
     color: color('font-disabled');
   }

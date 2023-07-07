@@ -32,7 +32,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    
+
     dropdownItemSettings: {
       type: Array,
       default: () => [],

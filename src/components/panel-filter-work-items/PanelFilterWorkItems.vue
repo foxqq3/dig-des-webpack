@@ -1,12 +1,11 @@
 <template>
   <div class="panel-filter-work-items">
-    <VInput @input="handleInput" isSearch />
+    <VInput @input="handleInput" isSearch placeholder="Поиск..."/>
     <VButton svgName="filter" theme="secondary" isSmall />
     <div class="panel-filter-work-items__select-button">
-      <DropdownMenu
+      <DropdownSelect
         :selectSettings="selectSettings"
         :dropdownItemSettings="dropdownItemSettings"
-        isSelectButton
       />
     </div>
     <VButton text="Добавить" theme="secondary" />
@@ -17,12 +16,12 @@
 import VButton from "@/components/v-button/VButton.vue";
 import VInput from "@/components/v-input/VInput.vue";
 import SelectButton from "@/components/select-button/SelectButton.vue";
-import DropdownMenu from "@/components/dropdown-menu/DropdownMenu.vue";
+import DropdownSelect from "@/components/dropdown-select/DropdownSelect.vue";
 
 export default {
   name: "PanelFirlterWorkItems",
 
-  components: { VButton, VInput, SelectButton, DropdownMenu },
+  components: { VButton, VInput, SelectButton, DropdownSelect},
 
   data() {
     return {
@@ -32,6 +31,7 @@ export default {
         {
           value: 1,
           name: "По названию",
+          isActive: true,
         },
         {
           value: 2,
@@ -56,8 +56,7 @@ export default {
       ],
 
       selectSettings: {
-        defaultValue: "",
-        isSort: true,
+        sort: 'up',
       },
     };
   },

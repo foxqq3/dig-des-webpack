@@ -26,7 +26,7 @@
         </span>
       </div>
     </div>
-    <DropdownMenu
+    <DropdownButton
       v-if="dropdownStatus || hoverStatus"
       :buttonSettings="buttonSettings"
       :dropdownItemSettings="dropdownItemSettings"
@@ -39,8 +39,7 @@
 <script>
 import AvatarIcon from "@/components/avatar-icon/AvatarIcon.vue";
 import StateItem from "@/components/state-item/StateItem.vue";
-import VButton from "@/components/v-button/VButton.vue";
-import DropdownMenu from "@/components/dropdown-menu/DropdownMenu.vue";
+import DropdownButton from "@/components/dropdown-button/DropdpwnButton.vue";
 import travolta from "@/assets/images/travolta.jpg";
 
 export default {
@@ -49,8 +48,7 @@ export default {
   components: {
     AvatarIcon,
     StateItem,
-    VButton,
-    DropdownMenu,
+    DropdownButton,
   },
 
   data() {

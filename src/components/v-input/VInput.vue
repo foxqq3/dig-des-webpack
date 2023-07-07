@@ -3,7 +3,7 @@
     <input
       v-model="value"
       type="text"
-      placeholder="поиск"
+      :placeholder="placeholder"
       :class="classInput"
       :disabled="isDisabled"
       @input="handleInput"
@@ -50,6 +50,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    placeholder: {
+      type: String,
+      default: 'Ввудите значение...'
+    }
   },
 
   data() {
