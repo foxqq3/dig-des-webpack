@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import DropdownListItem from "@/components/dropdown-list-item/DropdownListItem.vue";
+import DropdownListItem from "@/components/dropdown/dropdown-list-item/DropdownListItem.vue";
 
 export default {
   name: "DropdownList",

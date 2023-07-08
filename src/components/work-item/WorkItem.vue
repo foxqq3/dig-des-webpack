@@ -39,7 +39,8 @@
 <script>
 import AvatarIcon from "@/components/avatar-icon/AvatarIcon.vue";
 import StateItem from "@/components/state-item/StateItem.vue";
-import DropdownButton from "@/components/dropdown-button/DropdpwnButton.vue";
+import DropdownButton from "@/components/dropdown/dropdown-button/DropdpwnButton.vue";
+
 import travolta from "@/assets/images/travolta.jpg";
 
 export default {

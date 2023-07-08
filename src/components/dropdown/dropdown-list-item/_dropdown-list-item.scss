@@ -16,6 +16,11 @@
     color: color('error');
   }
 
+  &.disabled {
+    color: color('border-disabled');
+    pointer-events: none;
+  }
+
   &:hover {
     background-color: color('secondary-hover');
 
@@ -27,6 +32,7 @@
       color: color('primary-hover');
     }
   }
+
   &__svg {
     line-height: 0;
     color: color('border-default');

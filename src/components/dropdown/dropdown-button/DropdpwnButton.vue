@@ -22,7 +22,7 @@
 
 <script>
 import VButton from "@/components/v-button/VButton.vue";
-import DropdownList from "@/components/dropdown-list/DropdownList.vue";
+import DropdownList from "@/components/dropdown/dropdown-list/DropdownList.vue";
 export default {
   name: "DropdownButton",
 

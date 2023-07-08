@@ -16,7 +16,7 @@
 import VButton from "@/components/v-button/VButton.vue";
 import VInput from "@/components/v-input/VInput.vue";
 import SelectButton from "@/components/select-button/SelectButton.vue";
-import DropdownSelect from "@/components/dropdown-select/DropdownSelect.vue";
+import DropdownSelect from "@/components/dropdown/dropdown-select/DropdownSelect.vue";
 
 export default {
   name: "PanelFirlterWorkItems",

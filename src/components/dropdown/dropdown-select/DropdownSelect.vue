@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import DropdownList from "@/components/dropdown-list/DropdownList.vue";
+import DropdownList from "@/components/dropdown/dropdown-list/DropdownList.vue";
 import SelectButton from "@/components/select-button/SelectButton.vue";
 
 export default {

@@ -3,9 +3,9 @@
 @import '@/scss/variables.scss';
 @import '@/scss/functions/function.scss';
 @import '@/scss/default-set.scss';
+@import '@/scss/font-decoration.scss';
 
 @import '@/scss/components.scss';
-
 
 // style for main page
 .page {
@@ -14,12 +14,12 @@
   gap: spacing(6);
   min-height: 100vh;
 
-  &__section-items {
+  &__content {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    gap: spacing(3);
+    gap: spacing(6);
     height: 100%;
-    padding: 0 spacing(6);
+    padding: 0 spacing(6) spacing(6);
   }
 }

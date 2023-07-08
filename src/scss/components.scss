@@ -1,7 +1,7 @@
 @import '@/components/avatar-icon/avatar-icon.scss';
 @import '@/components/v-button/button.scss';
-@import '@/components/dropdown-list-item/dropdown-list-item.scss';
-@import '@/components/dropdown-list/dropdown-list.scss';
+@import '@/components/dropdown/dropdown-list-item/dropdown-list-item.scss';
+@import '@/components/dropdown/dropdown-list/dropdown-list.scss';
 @import '@/components/navigation-panel/navigation-panel.scss';
 @import '@/components/state-item/state-item.scss';
 @import '@/components/v-svg-icon/svg-icon.scss';
@@ -10,5 +10,11 @@
 @import '@/components/panel-filter-work-items/panel-filter-work-items.scss';
 @import '@/components/v-input/input.scss';
 @import '@/components/select-button/select-button.scss';
-@import '@/components/dropdown-select/dropdown-select.scss';
-@import '@/components/dropdown-button/dropdown-button.scss';
+@import '@/components/dropdown/dropdown-select/dropdown-select.scss';
+@import '@/components/dropdown/dropdown-button/dropdown-button.scss';
+
+@import '@/components/list-work-items/list-work-items.scss';
+@import '@/components/v-plug/plug.scss';
+@import '@/components/profile/profile-user/profile-user.scss';
+@import '@/components/profile/profile-image/profile-image.scss';
+@import '@/components/task-edit/task-edit.scss';

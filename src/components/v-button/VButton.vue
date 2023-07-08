@@ -13,7 +13,7 @@ import VSvgIcon from "@/components/v-svg-icon/VSvgIcon.vue";
 import AvatarIcon from "@/components/avatar-icon/AvatarIcon.vue";
 
 export default {
-  name: 'VButton',
+  name: "VButton",
 
   components: {
     VSvgIcon,
@@ -29,6 +29,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    type: {
+      type: String,
+      default: "button",
+    },
     theme: {
       type: String,
       default: "primary",
@@ -39,7 +43,7 @@ export default {
     },
     svgName: {
       type: String,
-      default: '',
+      default: "",
     },
     image: {
       type: String,

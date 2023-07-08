@@ -1,18 +1,21 @@
 <template>
   <div id="app">
-    <TaskPage></TaskPage>
-    <!-- <ProjectPage></ProjectPage> -->
+    <!-- <TaskPage/> -->
+    <!-- <ProfilePage/> -->
+    <CreateTask />
   </div>
 </template>
 
 <script>
 import TaskPage from "@/views/TaskPage.vue";
-import ProjectPage from "@/views/ProjectPage.vue";
+import ProfilePage from "@/views/ProfilePage.vue";
+import CreateTask from "@/views/CreateTask.vue";
 
 export default {
   components: {
     TaskPage,
-    ProjectPage
+    ProfilePage,
+    CreateTask,
   },
 };
 </script>

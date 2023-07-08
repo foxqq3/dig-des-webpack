@@ -2,21 +2,21 @@
   <div class="page">
     <NavigationPanel />
     <div class="page__content">
-      <ProfileUser />
+      <TaskEdit />
     </div>
   </div>
 </template>
 
 <script>
 import NavigationPanel from "@/components/navigation-panel/NavigationPanel.vue";
-import ProfileUser from "@/components/profile/profile-user/ProfileUser.vue";
+import TaskEdit from "@/components/task-edit/TaskEdit.vue";
 
 export default {
-  name: "ProfilePage",
+  name: "CreateTask",
 
   components: {
     NavigationPanel,
-    ProfileUser,
+    TaskEdit,
   },
 };
 </script>

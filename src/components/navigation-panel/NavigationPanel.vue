@@ -17,7 +17,7 @@
 <script>
 import VButton from "@/components/v-button/VButton.vue";
 
-import DropdownButton from "@/components/dropdown-button/DropdpwnButton.vue";
+import DropdownButton from "@/components/dropdown/dropdown-button/DropdpwnButton.vue";
 
 export default {
   name: "NavigationPanel",

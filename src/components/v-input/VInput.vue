@@ -3,6 +3,7 @@
     <input
       v-model="value"
       type="text"
+      :required="required"
       :placeholder="placeholder"
       :class="classInput"
       :disabled="isDisabled"
@@ -52,8 +53,16 @@ export default {
     },
     placeholder: {
       type: String,
-      default: 'Ввудите значение...'
-    }
+      default: "Ввудите значение...",
+    },
+    required: {
+      type: Boolean,
+      default: false,
+    },
+    id: {
+      type: String,
+      default: "",
+    },
   },
 
   data() {

@@ -26,6 +26,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    isDisabled: {
+      type: Boolean,
+      default: false,
+    },
     isCheckbox: {
       type: Boolean,
       default: false,
@@ -51,6 +55,7 @@ export default {
         {
           active: this.isActive,
           error: this.isError,
+          disabled: this.isDisabled,
         },
       ];
     },

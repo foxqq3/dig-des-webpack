@@ -1,30 +1,42 @@
 *,
 *:before,
 *:after {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html,
 body {
-    // min-height: 100%;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    line-height: 19px;
-    font-weight: 400;
-    color: color('font-primary');
-    background-color: color('secondary-default');
+  // min-height: 100%;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: 400;
+  color: color('font-primary');
+  background-color: color('secondary-default');
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: normal;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: normal;
 }
 
 ul li,
 menu li {
-    list-style: none;
+  list-style: none;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
 body,
@@ -36,12 +48,12 @@ p,
 ul[class],
 ol[class],
 li {
-    margin: 0;
+  margin: 0;
 }
 
 input,
 button,
 textarea,
 select {
-    font: inherit;
+  font: inherit;
 }
