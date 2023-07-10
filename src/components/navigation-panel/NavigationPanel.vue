@@ -2,11 +2,15 @@
   <header class="navigation-panel">
     <nav>
       <ul class="navigation-panel__menu">
-       <li>
+        <li>
+          <router-link to="/projects">
             <VButton theme="menu" text="Проекты" />
+          </router-link>
         </li>
         <li>
+          <router-link to="/">
             <VButton theme="menu" text="Задачи" />
+          </router-link>
         </li>
         <li>
           <VButton theme="menu" text="Пользователи" />
@@ -35,7 +39,6 @@ export default {
 
   data() {
     return {
-
       buttonSettings: {
         image: "Траволта",
         theme: "profile",

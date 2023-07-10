@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 
 import TaskPage from '@/views/TaskPage.vue';
 import CreateTask from '@/views/CreateTask.vue';
+import ProjectPage from '@/views/ProjectPage.vue'
 
 Vue.use(VueRouter);
 
