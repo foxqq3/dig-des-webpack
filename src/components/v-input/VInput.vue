@@ -7,6 +7,7 @@
       :placeholder="placeholder"
       :class="classInput"
       :disabled="isDisabled"
+      :id="id"
       @input="handleInput"
     />
     <div v-if="isSearch" class="input__svg">

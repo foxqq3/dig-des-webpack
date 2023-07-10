@@ -11,7 +11,7 @@ import PanelFilterWorkItems from "@/components/panel-filter-work-items/PanelFilt
 import ListWorkItems from "@/components/list-work-items/ListWorkItems.vue";
 import VPlug from "@/components/v-plug/VPlug.vue";
 
-import { dataTask } from "@/data-test/data-for-task.js";
+import { dataProject } from "@/data-test/data-for-project.js";
 
 export default {
   name: "TaskPage",
@@ -24,7 +24,7 @@ export default {
 
   data() {
     return {
-      tasks: dataTask,
+      tasks: dataProject,
     };
   },
 };

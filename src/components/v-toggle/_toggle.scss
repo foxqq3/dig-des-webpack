@@ -1,0 +1,33 @@
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+  margin: 0;
+  border-radius: 100px;
+  background-color: color('border-default');
+  appearance: none;
+  transform: translateX(0);
+  transition: background-color 300ms, transform 300ms;
+
+  &::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: color('secondary-default');
+    left: 2px;
+    bottom: 2px;
+    transition: transform 300ms;
+  }
+
+  &:checked {
+    background-color: color('primary-default');
+
+    &::after {
+      transform: translateX(calc(100% + 4px));
+    }
+  }
+}

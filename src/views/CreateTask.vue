@@ -1,22 +1,27 @@
 <template>
-  <div class="page">
-    <NavigationPanel />
-    <div class="page__content">
-      <TaskEdit />
-    </div>
-  </div>
+  <EditForm editTitle="Создание задачи">
+    <template v-slot:form-fields>
+      <div class="edit-form__field-container">
+        <label class="edit-form__field-label" for="name">
+          Название
+          <span class="font-error">*</span>
+        </label>
+        <VInput id="name" placeholder="Введите текст..." />
+      </div>
+    </template>
+  </EditForm>
 </template>
 
 <script>
-import NavigationPanel from "@/components/navigation-panel/NavigationPanel.vue";
-import TaskEdit from "@/components/task-edit/TaskEdit.vue";
+import EditForm from "@/components/edit-form/EditForm.vue";
+import VInput from "@/components/v-input/VInput.vue";
 
 export default {
   name: "CreateTask",
 
   components: {
-    NavigationPanel,
-    TaskEdit,
+    EditForm,
+    VInput,
   },
 };
 </script>

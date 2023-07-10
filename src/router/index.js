@@ -1,26 +1,33 @@
-// import Vue from 'vue'
-// import VueRouter from 'vue-router'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
-// Vue.use(VueRouter)
+import TaskPage from '@/views/TaskPage.vue';
+import CreateTask from '@/views/CreateTask.vue';
 
-// const routes = [
-//   {
-//     path: '/',
-//     name: 'home',
-//     component: HomeView
-//   },
-//   {
-//     path: '/about',
-//     name: 'about',
-//     route level code-splitting
-//     this generates a separate chunk (about.[hash].js) for this route
-//     which is lazy-loaded when the route is visited.
-//     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-//   }
-// ]
+Vue.use(VueRouter);
 
-// const router = new VueRouter({
-//   routes
-// })
+const routes = [
+  {
+    path: '/',
+    name: 'tasks',
+    component: TaskPage,
+  },
 
-// export default router
+  {
+    path: '/create-task',
+    name: 'CreateTask',
+    component: CreateTask,
+  },
+
+  {
+    path: '/projects',
+    name: 'projects',
+    component: ProjectPage,
+  },
+];
+
+const router = new VueRouter({
+  routes,
+});
+
+export default router;
