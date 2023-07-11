@@ -1,6 +1,6 @@
 <template>
   <div v-click-outside="handleOutsideClick" class="v-select">
-    <button :class="classTrigger" @click="handleTriggerClick">
+    <button :class="classTrigger" @click.prevent="handleTriggerClick">
       {{ triggerButtonText }}
       <div class="v-select__trigger-svg">
         <VSvgIcon :name="triggerSvg" />
@@ -8,6 +8,7 @@
     </button>
     <div class="v-select__list">
       <DropdownList
+        :hasSearch="hasSearch"
         v-if="isDropdownListActive"
         :activeValues="activeValues"
         :items="options"
@@ -21,6 +22,7 @@
 <script>
 import DropdownList from "@/components/dropdown/dropdown-list/DropdownList.vue";
 import VSvgIcon from "@/components/v-svg-icon/VSvgIcon.vue";
+import VInput from "@/components/v-input/VInput.vue";
 
 export default {
   name: "VSelect",
@@ -28,6 +30,7 @@ export default {
   components: {
     DropdownList,
     VSvgIcon,
+    VInput,
   },
 
   props: {
@@ -39,9 +42,13 @@ export default {
       type: Array,
       default: () => [],
     },
+    hasSearch: {
+      type: Boolean,
+      default: false,
+    },
     placeholder: {
       type: String,
-      default: "Выберите значение",
+      default: "Выберите значение...",
     },
     isMultiple: {
       type: Boolean,
@@ -113,10 +120,6 @@ export default {
       this.$emit("onChange", value);
       this.isDropdownListActive = false;
     },
-  },
-
-  mounted() {
-    console.log("options inside Select", this.options);
   },
 };
 </script>

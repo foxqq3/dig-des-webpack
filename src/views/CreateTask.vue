@@ -1,27 +1,48 @@
 <template>
-  <EditForm editTitle="Создание задачи">
-    <template v-slot:form-fields>
-      <div class="edit-form__field-container">
-        <label class="edit-form__field-label" for="name">
-          Название
-          <span class="font-error">*</span>
-        </label>
-        <VInput id="name" placeholder="Введите текст..." />
-      </div>
-    </template>
-  </EditForm>
+  <EditOrCreateWorkItem
+    :selectExecutorOptions="executorOptions"
+    :selectProjectsOptions="projectOptions"
+  />
 </template>
 
 <script>
-import EditForm from "@/components/edit-form/EditForm.vue";
 import VInput from "@/components/v-input/VInput.vue";
+import EditOrCreateWorkItem from "@/components/edit-or-create-work-item/EditOrCreateWorkItem.vue";
 
 export default {
   name: "CreateTask",
 
   components: {
-    EditForm,
+    EditOrCreateWorkItem,
     VInput,
+  },
+
+  data() {
+    return {
+      projectOptions: [
+        {
+          value: 1,
+          name: "Исполнитель 1",
+        },
+
+        {
+          value: 2,
+          name: "Исполнитель 2",
+        },
+      ],
+
+      executorOptions: [
+        {
+          value: 1,
+          name: "Исполнитель 1",
+        },
+
+        {
+          value: 2,
+          name: "Исполнитель 2",
+        },
+      ],
+    };
   },
 };
 </script>

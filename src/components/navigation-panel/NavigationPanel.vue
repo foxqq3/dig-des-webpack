@@ -72,6 +72,10 @@ export default {
       if (newActiveValue === "profile" && this.$route.name !== "profile-page") {
         this.$router.push({ name: "profile-page" });
       }
+
+      if (newActiveValue === "exit") {
+        this.$router.push({ name: "login-page" });
+      }
     },
 
     handleClickNavigationPanel(pageName) {

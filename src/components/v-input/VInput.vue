@@ -54,7 +54,7 @@ export default {
     },
     placeholder: {
       type: String,
-      default: "Ввудите значение...",
+      default: "Введите текст...",
     },
     required: {
       type: Boolean,

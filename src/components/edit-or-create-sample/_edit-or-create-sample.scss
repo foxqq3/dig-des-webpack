@@ -1,0 +1,41 @@
+.edit-or-create-sample {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: spacing(6);
+  padding: spacing(6);
+  border: 1px solid color('border-default');
+  border-radius: 4px;
+
+  &__header {
+    padding-bottom: spacing(6);
+    border-bottom: 1px solid color('border-default');
+  }
+
+  &__title {
+    padding: spacing(2);
+  }
+
+  &__body {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+
+  &__form {
+    padding: spacing(8) spacing(6) 0;
+    flex-grow: 1;
+  }
+
+  &__admin {
+    width: 208px;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: spacing(6);
+    padding: spacing(8) spacing(2) spacing(2);
+    border-top: 1px solid color('border-default');
+  }
+}

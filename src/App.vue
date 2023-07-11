@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="page">
-      <NavigationPanel></NavigationPanel>
+      <NavigationPanel v-if="$route.name !== 'login-page'"></NavigationPanel>
       <router-view />
     </div>
   </div>

@@ -4,8 +4,9 @@ import VueRouter from 'vue-router';
 import TasksPage from '@/views/TasksPage.vue';
 import CreateTask from '@/views/CreateTask.vue';
 import ProjectsPage from '@/views/ProjectsPage.vue';
-import ProfilePage from '@/views/ProfilePage.vue'
-import NotFoundPage from '@/views/NotFoundPage.vue'
+import ProfilePage from '@/views/ProfilePage.vue';
+import NotFoundPage from '@/views/NotFoundPage.vue';
+import LoginPage from '@/views/LoginPage.vue';
 
 Vue.use(VueRouter);
 
@@ -16,11 +17,16 @@ const routes = [
   },
 
   {
+    path: '/login',
+    name: 'login-page',
+    component: LoginPage,
+  },
+
+  {
     path: '/tasks',
     name: 'tasks-page',
     component: TasksPage,
   },
-
   {
     path: '/tasks/create',
     name: 'task-create-page',

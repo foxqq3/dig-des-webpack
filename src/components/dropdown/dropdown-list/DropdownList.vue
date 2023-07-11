@@ -1,5 +1,6 @@
 <template>
   <ul class="dropdown-list">
+    <VInput v-if="hasSearch" isSearch isSmall />
     <li v-for="option in options" :key="option.value">
       <DropdownListItem
         :content="option.name"
