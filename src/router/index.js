@@ -1,33 +1,52 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import TaskPage from '@/views/TaskPage.vue';
+import TasksPage from '@/views/TasksPage.vue';
 import CreateTask from '@/views/CreateTask.vue';
-import ProjectPage from '@/views/ProjectPage.vue'
+import ProjectsPage from '@/views/ProjectsPage.vue';
+import ProfilePage from '@/views/ProfilePage.vue'
+import NotFoundPage from '@/views/NotFoundPage.vue'
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    name: 'tasks',
-    component: TaskPage,
+    redirect: '/tasks',
   },
 
   {
-    path: '/create-task',
-    name: 'CreateTask',
+    path: '/tasks',
+    name: 'tasks-page',
+    component: TasksPage,
+  },
+
+  {
+    path: '/tasks/create',
+    name: 'task-create-page',
     component: CreateTask,
   },
 
   {
     path: '/projects',
-    name: 'projects',
-    component: ProjectPage,
+    name: 'projects-page',
+    component: ProjectsPage,
+  },
+
+  {
+    path: '/profile',
+    name: 'profile-page',
+    component: ProfilePage,
+  },
+
+  {
+    path: '*',
+    component: NotFoundPage,
   },
 ];
 
 const router = new VueRouter({
+  mode: 'history',
   routes,
 });
 

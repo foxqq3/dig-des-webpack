@@ -28,10 +28,14 @@
     </div>
     <DropdownButton
       v-if="dropdownStatus || hoverStatus"
-      :buttonSettings="buttonSettings"
-      :dropdownItemSettings="dropdownItemSettings"
-      @clickOutside="handleClickOutside"
-      @clickButton="handleClickButton"
+      :options="dropdownButtonOptions"
+      buttonTheme="secondary"
+      buttonSvgName="browse"
+      buttonIsSmall
+      :activeValue="dropdownButtonActiveValue"
+      @onChange="handleActiveItemChange"
+      @onClickOutside="handleClickOutsideDropdownButton"
+      @onClickButton="handleClickDropdownButton"
     />
   </div>
 </template>
@@ -39,9 +43,8 @@
 <script>
 import AvatarIcon from "@/components/avatar-icon/AvatarIcon.vue";
 import StateItem from "@/components/state-item/StateItem.vue";
-import DropdownButton from "@/components/dropdown/dropdown-button/DropdpwnButton.vue";
+import DropdownButton from "@/components/dropdown/dropdown-button/DropdownButton.vue";
 
-import travolta from "@/assets/images/travolta.jpg";
 
 export default {
   name: "WorkItem",
@@ -54,26 +57,22 @@ export default {
 
   data() {
     return {
-      image: travolta,
-      buttonSettings: {
-        theme: "secondary",
-        isSmall: true,
-        svgName: "browse",
-      },
+      dropdownButtonActiveValue: "",
 
-      dropdownItemSettings: [
+      dropdownButtonOptions: [
         {
-          value: 1,
+          value: "edit",
           name: "Редактировать",
         },
         {
-          value: 2,
+          value: "delete",
           name: "Удалить",
           isError: true,
         },
       ],
 
       dropdownStatus: false,
+
       hoverStatus: false,
     };
   },
@@ -92,11 +91,11 @@ export default {
     //   console.log(isTextClamped(event.target));
     //   return isTextClamped;
     // },
-    handleClickButton(status) {
+    handleClickDropdownButton(status) {
       this.dropdownStatus = status;
     },
 
-    handleClickOutside(status) {
+    handleClickOutsideDropdownButton(status) {
       this.dropdownStatus = status;
     },
 
@@ -106,6 +105,10 @@ export default {
 
     handleMouseLeaveItem() {
       this.hoverStatus = false;
+    },
+
+    handleActiveItemChange(newActiveValue) {
+      this.dropdownButtonActiveValue = newActiveValue;
     },
   },
 };

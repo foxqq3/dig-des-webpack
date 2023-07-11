@@ -14,7 +14,7 @@ import VPlug from "@/components/v-plug/VPlug.vue";
 import { dataProject } from "@/data-test/data-for-project.js";
 
 export default {
-  name: "TaskPage",
+  name: "ProjectsPage",
 
   components: {
     PanelFilterWorkItems,
@@ -26,6 +26,12 @@ export default {
     return {
       tasks: dataProject,
     };
+  },
+
+  methods: {
+    handleSelectChange(newActiveValues) {
+      this.selectActiveValues = newActiveValues;
+    },
   },
 };
 </script>

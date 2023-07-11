@@ -1,6 +1,8 @@
 .dropdown-list {
   display: flex;
   flex-direction: column;
+  width: max-content;
+  max-width: 300px;
   padding: spacing(2) 0;
   background-color: color(secondary-default);
   box-shadow: color(dropdown-shadow);

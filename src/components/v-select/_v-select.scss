@@ -1,0 +1,60 @@
+.v-select {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+
+  &__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 42px;
+    width: 100%;
+    padding: 0 spacing(2) 0 spacing(3);
+    border-radius: 4px;
+    background-color: color('secondary-default');
+    border: 1px solid color('border-default');
+    white-space: nowrap;
+    cursor: pointer;
+    overflow: hidden;
+
+    &:disabled {
+      color: color('font-disabled');
+      background-color: color('primary-disabled');
+      border-color: color('border-disabled');
+    }
+
+    &:hover {
+      z-index: 1;
+      background-color: color('secondary-hover');
+      border-color: color('border-hover');
+    }
+
+    &:active {
+      background-color: color('secondary-active');
+      border-color: color('border-active');
+    }
+
+    &.empty {
+      color: color('font-placeholder');
+    }
+
+    &.active {
+      z-index: 1;
+      border-color: color('border-active');
+    }
+  }
+
+  &__trigger-svg {
+    line-height: 0;
+    color: color('font-disabled');
+  }
+
+  &__list {
+    position: absolute;
+    z-index: 10;
+    right: 0;
+    display: block;
+    padding-top: spacing(1);
+    width: 100%;
+  }
+}

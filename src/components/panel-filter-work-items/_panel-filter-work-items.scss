@@ -2,9 +2,22 @@
   display: flex;
   gap: spacing(6);
 
-  &__select-button {
+  &__ordering-and-sorting {
     display: flex;
     min-width: 230px;
     max-width: 230px;
+
+    .v-select__trigger {
+      border-radius: 4px 0 0 4px;
+    }
+
+    .v-button {
+      margin-left: -1px;
+      border-radius: 0 4px 4px 0;
+
+      &:hover {
+        z-index: 1;
+      }
+    }
   }
 }

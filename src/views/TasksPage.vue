@@ -1,6 +1,6 @@
 <template>
   <div class="page__content">
-    <PanelFilterWorkItems />
+    <PanelFilterWorkItems @onAdd="handleAddClick" />
     <ListWorkItems v-if="tasks.length > 0" :dataWorkItem="tasks" />
     <VPlug v-if="tasks.length === 0" isButton titleText="Не создана ни одна задача" />
   </div>
@@ -14,7 +14,7 @@ import VPlug from "@/components/v-plug/VPlug.vue";
 import { dataTask } from "@/data-test/data-for-task.js";
 
 export default {
-  name: "TaskPage",
+  name: "TasksPage",
 
   components: {
     PanelFilterWorkItems,
@@ -26,6 +26,12 @@ export default {
     return {
       tasks: dataTask,
     };
+  },
+
+  methods: {
+    handleAddClick() {
+      this.$router.push({ name: "task-create-page" });
+    },
   },
 };
 </script>

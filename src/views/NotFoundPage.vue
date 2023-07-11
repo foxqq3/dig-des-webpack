@@ -1,6 +1,9 @@
 <template>
-  <div class="page__content">
-    <ProfileUser />
+  <div class="page">
+    <NavigationPanel />
+    <div class="page__content">
+      <h2>Не найдено</h2>
+    </div>
   </div>
 </template>
 
@@ -9,7 +12,7 @@ import NavigationPanel from "@/components/navigation-panel/NavigationPanel.vue";
 import ProfileUser from "@/components/profile/profile-user/ProfileUser.vue";
 
 export default {
-  name: "ProfilePage",
+  name: "NotFoundPage",
 
   components: {
     NavigationPanel,

@@ -17,12 +17,12 @@
       </div>
     </div>
     <div class="edit-form__footer">
-      <VButton theme="secondary" text="Отмена" @click.prevent="handleCancel"></VButton>
+      <VButton theme="secondary" text="Отмена" @onClick.prevent="handleCancel"></VButton>
       <VButton
         theme="primary"
         :text="textSendButton"
         type="submit"
-        @click.prevent="handleSubmit"
+        @onClick.prevent="handleSubmit"
       ></VButton>
     </div>
   </form>

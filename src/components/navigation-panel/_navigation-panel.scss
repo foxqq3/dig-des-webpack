@@ -11,5 +11,18 @@
     display: flex;
     gap: spacing(6);
   }
-}
 
+  &__profile-button {
+    .v-button {
+      color: color('secondary-active');
+      border-color: color('secondary-default');
+      background-color: color('secondary-default');
+
+      &:hover {
+        color: color('secondary-active');
+        border-color: color('secondary-hover');
+        background-color: color('secondary-hover');
+      }
+    }
+  }
+}

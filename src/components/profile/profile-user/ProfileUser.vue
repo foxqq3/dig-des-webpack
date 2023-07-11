@@ -10,10 +10,12 @@
           <StateItem :status="userStatus" />
         </div>
         <DropdownButton
-          :buttonSettings="buttonSettings"
-          :dropdownItemSettings="dropdownItemSettings"
-          @clickOutside="handleClickOutside"
-          @clickButton="handleClickButton"
+          :options="dropdownButtonOptions"
+          buttonTheme="secondary"
+          buttonSvgName="browse"
+          buttonIsSmall
+          :activeValue="dropdownButtonActiveValue"
+          @onChange="handleActiveItemChange"
         />
       </div>
       <div class="profile-user__about">
@@ -26,7 +28,7 @@
 
 <script>
 import ProfileImage from "@/components/profile/profile-image/ProfileImage.vue";
-import DropdownButton from "@/components/dropdown/dropdown-button/DropdpwnButton.vue";
+import DropdownButton from "@/components/dropdown/dropdown-button/DropdownButton.vue";
 import StateItem from "@/components/state-item/StateItem.vue";
 
 export default {
@@ -57,37 +59,28 @@ export default {
 
   data() {
     return {
-      dropdownStatus: false,
+      dropdownButtonActiveValue: "",
 
-      hoverStatus: false,
-
-      buttonSettings: {
-        theme: "secondary",
-        isSmall: true,
-        svgName: "browse",
-      },
-
-      dropdownItemSettings: [
+      dropdownButtonOptions: [
         {
-          value: 1,
+          value: "edit",
           name: "Редактировать",
         },
         {
-          value: 2,
-          name: "Удалить",
-          isError: true,
+          value: "change-password",
+          name: "Изменить пароль",
+        },
+        {
+          value: "check-user-tasks",
+          name: "Просмотр задач пользователя",
         },
       ],
     };
   },
 
   methods: {
-    handleClickButton(status) {
-      this.dropdownStatus = status;
-    },
-
-    handleClickOutside(status) {
-      this.dropdownStatus = status;
+    handleActiveItemChange(newActiveValue) {
+      this.dropdownButtonActiveValue = newActiveValue;
     },
   },
 };

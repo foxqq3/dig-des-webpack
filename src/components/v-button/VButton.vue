@@ -2,7 +2,7 @@
   <button :class="classButton" @click="click">
     <AvatarIcon v-if="image" person="Джон Траволта" />
     {{ text }}
-    <div v-if="svgName" class="button__svg-wrapper">
+    <div v-if="svgName" class="v-button__svg-wrapper">
       <VSvgIcon :name="svgName" />
     </div>
   </button>
@@ -54,14 +54,14 @@ export default {
   computed: {
     classButton() {
       return [
-        "button",
+        "v-button",
         {
-          button_primary: this.theme === "primary",
-          button_secondary: this.theme === "secondary",
-          button_profile: this.theme === "profile",
-          button_menu: this.theme === "menu",
+          "v-button_primary": this.theme === "primary",
+          "v-button_secondary": this.theme === "secondary",
+          "v-button_profile": this.theme === "profile",
+          "v-button_menu": this.theme === "menu",
           active: this.isActive,
-          button_small: this.isSmall,
+          "v-button_small": this.isSmall,
         },
       ];
     },
@@ -69,7 +69,7 @@ export default {
 
   methods: {
     click(event) {
-      this.$emit("click", event);
+      this.$emit("onClick", event);
     },
   },
 };

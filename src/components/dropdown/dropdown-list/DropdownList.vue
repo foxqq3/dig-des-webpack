@@ -6,7 +6,7 @@
         :isActive="option.isActive"
         :isError="option.isError"
         :isCheckbox="isMultiple"
-        @click="handleSelect(option)"
+        @click="handleClick(option)"
       />
     </li>
   </ul>
@@ -22,47 +22,55 @@ export default {
     DropdownListItem,
   },
 
+  data: () => ({
+    search: "",
+  }),
+
   props: {
-    value: {
+    hasSearch: {
+      type: Boolean,
+      default: false,
+    },
+
+    activeValues: {
       type: [String, Number, Array],
       required: true,
+    },
+
+    items: {
+      type: Array,
+      default: () => [],
     },
 
     isMultiple: {
       type: Boolean,
       default: false,
     },
-
-    dropdownItemSettings: {
-      type: Array,
-      default: () => [],
-    },
   },
 
   computed: {
     options() {
-      return this.dropdownItemSettings.map((item) => ({
-        ...item,
-        isActive: this.isMultiple
-          ? this.value.includes(item.value)
-          : this.value === item.value,
-      }));
+      return this.items
+        .map((item) => ({
+          ...item,
+          isActive: this.isMultiple
+            ? this.activeValues.includes(item.value)
+            : this.activeValues === item.value,
+        }))
+        .filter((item) => {
+          if (!this.hasSearch || !this.search) return true;
+
+          const nameInLower = item.name.toLowerCase();
+          const searchInLower = this.search.toLowerCase();
+
+          return nameInLower.includes(searchInLower);
+        });
     },
   },
 
   methods: {
-    handleSelect(item) {
-      let value = null;
-      if (this.isMultiple) {
-        if (item.isActive) {
-          value = this.value.filter((value) => value !== item.value);
-        } else {
-          value = [...this.value, item.value];
-        }
-      } else {
-        value = item.value;
-      }
-      this.$emit("input", value);
+    handleClick(item) {
+      this.$emit("onClick", item.value);
     },
   },
 };

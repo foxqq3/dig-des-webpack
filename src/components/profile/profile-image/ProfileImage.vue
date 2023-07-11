@@ -9,17 +9,21 @@
     <div class="profile-image__button">
       <DropdownButton
         v-if="dropdownStatus || hoverStatus"
-        :buttonSettings="buttonSettings"
-        :dropdownItemSettings="dropdownItemSettings"
-        @clickOutside="handleClickOutside"
-        @clickButton="handleClickButton"
+        :options="dropdownButtonOptions"
+        buttonTheme="secondary"
+        buttonSvgName="browse"
+        buttonIsSmall
+        :activeValue="dropdownButtonActiveValue"
+        @onChange="handleActiveItemChange"
+        @onClickOutside="handleClickOutsideDropdownButton"
+        @onClickButton="handleClickDropdownButton"
       />
     </div>
   </div>
 </template>
 
 <script>
-import DropdownButton from "@/components/dropdown/dropdown-button/DropdpwnButton.vue";
+import DropdownButton from "@/components/dropdown/dropdown-button/DropdownButton.vue";
 import travolta from "@/assets/images/travolta.jpg";
 
 export default {
@@ -40,23 +44,19 @@ export default {
     return {
       image: travolta,
 
+      dropdownButtonActiveValue: "",
+
       dropdownStatus: false,
 
       hoverStatus: false,
 
-      buttonSettings: {
-        theme: "secondary",
-        isSmall: true,
-        svgName: "browse",
-      },
-
-      dropdownItemSettings: [
+      dropdownButtonOptions: [
         {
-          value: 1,
+          value: "edit",
           name: "Редактировать",
         },
         {
-          value: 2,
+          value: "delete",
           name: "Удалить",
           isError: true,
         },
@@ -71,11 +71,11 @@ export default {
   },
 
   methods: {
-    handleClickButton(status) {
+    handleClickDropdownButton(status) {
       this.dropdownStatus = status;
     },
 
-    handleClickOutside(status) {
+    handleClickOutsideDropdownButton(status) {
       this.dropdownStatus = status;
     },
 
@@ -85,6 +85,10 @@ export default {
 
     handleMouseLeaveImage() {
       this.hoverStatus = false;
+    },
+
+    handleActiveItemChange(newActiveValue) {
+      this.dropdownButtonActiveValue = newActiveValue;
     },
   },
 };
