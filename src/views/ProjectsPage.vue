@@ -1,12 +1,14 @@
 <template>
   <div class="page__content">
     <PanelFilterWorkItems
-      v-if="onLoadHasProjects"
-      :selectOptions="selectOptions"
-      selectDefaultValue="dateCreated"
+      v-if="hasProjects"
+      :sortFieldOptions="sortFieldOptions"
+      :sortField="sort.field"
+      :sortOrder="sort.type"
       @onSearchChange="handleSearchChange"
-      @onSelectChange="handleSelectChange"
-      @onClickOrder="handleOrderChange"
+      @onOrderChange="handleOrderChange"
+      @onSortFieldChange="handleSortFieldChange"
+      @onAddButtonClick="handleAddButtonClick"
     />
 
     <ListWorkItems
@@ -15,17 +17,34 @@
     />
 
     <VPlug
-      v-if="!projects.length && !isLoading && !isError && !onLoadHasProjects"
+      v-if="!projects.length && !isLoading && !isError && !hasProjects"
       titleText="Не создан ни один проект"
       hasButton
     />
 
     <VPlug
-      v-if="!projects.length && !isLoading && !isError && onLoadHasProjects"
+      v-if="!projects.length && !isLoading && !isError && hasProjects"
       titleText="Ни один проект не соответствует результатам поиска"
     />
 
-    <VSvgIcon v-if="!isLoading && isError" name="preloader" width="40px" height="40px" />
+    <div
+      v-if="isLoading"
+      style="
+        display: flex;
+        width: 100%;
+        height: 100px;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <VSvgIcon name="preloader" width="40px" height="40px" />
+    </div>
+
+    <ProjectCreatePopup
+      v-if="isCreatePopupOpen"
+      @onClose="handleCreatePopupClose"
+      @onCreated="handleCreatePopupCreated"
+    />
   </div>
 </template>
 
@@ -36,6 +55,7 @@ import { debounce } from "@/helper";
 
 import PanelFilterWorkItems from "@/components/panel-filter-work-items/PanelFilterWorkItems.vue";
 import ListWorkItems from "@/components/list-work-items/ListWorkItems.vue";
+import ProjectCreatePopup from "@/components/project-create-popup/ProjectCreatePopup.vue";
 import VPlug from "@/components/v-plug/VPlug.vue";
 import VSvgIcon from "@/components/v-svg-icon/VSvgIcon.vue";
 
@@ -43,6 +63,7 @@ export default {
   name: "ProjectsPage",
 
   components: {
+    ProjectCreatePopup,
     PanelFilterWorkItems,
     ListWorkItems,
     VPlug,
@@ -51,17 +72,17 @@ export default {
 
   data() {
     return {
-      onLoadHasProjects: false,
+      hasProjects: false,
       projects: [],
       search: "",
       isLoading: true,
       isError: false,
       sort: {
-        field: "",
-        type: "",
+        field: "dateCreated",
+        type: "desc",
       },
 
-      selectOptions: [
+      sortFieldOptions: [
         {
           value: "name",
           name: "По названию",
@@ -79,6 +100,8 @@ export default {
           name: "По дате обновления",
         },
       ],
+
+      isCreatePopupOpen: false,
     };
   },
 
@@ -88,7 +111,7 @@ export default {
       this.loadProjectsWithDebounce();
     },
 
-    handleSelectChange(value) {
+    handleSortFieldChange(value) {
       this.sort.field = value;
       this.loadProjects();
     },
@@ -98,8 +121,23 @@ export default {
       this.loadProjects();
     },
 
+    handleAddButtonClick() {
+      this.isCreatePopupOpen = true;
+    },
+
+    handleCreatePopupClose() {
+      this.isCreatePopupOpen = false;
+    },
+
+    handleCreatePopupCreated() {
+      this.isCreatePopupOpen = false;
+      this.loadProjects();
+    },
+
     async loadProjects() {
-      this.loading = true;
+      this.isLoading = true;
+      this.projects = [];
+
       try {
         const projectsResponse = await axios.post(`${BASE_API_URL}/projects/search`, {
           page: 1,
@@ -115,7 +153,7 @@ export default {
 
         const projects = projectsResponse.data.projects;
 
-        if (!projects.length) return (this.projects = []);
+        if (!projects.length) return;
 
         const authorsIds = projects.reduce((acc, project) => {
           const authorId = project.author;
@@ -167,10 +205,10 @@ export default {
   },
 
   async mounted() {
-    const data = await this.loadProjects();
+    await this.loadProjects();
 
     if (this.projects.length) {
-      this.onLoadHasProjects = true;
+      this.hasProjects = true;
     }
   },
 };

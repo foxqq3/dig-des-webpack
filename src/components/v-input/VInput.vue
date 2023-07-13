@@ -12,12 +12,7 @@
     />
     <div v-if="isSearch" class="input__svg">
       <div class="input__svg-clear">
-        <VSvgIcon
-          v-if="value"
-          name="clear"
-          width="16px"
-          height="16px"
-        />
+        <VSvgIcon v-if="value" name="clear" width="16px" height="16px" />
       </div>
       <div :class="classSearch">
         <VSvgIcon name="search" />
@@ -33,6 +28,11 @@ export default {
   name: "VInput",
 
   components: { VSvgIcon },
+
+  model: {
+    prop: "value",
+    event: "change",
+  },
 
   props: {
     value: {
@@ -75,7 +75,7 @@ export default {
     },
 
     handleClickClear() {
-      this.$emit("change", '');
+      this.$emit("change", "");
     },
   },
 

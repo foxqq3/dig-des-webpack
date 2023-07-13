@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import store from '@/store';
+
 import TasksPage from '@/views/TasksPage.vue';
 import CreateTask from '@/views/CreateTask.vue';
 import ProjectsPage from '@/views/ProjectsPage.vue';
@@ -56,7 +58,7 @@ const router = new VueRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const token = localStorage.getItem('token');
 
   if (!token && to.name !== 'login-page') {
@@ -64,7 +66,18 @@ router.beforeEach((to, from, next) => {
     return;
   }
 
-  if (token && to.name === 'login-page') {
+  if (token && to.name === 'login-page' && !store.getters.isUserAuthorized) {
+    await store.dispatch('loadCurrentUser');
+
+    next({ name: 'projects-page' });
+    return;
+  }
+
+  if (!store.getters.isUserAuthorized && to.name !== 'login-page') {
+    await store.dispatch('loadCurrentUser');
+  }
+
+  if (store.getters.isUserAuthorized && to.name === 'login-page') {
     next({ name: 'projects-page' });
     return;
   }

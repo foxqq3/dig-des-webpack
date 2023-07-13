@@ -20,13 +20,15 @@
       </div>
       <div class="profile-user__about">
         <span class="profile-user__about-title"> О себе: </span>
-        <p class="profile-user__about-text">{{ userAbout }}</p>
+        <p class="profile-user__about-text">{{ userDescription }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapState } from "vuex";
+
 import ProfileImage from "@/components/profile/profile-image/ProfileImage.vue";
 import DropdownButton from "@/components/dropdown/dropdown-button/DropdownButton.vue";
 import StateItem from "@/components/state-item/StateItem.vue";
@@ -38,23 +40,6 @@ export default {
     ProfileImage,
     DropdownButton,
     StateItem,
-  },
-
-  props: {
-    userName: {
-      type: String,
-      default: "Имя пользователя",
-    },
-
-    userStatus: {
-      type: String,
-      default: "ACTIVE",
-    },
-
-    userAbout: {
-      type: String,
-      default: "Описание пользователя",
-    },
   },
 
   data() {
@@ -78,10 +63,28 @@ export default {
     };
   },
 
+  computed: {
+    ...mapState(["user"]),
+    ...mapGetters(["isAdmin", "isUser"]),
+    userName() {
+      return (this.user && this.user.name) || "Имя пользователя";
+    },
+    userStatus() {
+      return (this.user && this.user.status) || "ACTIVE";
+    },
+    userDescription() {
+      return (this.user && this.user.description) || "Описание пользователя";
+    },
+  },
+
   methods: {
     handleActiveItemChange(newActiveValue) {
       this.dropdownButtonActiveValue = newActiveValue;
     },
+  },
+
+  created() {
+    this.$store.dispatch("loadCurrentUser");
   },
 };
 </script>

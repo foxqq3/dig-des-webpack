@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import '@/scss/index.scss';
 import router from './router'
+import store from './store'
 
 Vue.directive('click-outside', {
   bind: function (el, binding, vnode) {
@@ -19,6 +20,6 @@ Vue.directive('click-outside', {
 
 new Vue({
   router,
-  // store,
+  store,
   render: (h) => h(App),
 }).$mount('#app');

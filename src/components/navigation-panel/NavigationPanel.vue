@@ -75,6 +75,7 @@ export default {
 
       if (newActiveValue === "exit") {
         localStorage.removeItem("token");
+        this.$store.commit('clearUser');
         this.$router.push({ name: "login-page" });
       }
     },
