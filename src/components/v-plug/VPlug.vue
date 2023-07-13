@@ -1,7 +1,7 @@
 <template>
   <div class="work-item-none">
     <span class="work-item-none__title"> {{ titleText }}</span>
-    <VButton v-if="isButton" theme="primary" text="Добавить" @onClick="clickButtonAdd" />
+    <VButton v-if="hasButton" theme="primary" text="Добавить" @onClick="clickButtonAdd" />
   </div>
 </template>
 
@@ -21,7 +21,7 @@ export default {
       default: "",
     },
 
-    isButton: {
+    hasButton: {
       type: Boolean,
       default: false,
     },

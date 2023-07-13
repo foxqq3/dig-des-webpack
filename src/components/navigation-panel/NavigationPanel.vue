@@ -74,6 +74,7 @@ export default {
       }
 
       if (newActiveValue === "exit") {
+        localStorage.removeItem("token");
         this.$router.push({ name: "login-page" });
       }
     },

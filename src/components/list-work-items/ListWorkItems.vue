@@ -1,6 +1,6 @@
 <template>
   <div class="list-work-items">
-    <WorkItem v-for="item in dataWorkItem" :key="item.id" :info="item" />
+    <WorkItem v-for="item in dataWorkItems" :key="item.id" :info="item" />
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   },
 
   props: {
-    dataWorkItem: {
+    dataWorkItems: {
       type: Array,
       default: () => [],
     },

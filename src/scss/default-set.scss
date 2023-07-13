@@ -17,6 +17,10 @@ body {
   background-color: color('secondary-default');
 }
 
+body {
+  overflow-y: scroll;
+}
+
 h1 {
   font-size: 40px;
   font-weight: 600;

@@ -1,5 +1,5 @@
 <template>
-  <button :class="classButton" @click="click">
+  <button v-bind="$attrs" :class="classButton" @click="click">
     <AvatarIcon v-if="image" person="Джон Траволта" />
     {{ text }}
     <div v-if="svgName" class="v-button__svg-wrapper">
@@ -15,6 +15,8 @@ import AvatarIcon from "@/components/avatar-icon/AvatarIcon.vue";
 export default {
   name: "VButton",
 
+  inheritAttrs: false,
+
   components: {
     VSvgIcon,
     AvatarIcon,
@@ -28,10 +30,6 @@ export default {
     isActive: {
       type: Boolean,
       default: false,
-    },
-    type: {
-      type: String,
-      default: "button",
     },
     theme: {
       type: String,

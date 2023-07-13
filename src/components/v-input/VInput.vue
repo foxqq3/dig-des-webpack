@@ -1,7 +1,7 @@
 <template>
   <div class="input__wrapper">
     <input
-      v-model="value"
+      :value="value"
       type="text"
       :required="required"
       :placeholder="placeholder"
@@ -17,11 +17,10 @@
           name="clear"
           width="16px"
           height="16px"
-          @click="handleClickClear"
         />
       </div>
       <div :class="classSearch">
-        <VSvgIcon name="search" @click="handleClickSearch" />
+        <VSvgIcon name="search" />
       </div>
     </div>
   </div>
@@ -36,6 +35,10 @@ export default {
   components: { VSvgIcon },
 
   props: {
+    value: {
+      type: String,
+      default: "",
+    },
     isSearch: {
       type: Boolean,
       default: false,
@@ -66,23 +69,13 @@ export default {
     },
   },
 
-  data() {
-    return {
-      value: "",
-    };
-  },
-
   methods: {
-    handleInput() {
-      this.$emit("input", this.value);
+    handleInput(e) {
+      this.$emit("change", e.target.value);
     },
 
     handleClickClear() {
-      this.value = "";
-    },
-
-    handleClickSearch() {
-      this.$emit("clickSearch", this.value);
+      this.$emit("change", '');
     },
   },
 

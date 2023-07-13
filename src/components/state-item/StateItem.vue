@@ -1,5 +1,5 @@
 <template>
-  <span :class="className">{{ status }}</span>
+  <span :class="className">{{ statuses[status] }}</span>
 </template>
 
 <script>
@@ -9,20 +9,54 @@ export default {
     status: {
       type: String,
       required: true,
+      validator: function (value) {
+        return [
+          "DRAFT",
+          "IN_PROCESS",
+          "COMPLETED",
+          "TESTING",
+          "TESTING_DONE",
+          "CLOSED",
+          "DELETED",
+          "ACTIVE",
+          "BLOCKED",
+        ].includes(value);
+      },
     },
+  },
+
+  data() {
+    return {
+      statuses: {
+        DRAFT: "Черновик",
+        IN_PROCESS: "В работе",
+        TESTING: "Тестирование",
+        COMPLETED: "Завершена",
+        TESTING_DONE: "Выполнена",
+        CLOSED: "Закрыта",
+        ACTIVE: "Активен",
+        DISABLED: "Не активен",
+        DELETED: "Уалена",
+      },
+    };
   },
 
   computed: {
     className() {
-      if (["Черновик", "В работе", "Тестирование"].includes(this.status)) {
-        return "state-item state-item_bronze";
-      } else if (["pfdthityf", "Выполнена", "Закрыта", "Активен"].includes(this.status)) {
-        return "state-item state-item_primary";
-      } else if (this.status === "Удалена") {
-        return "state-item state-item_error";
-      } else if (this.status === "Не активен") {
-        return "state-item state-item_disabled";
-      }
+      return [
+        "state-item",
+        {
+          "state-item_bronze": ["DRAFT", "IN_PROCESS", "TESTING"].includes(this.status),
+          "state-item_primary": [
+            "COMPLETED",
+            "TESTING_DONE",
+            "CLOSED",
+            "ACTIVE",
+          ].includes(this.status),
+          "state-item_error": this.status === "DELETED",
+          "state-item_disabled": this.status === "DISABLED",
+        },
+      ];
     },
   },
 };

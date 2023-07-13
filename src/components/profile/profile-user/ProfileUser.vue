@@ -48,7 +48,7 @@ export default {
 
     userStatus: {
       type: String,
-      default: "Активен",
+      default: "ACTIVE",
     },
 
     userAbout: {

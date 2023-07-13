@@ -6,23 +6,23 @@
   >
     <div class="work-item__info">
       <div class="work-item__name-wrapper">
-        <span class="work-item__name" :title="info.title">
-          {{ info.title }}
+        <span class="work-item__name" :title="info.name">
+          {{ info.name }}
         </span>
         <AvatarIcon v-if="info.type === 'task'" person="Джон Траволта" />
       </div>
       <div class="work-item__description">
         <div class="work-item__description-wrapper">
-          <span class="work-item__number" :title="info.id">
-            {{ info.id }}
+          <span class="work-item__number" :title="info.code">
+            {{ info.code }}
           </span>
           <span class="work-item__state">
-            {{ info.name.creator }} создал(а) {{ info.time.create }} назад
+          {{ info.author.name }} создал(а) {{ info.dateCreated }}
           </span>
-          <StateItem v-if="info.type === 'task'" :status="info.status" />
+          <StateItem v-if="info.status" :status="info.status" />
         </div>
-        <span class="work-item__state">
-          {{ info.name.changer }} изменил(а) {{ info.time.change }} назад
+        <span v-if="info.dateEdited" class="work-item__state">
+          {{ info.authorEdited.name }} изменил(а) {{ info.dateEdited }}
         </span>
       </div>
     </div>
@@ -45,7 +45,6 @@ import AvatarIcon from "@/components/avatar-icon/AvatarIcon.vue";
 import StateItem from "@/components/state-item/StateItem.vue";
 import DropdownButton from "@/components/dropdown/dropdown-button/DropdownButton.vue";
 
-
 export default {
   name: "WorkItem",
 
@@ -53,6 +52,13 @@ export default {
     AvatarIcon,
     StateItem,
     DropdownButton,
+  },
+
+  props: {
+    info: {
+      type: Object,
+      default: () => {},
+    },
   },
 
   data() {
@@ -75,13 +81,6 @@ export default {
 
       hoverStatus: false,
     };
-  },
-
-  props: {
-    info: {
-      type: Object,
-      default: () => {},
-    },
   },
 
   methods: {

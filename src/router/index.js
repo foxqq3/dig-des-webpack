@@ -13,7 +13,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    redirect: '/tasks',
+    redirect: '/projects',
   },
 
   {
@@ -54,6 +54,22 @@ const routes = [
 const router = new VueRouter({
   mode: 'history',
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem('token');
+
+  if (!token && to.name !== 'login-page') {
+    next({ name: 'login-page' });
+    return;
+  }
+
+  if (token && to.name === 'login-page') {
+    next({ name: 'projects-page' });
+    return;
+  }
+
+  next();
 });
 
 export default router;
