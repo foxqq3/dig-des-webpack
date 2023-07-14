@@ -90,8 +90,8 @@ export default {
     },
 
     handleDropdownItemClick(value) {
+      this.isDropdownListActive = false;
       this.$emit("onChange", value);
-      console.log(`выбран такой то пункт ${value}`);
     },
   },
 };

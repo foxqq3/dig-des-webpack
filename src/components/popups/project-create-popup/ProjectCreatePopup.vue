@@ -1,16 +1,16 @@
 <template>
-  <VPopup @onSubmit="handleSubmit">
+  <PopupSample @onSubmit="handleSubmit" isForm>
     <template v-slot:header>
       <h2>Создание проекта</h2>
     </template>
 
-    <template v-slot:body>
-      <div class="panel-filter-work-items__popup-field">
+    <template v-slot:body-form>
+      <div class="project-create-popup__popup-field">
         <label for="code">Код <span class="font_error">*</span></label>
         <VInput id="code" v-model="code" required :isDisabled="isLoading" />
       </div>
 
-      <div class="panel-filter-work-items__popup-field">
+      <div class="project-create-popup__popup-field">
         <label for="name">Название <span class="font_error">*</span></label>
         <VInput id="name" v-model="name" required :isDisabled="isLoading" />
       </div>
@@ -26,7 +26,7 @@
       />
       <VButton type="submit" text="Создать проект" :disabled="isLoading" />
     </template>
-  </VPopup>
+  </PopupSample>
 </template>
 
 <script>
@@ -35,12 +35,12 @@ import { BASE_API_URL } from "@/data";
 
 import VButton from "@/components/v-button/VButton.vue";
 import VInput from "@/components/v-input/VInput.vue";
-import VPopup from "@/components/v-popup/VPopup.vue";
+import PopupSample from "@/components/popups/popup-sample/PopupSample.vue";
 
 export default {
   name: "ProjectCreatePopup",
 
-  components: { VButton, VInput, VPopup },
+  components: { VButton, VInput, PopupSample },
 
   data() {
     return {

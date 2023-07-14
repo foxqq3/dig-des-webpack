@@ -1,7 +1,7 @@
 <template>
   <div class="page__content">
     <PanelFilterWorkItems
-      v-if="onLoadHastasks"
+      v-if="onLoadHasTasks"
       :selectOptions="selectOptions"
       :selectDefaultValue="selectDefaultValue"
       hasAdditionalFilters
@@ -13,7 +13,7 @@
     <ListWorkItems v-if="tasks.length && !isLoading && !isError" :dataWorkItems="tasks" />
 
     <VPlug
-      v-if="!tasks.length && !isLoading && !isError && !onLoadHastasks"
+      v-if="!tasks.length && !isLoading && !isError && !onLoadHasTasks"
       titleText="Не создан ни одна задача"
       hasButton
     />
@@ -49,7 +49,7 @@ export default {
 
   data() {
     return {
-      onLoadHastasks: false,
+      onLoadHasTasks: false,
       tasks: [],
       search: "",
       isLoading: true,
@@ -93,21 +93,22 @@ export default {
   methods: {
     handleSearchChange(value) {
       this.search = value;
-      this.loadtasksWithDebounce();
+      this.loadTasksWithDebounce();
     },
 
     handleSelectChange(value) {
       this.sort.field = value;
-      this.loadtasks();
+      this.loadTasks();
     },
 
     handleOrderChange(value) {
       this.sort.type = value;
-      this.loadtasks();
+      this.loadTasks();
     },
 
-    async loadtasks() {
+    async loadTasks() {
       this.loading = true;
+      
       try {
         const tasksResponse = await axios.post(`${BASE_API_URL}/tasks/search`, {
           page: 1,
@@ -158,8 +159,6 @@ export default {
           search: this.search,
         }));
 
-        const projetctsIds = await axios.post
-
         console.log(this.tasks);
       } catch (error) {
         this.isError = true;
@@ -171,16 +170,16 @@ export default {
   },
 
   created() {
-    this.loadtasksWithDebounce = debounce(function () {
-      this.loadtasks();
+    this.loadTasksWithDebounce = debounce(function () {
+      this.loadTasks();
     }, 500);
   },
 
   async mounted() {
-    const data = await this.loadtasks();
+    const data = await this.loadTasks();
 
     if (this.tasks.length) {
-      this.onLoadHastasks = true;
+      this.onLoadHasTasks = true;
     }
   },
 };

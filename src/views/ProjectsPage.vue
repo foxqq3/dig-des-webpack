@@ -14,6 +14,9 @@
     <ListWorkItems
       v-if="projects.length && !isLoading && !isError"
       :dataWorkItems="projects"
+      @onNameClick="handleNameProjectClick"
+      @onEditClick="handleEditProjectClick"
+      @onDeleteClick="handleDeleteProjectClick"
     />
 
     <VPlug
@@ -55,7 +58,7 @@ import { debounce } from "@/helper";
 
 import PanelFilterWorkItems from "@/components/panel-filter-work-items/PanelFilterWorkItems.vue";
 import ListWorkItems from "@/components/list-work-items/ListWorkItems.vue";
-import ProjectCreatePopup from "@/components/project-create-popup/ProjectCreatePopup.vue";
+import ProjectCreatePopup from "@/components/popups/project-create-popup/ProjectCreatePopup.vue";
 import VPlug from "@/components/v-plug/VPlug.vue";
 import VSvgIcon from "@/components/v-svg-icon/VSvgIcon.vue";
 
@@ -102,6 +105,8 @@ export default {
       ],
 
       isCreatePopupOpen: false,
+      isEditPopupOpen: false,
+      isDeletePopupOpen: false,
     };
   },
 
@@ -132,6 +137,20 @@ export default {
     handleCreatePopupCreated() {
       this.isCreatePopupOpen = false;
       this.loadProjects();
+    },
+
+    handleNameProjectClick(value) {
+      console.log(value);
+    },
+
+    handleEditProjectClick(value) {
+      console.log(value);
+    },
+
+    handleDeleteProjectClick(value) {
+      this.isDeletePopupOpen = true;
+      
+      console.log(value);
     },
 
     async loadProjects() {

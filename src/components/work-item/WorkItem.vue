@@ -6,7 +6,7 @@
   >
     <div class="work-item__info">
       <div class="work-item__name-wrapper">
-        <span class="work-item__name" :title="info.name">
+        <span class="work-item__name" :title="info.name" @click="handleNameClick">
           {{ info.name }}
         </span>
         <AvatarIcon v-if="info.type === 'task'" person="Джон Траволта" />
@@ -17,7 +17,7 @@
             {{ info.code }}
           </span>
           <span class="work-item__state">
-          {{ info.author.name }} создал(а) {{ info.dateCreated }}
+            {{ info.author.name }} создал(а) {{ info.dateCreated }}
           </span>
           <StateItem v-if="info.status" :status="info.status" />
         </div>
@@ -27,20 +27,25 @@
       </div>
     </div>
     <DropdownButton
-      v-if="dropdownStatus || hoverStatus"
+      v-if="
+        (dropdownStatus || hoverStatus) &&
+        (isAdmin || (isUser && info.author._id === this.user._id))
+      "
       :options="dropdownButtonOptions"
       buttonTheme="secondary"
       buttonSvgName="browse"
       buttonIsSmall
       :activeValue="dropdownButtonActiveValue"
       @onChange="handleActiveItemChange"
-      @onClickOutside="handleClickOutsideDropdownButton"
-      @onClickButton="handleClickDropdownButton"
+      @onClickOutside="handleOutsideDropdownButtonClick"
+      @onClickButton="handleDropdownButtonClick"
     />
   </div>
 </template>
 
 <script>
+import { mapGetters, mapState } from "vuex";
+
 import AvatarIcon from "@/components/avatar-icon/AvatarIcon.vue";
 import StateItem from "@/components/state-item/StateItem.vue";
 import DropdownButton from "@/components/dropdown/dropdown-button/DropdownButton.vue";
@@ -83,6 +88,11 @@ export default {
     };
   },
 
+  computed: {
+    ...mapGetters(["isUser", "isAdmin"]),
+    ...mapState(["user"]),
+  },
+
   methods: {
     // handleMouseEnter(event) {
     //   console.log(event.target);
@@ -90,11 +100,11 @@ export default {
     //   console.log(isTextClamped(event.target));
     //   return isTextClamped;
     // },
-    handleClickDropdownButton(status) {
+    handleDropdownButtonClick(status) {
       this.dropdownStatus = status;
     },
 
-    handleClickOutsideDropdownButton(status) {
+    handleOutsideDropdownButtonClick(status) {
       this.dropdownStatus = status;
     },
 
@@ -108,6 +118,18 @@ export default {
 
     handleActiveItemChange(newActiveValue) {
       this.dropdownButtonActiveValue = newActiveValue;
+
+      if (newActiveValue === "delete") {
+        this.$emit("onDeleteClick", this.info._id);
+      }
+
+      if (newActiveValue === "edit") {
+        this.$emit("onEditClick", this.info._id);
+      }
+    },
+
+    handleNameClick() {
+      this.$emit("onNameClick", this.info._id);
     },
   },
 };
