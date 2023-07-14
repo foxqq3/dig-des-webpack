@@ -5,10 +5,9 @@
     </template>
 
     <template v-slot:body-message>
-      <span
-        >Вы точно хотите <span class="font_error">удалить</span> проект
-        <q>{{ name }}</q></span
-      >
+      <span>
+        Вы точно хотите <span class="font_error">удалить</span> проект "{{ name }}"?
+      </span>
     </template>
 
     <template v-slot:footer>
@@ -24,6 +23,9 @@
 </template>
 
 <script>
+import axios from "axios";
+import { BASE_API_URL } from "@/data";
+
 import PopupSample from "@/components/popups/popup-sample/PopupSample.vue";
 import VButton from "@/components/v-button/VButton.vue";
 
@@ -60,9 +62,10 @@ export default {
 
       try {
         await axios.delete(`${BASE_API_URL}/projects/${this.id}`, {});
-        this.$emit("onCreated");
+        this.$emit("onDeleted");
       } catch (error) {
         alert("что-то пошло не так");
+        console.log(this.id);
       } finally {
         this.isLoading = false;
       }

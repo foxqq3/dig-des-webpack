@@ -48,6 +48,23 @@
       @onClose="handleCreatePopupClose"
       @onCreated="handleCreatePopupCreated"
     />
+
+    <ProjectDeletePopup
+      v-if="isDeletePopupOpen"
+      :id="selectedProjectId"
+      :name="selectedProjectName"
+      @onClose="handleDeletePopupClose"
+      @onDeleted="handleDeletePopupDeleted"
+    />
+
+    <ProjectEditPopup
+      v-if="isEditPopupOpen"
+      :getId="selectedProjectId"
+      :getName="selectedProjectName"
+      :getCode="selectedProjectCode"
+      @onClose="handleEditPopupClose"
+      @onEdited="handleEditPopupEdited"
+    />
   </div>
 </template>
 
@@ -58,15 +75,19 @@ import { debounce } from "@/helper";
 
 import PanelFilterWorkItems from "@/components/panel-filter-work-items/PanelFilterWorkItems.vue";
 import ListWorkItems from "@/components/list-work-items/ListWorkItems.vue";
-import ProjectCreatePopup from "@/components/popups/project-create-popup/ProjectCreatePopup.vue";
 import VPlug from "@/components/v-plug/VPlug.vue";
 import VSvgIcon from "@/components/v-svg-icon/VSvgIcon.vue";
+import ProjectCreatePopup from "@/components/popups/project-create-popup/ProjectCreatePopup.vue";
+import ProjectDeletePopup from "@/components/popups/project-delete-popup/ProjectDeletePopup.vue";
+import ProjectEditPopup from "@/components/popups/project-edit-popup/ProjectEditPopup.vue";
 
 export default {
   name: "ProjectsPage",
 
   components: {
     ProjectCreatePopup,
+    ProjectDeletePopup,
+    ProjectEditPopup,
     PanelFilterWorkItems,
     ListWorkItems,
     VPlug,
@@ -107,6 +128,10 @@ export default {
       isCreatePopupOpen: false,
       isEditPopupOpen: false,
       isDeletePopupOpen: false,
+
+      selectedProjectName: "",
+      selectedProjectId: "",
+      selectedProjectCode: "",
     };
   },
 
@@ -143,14 +168,46 @@ export default {
       console.log(value);
     },
 
-    handleEditProjectClick(value) {
-      console.log(value);
-    },
-
     handleDeleteProjectClick(value) {
       this.isDeletePopupOpen = true;
-      
-      console.log(value);
+      this.selectedProjectId = value.id;
+      this.selectedProjectName = value.name;
+    },
+
+    handleDeletePopupDeleted() {
+      this.isDeletePopupOpen = false;
+      this.selectedProjectId = "";
+      this.selectedProjectName = "";
+      this.loadProjects();
+    },
+
+    handleDeletePopupClose() {
+      this.isDeletePopupOpen = false;
+      this.selectedProjectId = "";
+      this.selectedProjectName = "";
+    },
+
+    handleEditProjectClick(value) {
+      this.isEditPopupOpen = true;
+      this.selectedProjectId = value.id;
+      this.selectedProjectName = value.name;
+      this.selectedProjectCode = value.code;
+      console.log("редактор");
+    },
+
+    handleEditPopupEdited() {
+      this.isEditPopupOpen = false;
+      this.selectedProjectId = "";
+      this.selectedProjectName = "";
+      this.selectedProjectCode = "";
+      this.loadProjects();
+    },
+
+    handleEditPopupClose() {
+      this.isEditPopupOpen = false;
+      this.selectedProjectId = "";
+      this.selectedProjectName = "";
+      this.selectedProjectCode = "";
     },
 
     async loadProjects() {

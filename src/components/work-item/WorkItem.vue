@@ -13,7 +13,7 @@
       </div>
       <div class="work-item__description">
         <div class="work-item__description-wrapper">
-          <span class="work-item__number" :title="info.code">
+          <span v-if="info.code" class="work-item__number" :title="info.code">
             {{ info.code }}
           </span>
           <span class="work-item__state">
@@ -120,11 +120,15 @@ export default {
       this.dropdownButtonActiveValue = newActiveValue;
 
       if (newActiveValue === "delete") {
-        this.$emit("onDeleteClick", this.info._id);
+        this.$emit("onDeleteClick", { id: this.info._id, name: this.info.name });
       }
 
       if (newActiveValue === "edit") {
-        this.$emit("onEditClick", this.info._id);
+        this.$emit("onEditClick", {
+          id: this.info._id,
+          name: this.info.name,
+          code: this.info.code,
+        });
       }
     },
 
