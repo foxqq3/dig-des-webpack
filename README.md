@@ -17,7 +17,7 @@
 * main - создание проекта на webpack
 * second-lesson - перенос верстки HTML на JS
 * third-lesson - работа с внешним API
-* vue-first-lesson - создание компонентов на вью, изучение ruter, axios, vuex с привязкой к внешнему API
+* vue-first-lesson - создание компонентов на вью, изучение router, axios, vuex с привязкой к внешнему API
 * final-task - выполнение финального задания
 
 ## Макеты
