@@ -1,3 +1,5 @@
+@import '@/components/wrappers/main-wrapper/main-wrapper.scss';
+@import '@/components/wrappers/page-wrapper/page-wrapper.scss';
 @import '@/components/avatar-icon/avatar-icon.scss';
 @import '@/components/dropdown/dropdown-list-item/dropdown-list-item.scss';
 @import '@/components/dropdown/dropdown-list/dropdown-list.scss';
@@ -8,16 +10,14 @@
 @import '@/components/v-tooltip/tooltip.scss';
 @import '@/components/panel-filter-work-items/panel-filter-work-items.scss';
 @import '@/components/v-input/input.scss';
-
 @import '@/components/dropdown/dropdown-button/dropdown-button.scss';
-
+@import '@/components/dropdown/dropdown-filters/dropdown-filters.scss';
 @import '@/components/list-work-items/list-work-items.scss';
 @import '@/components/v-plug/plug.scss';
 @import '@/components/profile/profile-user/profile-user.scss';
 @import '@/components/profile/profile-image/profile-image.scss';
 @import '@/components/edit-form/edit-form.scss';
 @import '@/components/v-toggle/toggle.scss';
-
 @import '@/components/v-select/v-select.scss';
 @import '@/components/v-button/v-button.scss';
 @import '@/components/edit-or-create-sample/edit-or-create-sample.scss';
@@ -25,3 +25,4 @@
 @import '@/components/v-text-area/v-text-area.scss';
 @import '@/components/popups/popup-sample/popup-sample.scss';
 @import '@/components/popups/project-create-popup/project-create-popup.scss';
+@import '@/components/preloader/preloader.scss';

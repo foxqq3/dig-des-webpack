@@ -8,8 +8,8 @@
     </button>
     <div class="v-select__list">
       <DropdownList
-        :hasSearch="hasSearch"
         v-if="isDropdownListActive"
+        :hasSearch="hasSearch"
         :activeValues="activeValues"
         :items="options"
         :isMultiple="isMultiple"
@@ -85,7 +85,7 @@ export default {
         "v-select__trigger",
         {
           active: this.isDropdownListActive,
-          empty: !this.activeValues,
+          empty: !this.activeValues || !this.activeValues.length,
         },
       ];
     },

@@ -43,28 +43,17 @@ export default {
   components: { VButton, VInput, PopupSample },
 
   props: {
-    getId: {
-      type: String,
-      default: "",
-    },
-
-    getName: {
-      type: String,
-      default: "",
-    },
-
-    getCode: {
-      type: String,
-      default: "",
+    initialData: {
+      type: Object,
+      required: true,
     },
   },
 
   data() {
     return {
-      id: this.getId,
-      code: this.getCode,
-      name: this.getName,
       isLoading: false,
+      code: this.initialData.code,
+      name: this.initialData.name,
     };
   },
 
@@ -78,7 +67,7 @@ export default {
 
       try {
         await axios.put(`${BASE_API_URL}/projects/`, {
-          _id: this.id,
+          _id: this.initialData._id,
           name: this.name,
           code: this.code,
         });

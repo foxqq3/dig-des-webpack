@@ -25,9 +25,10 @@
     </nav>
     <div :class="{ 'navigation-panel__profile-button': $route.name === 'profile-page' }">
       <DropdownButton
+        :buttonUserName="user.name"
+        :buttonPicture="user.picture"
         :options="dropdownButtonOptions"
         buttonTheme="profile"
-        buttonImage="Траволта"
         :activeValue="dropdownButtonActiveValue"
         @onChange="handleActiveItemChange"
       />
@@ -36,8 +37,9 @@
 </template>
 
 <script>
-import VButton from "@/components/v-button/VButton.vue";
+import { mapState } from "vuex";
 
+import VButton from "@/components/v-button/VButton.vue";
 import DropdownButton from "@/components/dropdown/dropdown-button/DropdownButton.vue";
 
 export default {
@@ -65,6 +67,10 @@ export default {
     };
   },
 
+  computed: {
+    ...mapState(["user"]),
+  },
+
   methods: {
     handleActiveItemChange(newActiveValue) {
       this.dropdownButtonActiveValue = newActiveValue;
@@ -75,7 +81,7 @@ export default {
 
       if (newActiveValue === "exit") {
         localStorage.removeItem("token");
-        this.$store.commit('clearUser');
+        this.$store.commit("clearUser");
         this.$router.push({ name: "login-page" });
       }
     },

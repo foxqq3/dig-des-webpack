@@ -1,5 +1,5 @@
 <template>
-  <div class="page__content">
+  <PageWrapper class="page__content">
     <PanelFilterWorkItems
       v-if="hasProjects"
       :sortFieldOptions="sortFieldOptions"
@@ -30,18 +30,7 @@
       titleText="Ни один проект не соответствует результатам поиска"
     />
 
-    <div
-      v-if="isLoading"
-      style="
-        display: flex;
-        width: 100%;
-        height: 100px;
-        justify-content: center;
-        align-items: center;
-      "
-    >
-      <VSvgIcon name="preloader" width="40px" height="40px" />
-    </div>
+    <Preloader v-if="isLoading" />
 
     <ProjectCreatePopup
       v-if="isCreatePopupOpen"
@@ -51,21 +40,18 @@
 
     <ProjectDeletePopup
       v-if="isDeletePopupOpen"
-      :id="selectedProjectId"
-      :name="selectedProjectName"
+      :initialData="initialDataProject"
       @onClose="handleDeletePopupClose"
       @onDeleted="handleDeletePopupDeleted"
     />
 
     <ProjectEditPopup
       v-if="isEditPopupOpen"
-      :getId="selectedProjectId"
-      :getName="selectedProjectName"
-      :getCode="selectedProjectCode"
+      :initialData="initialDataProject"
       @onClose="handleEditPopupClose"
       @onEdited="handleEditPopupEdited"
     />
-  </div>
+  </PageWrapper>
 </template>
 
 <script>
@@ -73,25 +59,28 @@ import axios from "axios";
 import { BASE_API_URL } from "@/data";
 import { debounce } from "@/helper";
 
+import PageWrapper from "@/components/wrappers/page-wrapper/PageWrapper.vue";
 import PanelFilterWorkItems from "@/components/panel-filter-work-items/PanelFilterWorkItems.vue";
 import ListWorkItems from "@/components/list-work-items/ListWorkItems.vue";
 import VPlug from "@/components/v-plug/VPlug.vue";
-import VSvgIcon from "@/components/v-svg-icon/VSvgIcon.vue";
 import ProjectCreatePopup from "@/components/popups/project-create-popup/ProjectCreatePopup.vue";
 import ProjectDeletePopup from "@/components/popups/project-delete-popup/ProjectDeletePopup.vue";
 import ProjectEditPopup from "@/components/popups/project-edit-popup/ProjectEditPopup.vue";
+import Preloader from "@/components/preloader/Preloader.vue";
+
 
 export default {
   name: "ProjectsPage",
 
   components: {
+    PageWrapper,
     ProjectCreatePopup,
     ProjectDeletePopup,
     ProjectEditPopup,
     PanelFilterWorkItems,
     ListWorkItems,
     VPlug,
-    VSvgIcon,
+    Preloader
   },
 
   data() {
@@ -129,9 +118,7 @@ export default {
       isEditPopupOpen: false,
       isDeletePopupOpen: false,
 
-      selectedProjectName: "",
-      selectedProjectId: "",
-      selectedProjectCode: "",
+      initialDataProject: "",
     };
   },
 
@@ -164,50 +151,43 @@ export default {
       this.loadProjects();
     },
 
-    handleNameProjectClick(value) {
-      console.log(value);
-    },
-
     handleDeleteProjectClick(value) {
       this.isDeletePopupOpen = true;
-      this.selectedProjectId = value.id;
-      this.selectedProjectName = value.name;
+      this.initialDataProject = { ...value };
     },
 
     handleDeletePopupDeleted() {
       this.isDeletePopupOpen = false;
-      this.selectedProjectId = "";
-      this.selectedProjectName = "";
+      this.initialDataProject = "";
       this.loadProjects();
     },
 
     handleDeletePopupClose() {
       this.isDeletePopupOpen = false;
-      this.selectedProjectId = "";
-      this.selectedProjectName = "";
+      this.initialDataProject = "";
     },
 
     handleEditProjectClick(value) {
       this.isEditPopupOpen = true;
-      this.selectedProjectId = value.id;
-      this.selectedProjectName = value.name;
-      this.selectedProjectCode = value.code;
-      console.log("редактор");
+      this.initialDataProject = { ...value };
     },
 
     handleEditPopupEdited() {
       this.isEditPopupOpen = false;
-      this.selectedProjectId = "";
-      this.selectedProjectName = "";
-      this.selectedProjectCode = "";
+      this.initialDataProject = "";
       this.loadProjects();
     },
 
     handleEditPopupClose() {
       this.isEditPopupOpen = false;
-      this.selectedProjectId = "";
-      this.selectedProjectName = "";
-      this.selectedProjectCode = "";
+      this.initialDataProject = "";
+    },
+
+    handleNameProjectClick(value) {
+      this.$router.push({
+        name: "tasks-page",
+        params: { initialIdProject: value._id },
+      });
     },
 
     async loadProjects() {
@@ -263,11 +243,8 @@ export default {
           authorEdited: project.authorEdited ? usersAsObject[project.authorEdited] : null,
           search: this.search,
         }));
-
-        console.log(this.projects);
       } catch (error) {
         this.isError = true;
-        console.log(error);
       } finally {
         this.isLoading = false;
       }

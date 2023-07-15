@@ -1,7 +1,8 @@
 <template>
   <div v-click-outside="handleOutsideClick" class="dropdown-button">
     <VButton
-      :image="buttonImage"
+      :picture="buttonPicture"
+      :userName="buttonUserName"
       :svgName="buttonSvg"
       :theme="buttonTheme"
       :isSmall="buttonIsSmall"
@@ -40,10 +41,6 @@ export default {
       type: String,
       default: "",
     },
-    buttonImage: {
-      type: String,
-      default: null,
-    },
     buttonTheme: {
       type: String,
       default: "",
@@ -59,6 +56,14 @@ export default {
     options: {
       type: Array,
       default: () => [],
+    },
+    buttonPicture: {
+      type: String,
+      default: "",
+    },
+    buttonUserName: {
+      type: String,
+      default: "",
     },
   },
 

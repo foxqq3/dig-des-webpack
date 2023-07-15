@@ -1,7 +1,7 @@
 <template>
   <div class="panel-filter-work-items">
     <VInput isSearch placeholder="Поиск..." @change="handleSearchChange" />
-    <VButton v-if="hasAdditionalFilters" svgName="filter" theme="secondary" isSmall />
+    <DropdownFilters v-if="hasAdditionalFilters" />
     <div class="panel-filter-work-items__ordering-and-sorting">
       <VSelect
         :activeValues="sortField"
@@ -23,11 +23,12 @@
 import VButton from "@/components/v-button/VButton.vue";
 import VInput from "@/components/v-input/VInput.vue";
 import VSelect from "@/components/v-select/VSelect.vue";
+import DropdownFilters from "@/components/dropdown/dropdown-filters/DropdownFilters.vue";
 
 export default {
   name: "PanelFilterWorkItems",
 
-  components: { VButton, VInput, VSelect },
+  components: { VButton, VInput, VSelect, DropdownFilters },
 
   props: {
     sortFieldOptions: {

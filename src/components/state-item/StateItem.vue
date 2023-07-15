@@ -36,7 +36,7 @@ export default {
         CLOSED: "Закрыта",
         ACTIVE: "Активен",
         DISABLED: "Не активен",
-        DELETED: "Уалена",
+        DELETED: "Удалена",
       },
     };
   },

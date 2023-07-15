@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <div class="page">
+    <MainWrapper>
       <NavigationPanel v-if="$route.name !== 'login-page' && isUserAuthorized" />
       <router-view />
-    </div>
+    </MainWrapper>
   </div>
 </template>
 
@@ -12,9 +12,10 @@ import axios from "axios";
 import { mapGetters } from "vuex";
 
 import NavigationPanel from "@/components/navigation-panel/NavigationPanel.vue";
+import MainWrapper from "@/components/wrappers/main-wrapper/MainWrapper.vue";
 
 export default {
-  components: { NavigationPanel },
+  components: { NavigationPanel, MainWrapper },
 
   computed: {
     ...mapGetters(["isUserAuthorized"]),
@@ -33,7 +34,7 @@ export default {
       (error) => {
         if (error.response.status === 401) {
           localStorage.removeItem("token");
-          this.$store.commit('clearUser');
+          this.$store.commit("clearUser");
           if (this.$route.name !== "login-page") {
             this.$router.push({ name: "login-page" });
           }

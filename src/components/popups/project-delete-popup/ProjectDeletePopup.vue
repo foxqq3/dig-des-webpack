@@ -6,7 +6,9 @@
 
     <template v-slot:body-message>
       <span>
-        Вы точно хотите <span class="font_error">удалить</span> проект "{{ name }}"?
+        Вы точно хотите <span class="font_error">удалить</span> проект "{{
+          initialData.name
+        }}"?
       </span>
     </template>
 
@@ -35,14 +37,9 @@ export default {
   components: { PopupSample, VButton },
 
   props: {
-    id: {
-      type: String,
-      default: "",
-    },
-
-    name: {
-      type: String,
-      default: "",
+    initialData: {
+      type: Object,
+      required: true,
     },
   },
 
@@ -61,11 +58,10 @@ export default {
       this.isLoading = true;
 
       try {
-        await axios.delete(`${BASE_API_URL}/projects/${this.id}`, {});
+        await axios.delete(`${BASE_API_URL}/projects/${this.initialData._id}`, {});
         this.$emit("onDeleted");
       } catch (error) {
         alert("что-то пошло не так");
-        console.log(this.id);
       } finally {
         this.isLoading = false;
       }

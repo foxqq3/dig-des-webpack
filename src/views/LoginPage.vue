@@ -51,7 +51,6 @@ export default {
   methods: {
     handleLoginChange(value) {
       this.login = value;
-      console.log(value);
     },
     handlePasswordChange(value) {
       this.password = value;

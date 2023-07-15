@@ -1,19 +1,19 @@
 <template>
-  <div class="page__content">
+  <PageWrapper class="page__content">
     <ProfileUser />
-  </div>
+  </PageWrapper>
 </template>
 
 <script>
-import NavigationPanel from "@/components/navigation-panel/NavigationPanel.vue";
 import ProfileUser from "@/components/profile/profile-user/ProfileUser.vue";
+import PageWrapper from "@/components/wrappers/page-wrapper/PageWrapper.vue";
 
 export default {
   name: "ProfilePage",
 
   components: {
-    NavigationPanel,
     ProfileUser,
+    PageWrapper,
   },
 };
 </script>

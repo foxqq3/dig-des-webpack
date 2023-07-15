@@ -9,12 +9,20 @@
         <span class="work-item__name" :title="info.name" @click="handleNameClick">
           {{ info.name }}
         </span>
-        <AvatarIcon v-if="info.type === 'task'" person="Джон Траволта" />
+        <AvatarIcon
+          v-if="info.executor"
+          :picture="info.executor.picture"
+          :name="info.executor.name"
+        />
       </div>
       <div class="work-item__description">
         <div class="work-item__description-wrapper">
-          <span v-if="info.code" class="work-item__number" :title="info.code">
-            {{ info.code }}
+          <span
+            v-if="this.info.project || this.info.code"
+            class="work-item__number"
+            :title="info.code"
+          >
+            {{ code }}
           </span>
           <span class="work-item__state">
             {{ info.author.name }} создал(а) {{ info.dateCreated }}
@@ -91,6 +99,15 @@ export default {
   computed: {
     ...mapGetters(["isUser", "isAdmin"]),
     ...mapState(["user"]),
+    code() {
+      if (this.info.project) {
+        return `${this.info.project.code}#${this.info.number}`;
+      }
+
+      if (this.info.code) {
+        return `#${this.info.code}`;
+      }
+    },
   },
 
   methods: {
@@ -120,20 +137,16 @@ export default {
       this.dropdownButtonActiveValue = newActiveValue;
 
       if (newActiveValue === "delete") {
-        this.$emit("onDeleteClick", { id: this.info._id, name: this.info.name });
+        this.$emit("onDeleteClick", this.info);
       }
 
       if (newActiveValue === "edit") {
-        this.$emit("onEditClick", {
-          id: this.info._id,
-          name: this.info.name,
-          code: this.info.code,
-        });
+        this.$emit("onEditClick", this.info);
       }
     },
 
     handleNameClick() {
-      this.$emit("onNameClick", this.info._id);
+      this.$emit("onNameClick", this.info);
     },
   },
 };

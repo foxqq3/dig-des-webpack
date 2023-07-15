@@ -1,6 +1,6 @@
 <template>
   <button v-bind="$attrs" :class="classButton" @click="click">
-    <AvatarIcon v-if="image" person="Джон Траволта" />
+    <AvatarIcon v-if="picture || userName" :name="userName" :picture="picture" />
     {{ text }}
     <div v-if="svgName" class="v-button__svg-wrapper">
       <VSvgIcon :name="svgName" />
@@ -43,9 +43,13 @@ export default {
       type: String,
       default: "",
     },
-    image: {
+    userName: {
       type: String,
-      default: null,
+      default: "",
+    },
+    picture: {
+      type: String,
+      default: "",
     },
   },
 

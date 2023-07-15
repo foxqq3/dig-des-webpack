@@ -1,0 +1,32 @@
+.dropdown-filters {
+  display: inline-block;
+  position: relative;
+
+  &__content-wrapper {
+    position: absolute;
+    z-index: 10;
+    right: 0;
+    display: block;
+    width: 348px;
+    padding-top: spacing(1);
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    width: 348px;
+    padding: spacing(6);
+    background-color: color(secondary-default);
+    box-shadow: color(dropdown-shadow);
+  }
+
+  &__select {
+    display: flex;
+    flex-direction: column;
+    gap: spacing(2);
+  }
+
+  &__select-name {
+    color: color('font-disabled');
+  }
+}

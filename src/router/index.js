@@ -28,6 +28,7 @@ const routes = [
     path: '/tasks',
     name: 'tasks-page',
     component: TasksPage,
+    props: true,
   },
   {
     path: '/tasks/create',
