@@ -1,4 +1,32 @@
 .v-textarea {
   width: 100%;
+  padding: spacing(3);
+  border-radius: 4px;
+  background-color: color('secondary-default');
+  border: 1px solid color('border-default');
+  outline: none;
   resize: none;
+  overflow: hidden;
+
+  &::placeholder {
+    color: color('font-placeholder');
+  }
+
+  &:hover {
+    border-color: color('border-hover');
+  }
+
+  &:active {
+    border-color: color('border-active');
+  }
+
+  &:focus {
+    border-color: color('border-active');
+  }
+
+  &:disabled {
+    color: color('font-disabled');
+    border-color: color('border-disabled');
+    background-color: color('primary-disabled');
+  }
 }

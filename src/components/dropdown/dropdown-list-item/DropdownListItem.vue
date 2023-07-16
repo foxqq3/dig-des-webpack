@@ -38,6 +38,10 @@ export default {
       type: String,
       default: "Пустой пункт",
     },
+    isClickable: {
+      type: Boolean,
+      default: true,
+    },
   },
 
   computed: {
@@ -72,6 +76,7 @@ export default {
 
   methods: {
     handleSelect() {
+      if (!this.isClickable) return;
       this.$emit("click");
     },
   },

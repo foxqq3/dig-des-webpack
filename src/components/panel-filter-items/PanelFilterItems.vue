@@ -1,6 +1,11 @@
 <template>
   <div class="panel-filter-items">
-    <VInput isSearch placeholder="Поиск..." @change="handleSearchChange" />
+    <VInput
+      :value="search"
+      isSearch
+      placeholder="Поиск..."
+      @change="handleSearchChange"
+    />
     <DropdownFilters v-if="hasAdditionalFilters" />
     <div :class="[{ 'panel-filter-items__ordering-and-sorting': !isUsersItems }]">
       <VSelect
@@ -74,6 +79,11 @@ export default {
       validator: function (value) {
         return ["desc", "asc"].includes(value);
       },
+    },
+
+    search: {
+      type: String,
+      default: "",
     },
   },
 

@@ -1,49 +1,71 @@
 <template>
   <div class="pagination">
-    <VButton
-      svgName="arrow-back"
-      isSmall
-      :disabled="current === 1"
-      theme="secondary"
-      @onClick="handleBackPageClick"
-    ></VButton>
-    <VButton
-      v-for="item in pagination"
-      :key="item"
-      :text="item"
-      isSmall
-      :theme="item === current ? 'primary' : 'secondary'"
-      :isNoneEvents="item === '...'"
-      @onClick="handleNumberPageClick(item)"
-    ></VButton>
-    <VButton
-      svgName="arrow-next"
-      isSmall
-      :disabled="current === total"
-      theme="secondary"
-      @onClick="handleNextPageClick"
-    ></VButton>
+    <div class="pagination__navigation">
+      <div class="pagination__navigation-buttons">
+        <VButton
+          svgName="arrow-back"
+          isSmall
+          :disabled="current === 1"
+          theme="secondary"
+          @onClick="handleBackPageClick"
+        ></VButton>
+        <VButton
+          v-for="item in pagination"
+          :key="item"
+          :text="String(item)"
+          isSmall
+          :theme="item === current ? 'primary' : 'secondary'"
+          :isNoneEvents="item === '...'"
+          @onClick="handleNumberPageClick(item)"
+        ></VButton>
+        <VButton
+          svgName="arrow-next"
+          isSmall
+          :disabled="current === total"
+          theme="secondary"
+          @onClick="handleNextPageClick"
+        ></VButton>
+      </div>
+      <div class="pagination__navigation-input">
+        <label for="numberPage" class="pagination__navigation-input-label">
+          Перейти к странице
+        </label>
+        <div class="pagination__navigation-input-wrapper">
+          <VInput
+            type="number"
+            id="numberPage"
+            placeholder=""
+            :value="inputValue"
+            @pressEnter="handleInputEnter"
+            @change="handelInputChange"
+            @blur="handleBlur"
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import VButton from "@/components/v-button/VButton.vue";
+import VInput from "@/components/v-input/VInput.vue";
 
 export default {
   name: "Pagination",
 
   components: {
     VButton,
+    VInput,
   },
 
   props: {
     currentPage: {
       type: Number,
-      default: null,
+      default: 1,
     },
     totalPages: {
       type: Number,
-      default: null,
+      default: 1,
     },
   },
 
@@ -51,6 +73,7 @@ export default {
     return {
       total: this.totalPages,
       current: this.currentPage,
+      inputValue: "",
     };
   },
 
@@ -102,12 +125,39 @@ export default {
     },
   },
 
+  watch: {
+    current: function (value) {
+      this.$emit("onPageChange", value);
+      console.log(value);
+    },
+  },
+
   methods: {
     handleNumberPageClick(value) {
       if (this.current !== value) {
         this.current = value;
       }
-      console.log(value);
+    },
+
+    handleInputEnter(target) {
+      let value = target.value;
+      target.blur();
+
+      if (value > this.total) this.current = this.total;
+
+      if (value < 1) this.current = 1;
+
+      if (value >= 1 && value <= this.total) this.current = Number(value);
+
+      this.inputValue = "";
+    },
+
+    handelInputChange(value) {
+      this.inputValue = value;
+    },
+
+    handleBlur() {
+      this.inputValue = "";
     },
 
     handleBackPageClick() {

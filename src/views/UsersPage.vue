@@ -3,10 +3,11 @@
     <PanelFilterItems
       isUsersItems
       :sortOrder="sort"
+      :search="search"
       @onSearchChange="handleSearchChange"
       @onOrderChange="handleOrderChange"
     ></PanelFilterItems>
-    <ul class="users-page__users-list">
+    <ul v-if="users.length && !isLoading && !isError" class="users-page__users-list">
       <li v-for="user in users" :key="user.id">
         <div
           class="users-page__user-item"
@@ -14,7 +15,7 @@
           @mouseleave="handleMouseLeaveItem"
         >
           <div class="users-page__user-info">
-            <div class="users-page__user-info-wrapper">
+            <div class="users-page__user-info-wrapper" @click="handleUserClick(user._id)">
               <AvatarIcon :name="user.name" :picture="user.picture" />
               <div class="span">{{ user.name }}</div>
             </div>
@@ -34,7 +35,13 @@
         </div>
       </li>
     </ul>
-    <Pagination></Pagination>
+    <Pagination
+      v-if="totalPages > 1 && !isLoading && !isError"
+      :currentPage="Number(currentPage)"
+      :totalPages="totalPages"
+      @onPageChange="handlePageChange"
+    ></Pagination>
+    <Preloader v-if="isLoading" />
   </PageWrapper>
 </template>
 
@@ -50,6 +57,7 @@ import DropdownButton from "@/components/dropdown/dropdown-button/DropdownButton
 import StateItem from "@/components/state-item/StateItem.vue";
 import PanelFilterItems from "@/components/panel-filter-items/PanelFilterItems.vue";
 import Pagination from "@/components/pagination/Pagination.vue";
+import Preloader from "@/components/preloader/Preloader.vue";
 
 export default {
   name: "UsersPage",
@@ -61,18 +69,13 @@ export default {
     StateItem,
     PanelFilterItems,
     Pagination,
-  },
-
-  computed: {
-    ...mapGetters(["isUser", "isAdmin"]),
-    ...mapState(["user"]),
+    Preloader,
   },
 
   data() {
     return {
-      sort: "desc",
-      search: "",
       users: [],
+      totalPages: 2,
 
       dropdownButtonActiveValue: "",
       dropdownButtonOptions: [
@@ -94,14 +97,35 @@ export default {
     };
   },
 
+  computed: {
+    ...mapGetters(["isUser", "isAdmin"]),
+    ...mapState(["user"]),
+
+    query() {
+      return this.$route.query;
+    },
+
+    currentPage() {
+      return this.query.currentPage || 1;
+    },
+
+    sort() {
+      return this.query.sort || "asc";
+    },
+
+    search() {
+      return this.query.search || undefined;
+    },
+  },
+
   methods: {
     handleSearchChange(value) {
-      this.search = value;
+      this.$router.push({ query: { ...this.query, search: value || undefined } });
       this.loadUsersWithDebounce();
     },
 
     handleOrderChange(value) {
-      this.sort = value;
+      this.$router.push({ query: { ...this.query, sort: value } });
       this.loadUsers();
     },
 
@@ -131,23 +155,35 @@ export default {
       this.hoverStatus = false;
     },
 
+    handlePageChange(value) {
+      this.$router.push({ query: { ...this.query, currentPage: value } });
+      this.loadUsers();
+    },
+
+    handleUserClick(userId) {
+      this.$router.push({ name: "user-page", params: { id: userId } });
+    },
+
     async loadUsers() {
       this.isLoading = true;
       this.users = [];
       try {
         const usersResponse = await axios.post(`${BASE_API_URL}/users/search`, {
-          page: 1,
+          page: this.currentPage,
           limit: 10,
           filter: {
-            name: this.search || undefined,
+            name: this.search,
           },
-          sort: this.sort || undefined,
+          sort: this.sort,
         });
 
         this.users = [...usersResponse.data.users];
-        if (!users.length) return;
+        this.totalPages = usersResponse.data.total;
+
+        console.log(this.users);
       } catch (error) {
         this.isError = true;
+        console.log(error);
       } finally {
         this.isLoading = false;
       }
@@ -158,6 +194,8 @@ export default {
     this.loadUsersWithDebounce = debounce(function () {
       this.loadUsers();
     }, 500);
+
+    this.loadUsers();
   },
 
   mounted() {

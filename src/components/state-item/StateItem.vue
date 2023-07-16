@@ -35,7 +35,7 @@ export default {
         TESTING_DONE: "Выполнена",
         CLOSED: "Закрыта",
         ACTIVE: "Активен",
-        DISABLED: "Не активен",
+        BLOCKED: "Заблокирован",
         DELETED: "Удалена",
       },
     };
@@ -54,7 +54,7 @@ export default {
             "ACTIVE",
           ].includes(this.status),
           "state-item_error": this.status === "DELETED",
-          "state-item_disabled": this.status === "DISABLED",
+          "state-item_disabled": this.status === "BLOCKED",
         },
       ];
     },

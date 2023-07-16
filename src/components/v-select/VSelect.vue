@@ -1,6 +1,6 @@
 <template>
   <div v-click-outside="handleOutsideClick" class="v-select">
-    <button :class="classTrigger" @click.prevent="handleTriggerClick">
+    <button :class="classTrigger" :disabled="isDisabled" @click.prevent="handleTriggerClick">
       {{ triggerButtonText }}
       <div class="v-select__trigger-svg">
         <VSvgIcon :name="triggerSvg" />
@@ -51,6 +51,10 @@ export default {
       default: "Выберите значение...",
     },
     isMultiple: {
+      type: Boolean,
+      default: false,
+    },
+    isDisabled: {
       type: Boolean,
       default: false,
     },

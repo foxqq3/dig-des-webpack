@@ -9,6 +9,10 @@
   border-radius: 4px;
   cursor: pointer;
 
+  &:disabled {
+    pointer-events: none;
+  }
+
   &.none-event {
     pointer-events: none;
   }
@@ -69,6 +73,10 @@
       color: color('font-disabled');
       background-color: color('secondary-default');
       border: 1px solid color('border-disabled');
+
+      .v-button__svg-wrapper {
+        color: color('font-disabled');
+      }
     }
 
     &.active {

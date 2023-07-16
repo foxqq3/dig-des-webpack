@@ -1,10 +1,10 @@
 <template>
-  <PageWrapper class="">
+  <PageWrapper>
     <PanelFilterItems
       hasAdditionalFilters
       :sortFieldOptions="sortFieldOptions"
-      :sortField="sort.field"
-      :sortOrder="sort.type"
+      :sortField="sortField"
+      :sortOrder="sortType"
       @onSearchChange="handleSearchChange"
       @onOrderChange="handleOrderChange"
       @onSortFieldChange="handleSortFieldChange"
@@ -26,6 +26,13 @@
       v-if="!tasks.length && !isLoading && !isError"
       titleText="Ни одна задача соответствует результатам поиска/фильтрации"
     />
+
+    <Pagination
+      v-if="totalPages > 1 && !isLoading && !isError"
+      :currentPage="Number(currentPage)"
+      :totalPages="totalPages"
+      @onPageChange="handlePageChange"
+    ></Pagination>
   </PageWrapper>
 </template>
 
@@ -41,6 +48,7 @@ import ListWorkItems from "@/components/list-work-items/ListWorkItems.vue";
 import VPlug from "@/components/v-plug/VPlug.vue";
 import VSvgIcon from "@/components/v-svg-icon/VSvgIcon.vue";
 import Preloader from "@/components/preloader/Preloader.vue";
+import Pagination from "@/components/pagination/Pagination.vue";
 
 export default {
   name: "TasksPage",
@@ -52,33 +60,14 @@ export default {
     VPlug,
     VSvgIcon,
     Preloader,
-  },
-
-  props: {
-    initialIdProject: {
-      type: String,
-      default: undefined,
-    },
-    initialIdUser: {
-      type: String,
-      default: undefined,
-    },
-  },
-
-  computed: {
-    ...mapState(["user"]),
+    Pagination,
   },
 
   data() {
     return {
       tasks: [],
-      search: "",
       isLoading: true,
       isError: false,
-      sort: {
-        field: "dateCreated",
-        type: "desc",
-      },
 
       sortFieldOptions: [
         {
@@ -109,28 +98,58 @@ export default {
 
       isDeletePopupOpen: false,
       filter: "",
+      totalPages: 1,
     };
+  },
+
+  computed: {
+    ...mapState(["user"]),
+
+    // Dynamic page filters
+    query() {
+      return this.$route.query;
+    },
+    projectId() {
+      return this.query.projectId || undefined;
+    },
+    authorId() {
+      return this.query.authorId || undefined;
+    },
+    executorId() {
+      return this.query.executorId || undefined;
+    },
+    currentPage() {
+      return this.query.currentPage || 1;
+    },
+    sortField() {
+      return this.query.sortField || "dateCreated";
+    },
+    sortType() {
+      return this.query.sortType || "desc";
+    },
+    search() {
+      return this.query.search || undefined;
+    },
   },
 
   methods: {
     handleSearchChange(value) {
-      this.search = value;
+      this.$router.push({ query: { ...this.query, search: value || undefined } });
       this.loadTasksWithDebounce();
     },
 
     handleOrderChange(value) {
-      this.sort.type = value;
+      this.$router.push({ query: { ...this.query, sortType: value } });
       this.loadTasks();
     },
 
     handleSortFieldChange(value) {
-      this.sort.field = value;
+      this.$router.push({ query: { ...this.query, sortField: value } });
       this.loadTasks();
     },
 
     handleAddButtonClick() {
-      alert("Создание задачи");
-      this.$router.push({ name: "tasks-page-create"});
+      this.$router.push({ name: "tasks-page-create" });
     },
 
     handleEditTaskClick(value) {
@@ -145,31 +164,39 @@ export default {
       alert("Клик по задаче");
     },
 
+    handlePageChange(value) {
+      this.$router.push({ query: { ...this.query, currentPage: value } });
+      this.loadTasks();
+    },
+
     async loadTasks() {
       this.isLoading = true;
       this.tasks = [];
 
+      console.log("filter projectId", this.projectId);
+      console.log("filter authorId", this.authorId);
+
       try {
         const tasksResponse = await axios.post(`${BASE_API_URL}/tasks/search`, {
-          page: 1,
+          page: this.currentPage,
           limit: 10,
           filter: {
-            projectId: this.filter.projectId || undefined,
-            author: this.filter.author || undefined,
-            executor: this.filter.executor || undefined,
-            name: this.search || undefined,
+            projectId: this.projectId,
+            author: this.authorId,
+            executor: this.executorId,
+            name: this.search,
           },
           sort: {
-            field: this.sort.field || undefined,
-            type: this.sort.type || undefined,
+            field: this.sortField,
+            type: this.sortType,
           },
         });
 
+        this.totalPages = tasksResponse.data.total;
         const tasks = tasksResponse.data.tasks;
 
         if (!tasks.length) return;
 
-        console.log(tasks);
 
         const usersIds = tasks.reduce((acc, task) => {
           const authorId = task.author;
@@ -198,6 +225,8 @@ export default {
           }),
           {}
         );
+
+
 
         const projectsIds = tasks.reduce((acc, task) => {
           const projectId = task.projectId;
@@ -252,12 +281,6 @@ export default {
         projectId: this.initialIdProject,
       };
     }
-
-    // if (!this.initialIdUser && !this.initialIdProject) {
-    //   this.filter = {
-    //     executor: this.user,
-    //   };
-    // }
 
     this.loadTasks();
   },

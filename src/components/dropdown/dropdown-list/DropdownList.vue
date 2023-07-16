@@ -1,5 +1,5 @@
 <template>
-  <ul class="dropdown-list">
+  <div class="dropdown-list">
     <VInput
       v-if="hasSearch"
       isSearch
@@ -7,7 +7,7 @@
       placeholder="Поиск..."
       @change="handleSearchChange"
     />
-    <div class="dropdown-list__wrapper">
+    <ul v-if="options.length" class="dropdown-list__wrapper">
       <li v-for="option in options" :key="option.value">
         <DropdownListItem
           :content="option.name"
@@ -17,8 +17,17 @@
           @click="handleClick(option)"
         />
       </li>
-    </div>
-  </ul>
+    </ul>
+
+    <ul v-else class="dropdown-list__wrapper">
+      <li>
+        <DropdownListItem
+          content="Ничего не найдено"
+          :isClickable="false"
+        />
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>

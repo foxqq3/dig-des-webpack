@@ -1,4 +1,26 @@
 .pagination {
   display: flex;
-  gap: spacing(2);
+  &__navigation {
+    display: flex;
+    gap: spacing(8);
+  }
+
+  &__navigation-buttons {
+    display: flex;
+    gap: spacing(2);
+  }
+
+  &__navigation-input {
+    display: flex;
+    align-items: center;
+    gap: spacing(2);
+  }
+
+  &__navigation-input-label {
+    color: color('font-disabled');
+  }
+
+  &__navigation-input-wrapper {
+    width: 70px;
+  }
 }

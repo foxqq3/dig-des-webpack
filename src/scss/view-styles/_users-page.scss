@@ -2,6 +2,7 @@
   &__users-list {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
     gap: spacing(2);
     padding: 0;
   }
@@ -25,5 +26,6 @@
     align-items: center;
     gap: spacing(2);
     padding: spacing(2) spacing(4);
+    cursor: pointer;
   }
 }

@@ -1,10 +1,11 @@
 <template>
-  <PageWrapper class="page__content">
+  <PageWrapper>
     <PanelFilterItems
       v-if="hasProjects"
       :sortFieldOptions="sortFieldOptions"
-      :sortField="sort.field"
-      :sortOrder="sort.type"
+      :sortField="sortField"
+      :sortOrder="sortType"
+      :search="search"
       @onSearchChange="handleSearchChange"
       @onOrderChange="handleOrderChange"
       @onSortFieldChange="handleSortFieldChange"
@@ -51,6 +52,13 @@
       @onClose="handleEditPopupClose"
       @onEdited="handleEditPopupEdited"
     />
+
+    <Pagination
+      v-if="totalPages > 1 && !isLoading && !isError"
+      :currentPage="Number(currentPage)"
+      :totalPages="totalPages"
+      @onPageChange="handlePageChange"
+    ></Pagination>
   </PageWrapper>
 </template>
 
@@ -67,6 +75,7 @@ import ProjectCreatePopup from "@/components/popups/project-create-popup/Project
 import ProjectDeletePopup from "@/components/popups/project-delete-popup/ProjectDeletePopup.vue";
 import ProjectEditPopup from "@/components/popups/project-edit-popup/ProjectEditPopup.vue";
 import Preloader from "@/components/preloader/Preloader.vue";
+import Pagination from "@/components/pagination/Pagination.vue";
 
 export default {
   name: "ProjectsPage",
@@ -80,19 +89,16 @@ export default {
     ListWorkItems,
     VPlug,
     Preloader,
+    Pagination,
   },
 
   data() {
     return {
       hasProjects: false,
       projects: [],
-      search: "",
       isLoading: true,
       isError: false,
-      sort: {
-        field: "dateCreated",
-        type: "desc",
-      },
+      totalPages: 1,
 
       sortFieldOptions: [
         {
@@ -121,19 +127,40 @@ export default {
     };
   },
 
+  computed: {
+    // filters
+    query() {
+      return this.$route.query;
+    },
+    sortField() {
+      return this.query.sortField || "dateCreated";
+    },
+    sortType() {
+      return this.query.sortType || "desc";
+    },
+    search() {
+      return this.query.search || undefined;
+    },
+    currentPage() {
+      return this.query.currentPage || 1;
+    },
+  },
+
   methods: {
     handleSearchChange(value) {
-      this.search = value;
+      this.$router.push({ query: { ...this.query, search: value || undefined } });
       this.loadProjectsWithDebounce();
     },
 
     handleSortFieldChange(value) {
-      this.sort.field = value;
+      this.$router.push({ query: { ...this.query, sortField: value } });
+
       this.loadProjects();
     },
 
     handleOrderChange(value) {
-      this.sort.type = value;
+      this.$router.push({ query: { ...this.query, sortType: value } });
+
       this.loadProjects();
     },
 
@@ -185,8 +212,32 @@ export default {
     handleNameProjectClick(value) {
       this.$router.push({
         name: "tasks-page",
-        params: { initialIdProject: value._id },
+        query: { projectId: value._id },
       });
+    },
+
+    handlePageChange(value) {
+      this.$router.push({ query: { ...this.query, currentPage: value } });
+      this.loadProjects();
+    },
+
+    async checkExistsProjects() {
+      this.isLoading = true;
+
+      try {
+        const response = await axios.post(`${BASE_API_URL}/projects/search`, {
+          page: 1,
+          limit: 1,
+        });
+        const projects = response.data.projects;
+        if (projects.length) {
+          this.hasProjects = true;
+        }
+      } catch (error) {
+        this.isError = true;
+      } finally {
+        this.isLoading = false;
+      }
     },
 
     async loadProjects() {
@@ -195,16 +246,18 @@ export default {
 
       try {
         const projectsResponse = await axios.post(`${BASE_API_URL}/projects/search`, {
-          page: 1,
-          limit: 10,
+          page: this.currentPage,
+          limit: 100,
           filter: {
-            name: this.search || undefined,
+            name: this.search,
           },
           sort: {
-            field: this.sort.field || undefined,
-            type: this.sort.type || undefined,
+            field: this.sortField,
+            type: this.sortType,
           },
         });
+
+        this.totalPages = projectsResponse.data.total;
 
         const projects = projectsResponse.data.projects;
 
@@ -257,11 +310,11 @@ export default {
   },
 
   async mounted() {
-    await this.loadProjects();
+    console.log("route", this.$route);
+    console.log("route.query", this.$route.query);
 
-    if (this.projects.length) {
-      this.hasProjects = true;
-    }
+    await this.checkExistsProjects();
+    await this.loadProjects();
   },
 };
 </script>

@@ -10,6 +10,7 @@ import ProfilePage from '@/views/ProfilePage.vue';
 import NotFoundPage from '@/views/NotFoundPage.vue';
 import LoginPage from '@/views/LoginPage.vue';
 import UsersPage from '@/views/UsersPage.vue';
+import UserPage from '@/views/UserPage.vue';
 
 Vue.use(VueRouter);
 
@@ -29,7 +30,6 @@ const routes = [
     path: '/tasks',
     name: 'tasks-page',
     component: TasksPage,
-    props: true,
   },
 
   {
@@ -48,6 +48,12 @@ const routes = [
     path: '/users',
     name: 'users-page',
     component: UsersPage,
+  },
+
+  {
+    path: '/users/:id',
+    name: 'user-page',
+    component: UserPage,
   },
 
   {

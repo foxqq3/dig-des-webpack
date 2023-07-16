@@ -15,7 +15,7 @@
             theme="menu"
             text="Задачи"
             :isActive="$route.path.includes('tasks')"
-            @onClick="handleClickNavigationPanel('tasks-page')"
+            @onClick="handleTasksClick"
           />
         </li>
         <li>
@@ -93,6 +93,19 @@ export default {
       if (this.$route.name === pageName) return;
 
       this.$router.push({ name: pageName });
+    },
+
+    handleTasksClick() {
+      const pageName = "tasks-page";
+      const authorId = this.$store.state.user._id;
+
+      if (this.$route.name === pageName && this.$route.query.authorId === authorId)
+        return;
+
+      this.$router.push({
+        name: pageName,
+        // query: { authorId }
+      });
     },
   },
 };

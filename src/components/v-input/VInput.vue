@@ -2,16 +2,18 @@
   <div class="input__wrapper">
     <input
       :value="value"
-      type="text"
+      :type="type"
       :required="required"
       :placeholder="placeholder"
       :class="classInput"
       :disabled="isDisabled"
       :id="id"
       @input="handleInput"
+      @keyup.enter="handleEnterKey"
+      @blur="handleBlur"
     />
     <div v-if="isSearch" class="input__svg">
-      <div class="input__svg-clear">
+      <div class="input__svg-clear" @click="handleClickClear">
         <VSvgIcon v-if="value" name="clear" width="16px" height="16px" />
       </div>
       <div :class="classSearch">
@@ -67,6 +69,10 @@ export default {
       type: String,
       default: "",
     },
+    type: {
+      type: String,
+      default: "text",
+    },
   },
 
   methods: {
@@ -74,8 +80,16 @@ export default {
       this.$emit("change", e.target.value);
     },
 
+    handleEnterKey(e) {
+      this.$emit("pressEnter", e.target);
+    },
+
     handleClickClear() {
       this.$emit("change", "");
+    },
+
+    handleBlur() {
+      this.$emit("blur", "");
     },
   },
 
