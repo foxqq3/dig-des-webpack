@@ -1,7 +1,7 @@
 <template>
   <div class="profile-user">
     <div class="profile-user__image">
-      <ProfileImage :name="userName" :picture="userPicture" />
+      <ProfileImage hasAvatarSet :name="userName" :picture="userPicture" />
     </div>
     <div class="profile-user__main-content">
       <div class="profile-user__content-header">

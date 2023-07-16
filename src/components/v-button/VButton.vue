@@ -1,8 +1,11 @@
 <template>
   <button v-bind="$attrs" :class="classButton" @click="click">
     <AvatarIcon v-if="picture || userName" :name="userName" :picture="picture" />
+    <div v-if="svgName && svgPrepend" class="v-button__svg-wrapper">
+      <VSvgIcon :name="svgName" />
+    </div>
     {{ text }}
-    <div v-if="svgName" class="v-button__svg-wrapper">
+    <div v-if="svgName && !svgPrepend" class="v-button__svg-wrapper">
       <VSvgIcon :name="svgName" />
     </div>
   </button>
@@ -54,6 +57,10 @@ export default {
     picture: {
       type: String,
       default: "",
+    },
+    svgPrepend: {
+      type: Boolean,
+      default: false,
     },
   },
 

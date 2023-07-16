@@ -303,7 +303,6 @@ export default {
         projectId: this.initialIdProject,
       };
     }
-
     this.loadTasks();
   },
 };

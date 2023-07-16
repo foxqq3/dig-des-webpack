@@ -23,7 +23,7 @@
             <StateItem :status="user.status" />
           </div>
           <DropdownButton
-            v-if="(dropdownStatus || hoverStatus) && isAdmin"
+            v-if="false"
             :options="dropdownButtonOptions"
             buttonTheme="secondary"
             buttonSvgName="browse"
@@ -78,7 +78,7 @@ export default {
     PanelFilterItems,
     Pagination,
     Preloader,
-    VPlug
+    VPlug,
   },
 
   data() {

@@ -312,9 +312,6 @@ export default {
   },
 
   async mounted() {
-    console.log("route", this.$route);
-    console.log("route.query", this.$route.query);
-
     await this.checkExistsProjects();
     await this.loadProjects();
   },

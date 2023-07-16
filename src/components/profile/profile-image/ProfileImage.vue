@@ -13,7 +13,7 @@
     />
     <div class="profile-image__button">
       <DropdownButton
-        v-if="dropdownStatus || hoverStatus"
+        v-if="(dropdownStatus || hoverStatus) && hasAvatarSet"
         :options="dropdownButtonOptions"
         buttonTheme="secondary"
         buttonSvgName="browse"
@@ -49,6 +49,11 @@ export default {
       type: String,
       default: "",
     },
+
+    hasAvatarSet: {
+      type: Boolean,
+      default: false,
+    }
   },
 
   data() {
