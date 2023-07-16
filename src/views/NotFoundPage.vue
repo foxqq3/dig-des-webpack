@@ -1,6 +1,5 @@
 <template>
   <div class="page">
-    <NavigationPanel />
     <div class="page__content">
       <h2>Не найдено</h2>
     </div>

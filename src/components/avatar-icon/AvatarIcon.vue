@@ -40,9 +40,10 @@ export default {
     },
 
     initials() {
-      let nameAsArray = this.name.split(" ");
-
-      return nameAsArray[0][0] + nameAsArray[1][0];
+      if (this.name && this.name.split(" ").length > 1) {
+        let nameAsArray = this.name.split(" ");
+        return nameAsArray[0][0] + nameAsArray[1][0];
+      }
     },
   },
 };

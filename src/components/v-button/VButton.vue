@@ -39,6 +39,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    isNoneEvents: {
+      type: Boolean,
+      default: false,
+    },
     svgName: {
       type: String,
       default: "",
@@ -64,6 +68,7 @@ export default {
           "v-button_menu": this.theme === "menu",
           active: this.isActive,
           "v-button_small": this.isSmall,
+          "none-event": this.isNoneEvents,
         },
       ];
     },

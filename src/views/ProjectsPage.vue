@@ -1,6 +1,6 @@
 <template>
   <PageWrapper class="page__content">
-    <PanelFilterWorkItems
+    <PanelFilterItems
       v-if="hasProjects"
       :sortFieldOptions="sortFieldOptions"
       :sortField="sort.field"
@@ -60,14 +60,13 @@ import { BASE_API_URL } from "@/data";
 import { debounce } from "@/helper";
 
 import PageWrapper from "@/components/wrappers/page-wrapper/PageWrapper.vue";
-import PanelFilterWorkItems from "@/components/panel-filter-work-items/PanelFilterWorkItems.vue";
+import PanelFilterItems from "@/components/panel-filter-items/PanelFilterItems.vue";
 import ListWorkItems from "@/components/list-work-items/ListWorkItems.vue";
 import VPlug from "@/components/v-plug/VPlug.vue";
 import ProjectCreatePopup from "@/components/popups/project-create-popup/ProjectCreatePopup.vue";
 import ProjectDeletePopup from "@/components/popups/project-delete-popup/ProjectDeletePopup.vue";
 import ProjectEditPopup from "@/components/popups/project-edit-popup/ProjectEditPopup.vue";
 import Preloader from "@/components/preloader/Preloader.vue";
-
 
 export default {
   name: "ProjectsPage",
@@ -77,10 +76,10 @@ export default {
     ProjectCreatePopup,
     ProjectDeletePopup,
     ProjectEditPopup,
-    PanelFilterWorkItems,
+    PanelFilterItems,
     ListWorkItems,
     VPlug,
-    Preloader
+    Preloader,
   },
 
   data() {

@@ -12,6 +12,12 @@
             isMultiple
             @onChange="handleFilterStatusChange"
           />
+          <VSelect hasSearch
+            :activeValues="filterStatus"
+            :options="filterStatusOptions"
+            isMultiple
+            @onChange="handleFilterStatusChange"
+          />
         </div>
       </div>
     </div>
@@ -29,15 +35,18 @@ export default {
     VSelect,
   },
 
-  props: {},
+  props: {
+    filters: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
 
   data() {
     return {
       isDropdownActive: false,
 
-      filter: {},
-
-      filterStatus: "",
+      filterStatus: this.filters.hasOwnProperty("status") ? this.filters.status : "",
 
       filterStatusOptions: [
         {

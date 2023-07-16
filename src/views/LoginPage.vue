@@ -1,28 +1,43 @@
 <template>
-  <div class="">
-    <form @submit.prevent="handleSubmit">
-      <h1>Авторизация</h1>
-      <div>
-        <label for="login"> Логин </label>
-        <VInput
-          :value="login"
-          id="login"
-          placeholder="Введите логин..."
-          :isDisabled="loading"
-          @change="handleLoginChange"
-        />
+  <div class="login-page">
+    <form class="login-page__form" @submit.prevent="handleSubmit">
+      <div class="login-page__header">
+        <h2>ВХОД</h2>
       </div>
-      <div>
-        <label for="login"> Пароль </label>
-        <VInput
-          id="password"
-          :value="password"
-          placeholder="Введите пароль..."
-          :isDisabled="loading"
-          @change="handlePasswordChange"
-        />
+      <div class="login-page__body">
+        <div class="login-page__body-wrapper">
+          <!-- <span class="font_error">Неправильный логин или пароль.</span> -->
+          <div class="login-page__field">
+            <label class="login-page__label" for="login">
+              <span>Логин</span>
+              <span class="font_error">*</span>
+            </label>
+            <VInput
+              :value="login"
+              id="login"
+              placeholder="Введите логин..."
+              :isDisabled="loading"
+              @change="handleLoginChange"
+            />
+          </div>
+          <div class="login-page__field">
+            <label class="login-page__label" for="password">
+              <span>Пароль</span>
+              <span class="font_error">*</span>
+            </label>
+            <VInput
+              id="password"
+              :value="password"
+              placeholder="Введите пароль..."
+              :isDisabled="loading"
+              @change="handlePasswordChange"
+            />
+          </div>
+        </div>
       </div>
-      <VButton theme="primary" text="Вход" type="submit" :disabled="loading" />
+      <div class="login-page__footer">
+        <VButton theme="primary" text="Вход" type="submit" :disabled="loading" />
+      </div>
     </form>
   </div>
 </template>

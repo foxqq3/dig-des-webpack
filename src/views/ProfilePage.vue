@@ -1,5 +1,5 @@
 <template>
-  <PageWrapper class="page__content">
+  <PageWrapper>
     <ProfileUser />
   </PageWrapper>
 </template>
@@ -14,6 +14,7 @@ export default {
   components: {
     ProfileUser,
     PageWrapper,
+
   },
 };
 </script>

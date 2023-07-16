@@ -9,6 +9,7 @@ import ProjectsPage from '@/views/ProjectsPage.vue';
 import ProfilePage from '@/views/ProfilePage.vue';
 import NotFoundPage from '@/views/NotFoundPage.vue';
 import LoginPage from '@/views/LoginPage.vue';
+import UsersPage from '@/views/UsersPage.vue';
 
 Vue.use(VueRouter);
 
@@ -30,9 +31,10 @@ const routes = [
     component: TasksPage,
     props: true,
   },
+
   {
     path: '/tasks/create',
-    name: 'task-create-page',
+    name: 'tasks-page-create',
     component: CreateTask,
   },
 
@@ -40,6 +42,12 @@ const routes = [
     path: '/projects',
     name: 'projects-page',
     component: ProjectsPage,
+  },
+
+  {
+    path: '/users',
+    name: 'users-page',
+    component: UsersPage,
   },
 
   {

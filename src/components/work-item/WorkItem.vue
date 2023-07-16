@@ -133,14 +133,12 @@ export default {
       this.hoverStatus = false;
     },
 
-    handleActiveItemChange(newActiveValue) {
-      this.dropdownButtonActiveValue = newActiveValue;
-
-      if (newActiveValue === "delete") {
+    handleActiveItemChange(activeValue) {
+      if (activeValue === "delete") {
         this.$emit("onDeleteClick", this.info);
       }
 
-      if (newActiveValue === "edit") {
+      if (activeValue === "edit") {
         this.$emit("onEditClick", this.info);
       }
     },

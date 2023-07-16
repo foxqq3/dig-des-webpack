@@ -4,10 +4,14 @@
   align-items: center;
   gap: spacing(2);
   height: 42px;
-  min-width: min-content;
+  min-width: max-content;
   padding: 0 spacing(4);
   border-radius: 4px;
   cursor: pointer;
+
+  &.none-event {
+    pointer-events: none;
+  }
 
   &_small {
     padding: 0;

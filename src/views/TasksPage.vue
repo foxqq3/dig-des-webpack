@@ -1,6 +1,6 @@
 <template>
   <PageWrapper class="">
-    <PanelFilterWorkItems
+    <PanelFilterItems
       hasAdditionalFilters
       :sortFieldOptions="sortFieldOptions"
       :sortField="sort.field"
@@ -36,7 +36,7 @@ import { mapState } from "vuex";
 import { debounce } from "@/helper";
 
 import PageWrapper from "@/components/wrappers/page-wrapper/PageWrapper.vue";
-import PanelFilterWorkItems from "@/components/panel-filter-work-items/PanelFilterWorkItems.vue";
+import PanelFilterItems from "@/components/panel-filter-items/PanelFilterItems.vue";
 import ListWorkItems from "@/components/list-work-items/ListWorkItems.vue";
 import VPlug from "@/components/v-plug/VPlug.vue";
 import VSvgIcon from "@/components/v-svg-icon/VSvgIcon.vue";
@@ -47,7 +47,7 @@ export default {
 
   components: {
     PageWrapper,
-    PanelFilterWorkItems,
+    PanelFilterItems,
     ListWorkItems,
     VPlug,
     VSvgIcon,
@@ -129,7 +129,8 @@ export default {
     },
 
     handleAddButtonClick() {
-      alert("Создание проекта");
+      alert("Создание задачи");
+      this.$router.push({ name: "tasks-page-create"});
     },
 
     handleEditTaskClick(value) {
@@ -156,6 +157,7 @@ export default {
             projectId: this.filter.projectId || undefined,
             author: this.filter.author || undefined,
             executor: this.filter.executor || undefined,
+            name: this.search || undefined,
           },
           sort: {
             field: this.sort.field || undefined,
@@ -166,6 +168,8 @@ export default {
         const tasks = tasksResponse.data.tasks;
 
         if (!tasks.length) return;
+
+        console.log(tasks);
 
         const usersIds = tasks.reduce((acc, task) => {
           const authorId = task.author;
@@ -229,10 +233,17 @@ export default {
         console.log(this.tasks);
       } catch (error) {
         this.isError = true;
+        console.log(error);
       } finally {
         this.isLoading = false;
       }
     },
+  },
+
+  created() {
+    this.loadTasksWithDebounce = debounce(function () {
+      this.loadTasks();
+    }, 500);
   },
 
   mounted() {

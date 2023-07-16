@@ -1,4 +1,4 @@
-.panel-filter-work-items {
+.panel-filter-items {
   display: flex;
   gap: spacing(6);
 
@@ -10,14 +10,15 @@
     .v-select__trigger {
       border-radius: 4px 0 0 4px;
     }
+  }
 
+  &__button-wrapper {
     .v-button {
       margin-left: -1px;
       border-radius: 0 4px 4px 0;
-
-      &:hover {
-        z-index: 1;
-      }
+    }
+    &:hover {
+      z-index: 1;
     }
   }
 }

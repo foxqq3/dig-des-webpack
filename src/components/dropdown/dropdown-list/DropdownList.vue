@@ -1,31 +1,37 @@
 <template>
   <ul class="dropdown-list">
-    <VInput v-if="hasSearch" isSearch isSmall />
-    <li v-for="option in options" :key="option.value">
-      <DropdownListItem
-        :content="option.name"
-        :isActive="option.isActive"
-        :isError="option.isError"
-        :isCheckbox="isMultiple"
-        @click="handleClick(option)"
-      />
-    </li>
+    <VInput
+      v-if="hasSearch"
+      isSearch
+      isSmall
+      placeholder="Поиск..."
+      @change="handleSearchChange"
+    />
+    <div class="dropdown-list__wrapper">
+      <li v-for="option in options" :key="option.value">
+        <DropdownListItem
+          :content="option.name"
+          :isActive="option.isActive"
+          :isError="option.isError"
+          :isCheckbox="isMultiple"
+          @click="handleClick(option)"
+        />
+      </li>
+    </div>
   </ul>
 </template>
 
 <script>
 import DropdownListItem from "@/components/dropdown/dropdown-list-item/DropdownListItem.vue";
+import VInput from "@/components/v-input/VInput.vue";
 
 export default {
   name: "DropdownList",
 
   components: {
     DropdownListItem,
+    VInput,
   },
-
-  data: () => ({
-    search: "",
-  }),
 
   props: {
     hasSearch: {
@@ -47,6 +53,12 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+
+  data() {
+    return {
+      search: "",
+    };
   },
 
   computed: {
@@ -72,6 +84,10 @@ export default {
   methods: {
     handleClick(item) {
       this.$emit("onClick", item.value);
+    },
+
+    handleSearchChange() {
+      this.$emit("onSearchChange", value);
     },
   },
 };

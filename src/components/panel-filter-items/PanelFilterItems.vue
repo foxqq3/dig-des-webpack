@@ -1,32 +1,49 @@
 <template>
-  <div class="panel-filter-work-items">
+  <div class="panel-filter-items">
     <VInput isSearch placeholder="Поиск..." @change="handleSearchChange" />
     <DropdownFilters v-if="hasAdditionalFilters" />
-    <div class="panel-filter-work-items__ordering-and-sorting">
+    <div :class="[{ 'panel-filter-items__ordering-and-sorting': !isUsersItems }]">
       <VSelect
+        v-if="!isUsersItems"
         :activeValues="sortField"
         :options="sortFieldOptions"
         @onChange="handleSelectChange"
       />
-      <VButton
-        :svgName="orderButtonSvg"
-        isSmall
-        theme="secondary"
-        @onClick="handleSortOrder"
-      />
+      <div :class="[{ 'panel-filter-items__button-wrapper': !isUsersItems }]">
+        <VButton
+          :svgName="orderButtonSvg"
+          isSmall
+          theme="secondary"
+          @onClick="handleSortOrder"
+        />
+      </div>
     </div>
-    <VButton text="Добавить" theme="secondary" @onClick="handleAddButtonClick" />
+
+    <VButton
+      v-if="!isUsersItems"
+      text="Добавить"
+      theme="secondary"
+      @onClick="handleAddButtonClick"
+    />
+
+    <VButton
+      v-if="isUsersItems && isAdmin"
+      text="Добавить пользователя"
+      @onClick="handleAddButtonClick"
+    />
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 import VButton from "@/components/v-button/VButton.vue";
 import VInput from "@/components/v-input/VInput.vue";
 import VSelect from "@/components/v-select/VSelect.vue";
 import DropdownFilters from "@/components/dropdown/dropdown-filters/DropdownFilters.vue";
 
 export default {
-  name: "PanelFilterWorkItems",
+  name: "PanelFilterItems",
 
   components: { VButton, VInput, VSelect, DropdownFilters },
 
@@ -46,6 +63,11 @@ export default {
       default: false,
     },
 
+    isUsersItems: {
+      type: Boolean,
+      default: false,
+    },
+
     sortOrder: {
       type: String,
       default: "desc",
@@ -55,16 +77,18 @@ export default {
     },
   },
 
+  computed: {
+    ...mapGetters(["isUser", "isAdmin"]),
+
+    orderButtonSvg() {
+      return this.sortOrder === "asc" ? "sort-up" : "sort-down";
+    },
+  },
+
   data() {
     return {
       inputValue: "",
     };
-  },
-
-  computed: {
-    orderButtonSvg() {
-      return this.sortOrder === "asc" ? "sort-up" : "sort-down";
-    },
   },
 
   methods: {

@@ -19,7 +19,12 @@
           />
         </li>
         <li>
-          <VButton theme="menu" text="Пользователи" />
+          <VButton
+            theme="menu"
+            text="Пользователи"
+            :isActive="$route.path.includes('users')"
+            @onClick="handleClickNavigationPanel('users-page')"
+          />
         </li>
       </ul>
     </nav>
@@ -73,8 +78,6 @@ export default {
 
   methods: {
     handleActiveItemChange(newActiveValue) {
-      this.dropdownButtonActiveValue = newActiveValue;
-
       if (newActiveValue === "profile" && this.$route.name !== "profile-page") {
         this.$router.push({ name: "profile-page" });
       }

@@ -1,0 +1,13 @@
+.create-task {
+  &__field {
+    display: flex;
+    gap: spacing(2);
+  }
+
+  &__label {
+    display: flex;
+    gap: spacing(2);
+    min-width: 120px;
+    max-width: 120px;
+  }
+}
