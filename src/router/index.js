@@ -4,7 +4,8 @@ import VueRouter from 'vue-router';
 import store from '@/store';
 
 import TasksPage from '@/views/TasksPage.vue';
-import CreateTask from '@/views/CreateTask.vue';
+import CreateTaskPage from '@/views/CreateTaskPage.vue';
+import EditTaskPage from '@/views/EditTaskPage.vue';
 import ProjectsPage from '@/views/ProjectsPage.vue';
 import ProfilePage from '@/views/ProfilePage.vue';
 import NotFoundPage from '@/views/NotFoundPage.vue';
@@ -35,7 +36,13 @@ const routes = [
   {
     path: '/tasks/create',
     name: 'tasks-page-create',
-    component: CreateTask,
+    component: CreateTaskPage,
+  },
+
+  {
+    path: '/tasks/edit:id',
+    name: 'tasks-page-edit',
+    component: EditTaskPage,
   },
 
   {

@@ -29,4 +29,8 @@
     border-color: color('border-disabled');
     background-color: color('primary-disabled');
   }
+
+  &.error {
+    border-color: color('error');
+  }
 }

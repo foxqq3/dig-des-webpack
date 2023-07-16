@@ -1,7 +1,6 @@
 <template>
   <PageWrapper>
     <PanelFilterItems
-      hasAdditionalFilters
       :sortFieldOptions="sortFieldOptions"
       :sortField="sortField"
       :sortOrder="sortType"
@@ -10,7 +9,6 @@
       @onSortFieldChange="handleSortFieldChange"
       @onAddButtonClick="handleAddButtonClick"
     />
-    {{ filter }}
 
     <ListWorkItems
       v-if="tasks.length && !isLoading && !isError"
@@ -33,6 +31,15 @@
       :totalPages="totalPages"
       @onPageChange="handlePageChange"
     ></Pagination>
+
+    <WorkItemDeletePopup
+      v-if="isDeletePopupOpen"
+      :initialData="initialDataProject"
+      itemName="задачу"
+      itemsUrl="tasks"
+      @onClose="handleDeletePopupClose"
+      @onDeleted="handleDeletePopupDeleted"
+    />
   </PageWrapper>
 </template>
 
@@ -49,6 +56,7 @@ import VPlug from "@/components/v-plug/VPlug.vue";
 import VSvgIcon from "@/components/v-svg-icon/VSvgIcon.vue";
 import Preloader from "@/components/preloader/Preloader.vue";
 import Pagination from "@/components/pagination/Pagination.vue";
+import WorkItemDeletePopup from "@/components/popups/work-item-delete-popup/WorkItemDeletePopup.vue";
 
 export default {
   name: "TasksPage",
@@ -61,6 +69,7 @@ export default {
     VSvgIcon,
     Preloader,
     Pagination,
+    WorkItemDeletePopup,
   },
 
   data() {
@@ -96,9 +105,11 @@ export default {
         },
       ],
 
-      isDeletePopupOpen: false,
       filter: "",
       totalPages: 1,
+
+      initialDataProject: "",
+      isDeletePopupOpen: false,
     };
   },
 
@@ -154,10 +165,27 @@ export default {
 
     handleEditTaskClick(value) {
       alert(`Редактирование задачи ${value}`);
+      console.log(value);
+      this.$router.push({
+        name: "tasks-page-edit",
+        params: { id: value._id, info: value },
+      });
     },
 
     handleDeleteTaskClick(value) {
-      alert(`Удаление задачи ${value}`);
+      this.isDeletePopupOpen = true;
+      this.initialDataProject = { ...value };
+    },
+
+    handleDeletePopupDeleted() {
+      this.isDeletePopupOpen = false;
+      this.initialDataProject = "";
+      this.loadTasks();
+    },
+
+    handleDeletePopupClose() {
+      this.isDeletePopupOpen = false;
+      this.initialDataProject = "";
     },
 
     handleNameTaskClick() {
@@ -172,9 +200,6 @@ export default {
     async loadTasks() {
       this.isLoading = true;
       this.tasks = [];
-
-      console.log("filter projectId", this.projectId);
-      console.log("filter authorId", this.authorId);
 
       try {
         const tasksResponse = await axios.post(`${BASE_API_URL}/tasks/search`, {
@@ -196,7 +221,6 @@ export default {
         const tasks = tasksResponse.data.tasks;
 
         if (!tasks.length) return;
-
 
         const usersIds = tasks.reduce((acc, task) => {
           const authorId = task.author;
@@ -225,8 +249,6 @@ export default {
           }),
           {}
         );
-
-
 
         const projectsIds = tasks.reduce((acc, task) => {
           const projectId = task.projectId;

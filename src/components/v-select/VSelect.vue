@@ -1,6 +1,10 @@
 <template>
   <div v-click-outside="handleOutsideClick" class="v-select">
-    <button :class="classTrigger" :disabled="isDisabled" @click.prevent="handleTriggerClick">
+    <button
+      :class="classTrigger"
+      :disabled="isDisabled"
+      @click.prevent="handleTriggerClick"
+    >
       {{ triggerButtonText }}
       <div class="v-select__trigger-svg">
         <VSvgIcon :name="triggerSvg" />
@@ -58,6 +62,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    isError: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -90,6 +98,7 @@ export default {
         {
           active: this.isDropdownListActive,
           empty: !this.activeValues || !this.activeValues.length,
+          error: this.isError,
         },
       ];
     },

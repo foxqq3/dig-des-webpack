@@ -3,7 +3,7 @@
     ref="textarea"
     :value="value"
     :placeholder="placeholder"
-    class="v-textarea"
+    :class="classTextarea"
     @input="handleInput"
   />
 </template>
@@ -25,6 +25,21 @@ export default {
     placeholder: {
       type: String,
       default: "Введите текст...",
+    },
+    isError: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
+  computed: {
+    classTextarea() {
+      return [
+        "v-textarea",
+        {
+          error: this.isError,
+        },
+      ];
     },
   },
 

@@ -6,7 +6,7 @@
 
     <template v-slot:body-message>
       <span>
-        Вы точно хотите <span class="font_error">удалить</span> проект "{{
+        Вы точно хотите <span class="font_error">удалить</span> {{ itemName }} "{{
           initialData.name
         }}"?
       </span>
@@ -32,13 +32,21 @@ import PopupSample from "@/components/popups/popup-sample/PopupSample.vue";
 import VButton from "@/components/v-button/VButton.vue";
 
 export default {
-  name: "ProjectDeletePopup",
+  name: "WorkItemDeletePopup",
 
   components: { PopupSample, VButton },
 
   props: {
     initialData: {
       type: Object,
+      required: true,
+    },
+    itemsUrl: {
+      type: String,
+      required: true,
+    },
+    itemName: {
+      type: String,
       required: true,
     },
   },
@@ -58,7 +66,10 @@ export default {
       this.isLoading = true;
 
       try {
-        await axios.delete(`${BASE_API_URL}/projects/${this.initialData._id}`, {});
+        await axios.delete(
+          `${BASE_API_URL}/${this.itemsUrl}/${this.initialData._id}`,
+          {}
+        );
         this.$emit("onDeleted");
       } catch (error) {
         alert("что-то пошло не так");
@@ -69,5 +80,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

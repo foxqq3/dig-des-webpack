@@ -7,6 +7,7 @@
       @onSearchChange="handleSearchChange"
       @onOrderChange="handleOrderChange"
     ></PanelFilterItems>
+
     <ul v-if="users.length && !isLoading && !isError" class="users-page__users-list">
       <li v-for="user in users" :key="user.id">
         <div
@@ -35,6 +36,12 @@
         </div>
       </li>
     </ul>
+
+    <VPlug
+      v-if="!users.length && !isLoading && !isError"
+      titleText="Не найден ни один пользователь"
+    />
+
     <Pagination
       v-if="totalPages > 1 && !isLoading && !isError"
       :currentPage="Number(currentPage)"
@@ -58,6 +65,7 @@ import StateItem from "@/components/state-item/StateItem.vue";
 import PanelFilterItems from "@/components/panel-filter-items/PanelFilterItems.vue";
 import Pagination from "@/components/pagination/Pagination.vue";
 import Preloader from "@/components/preloader/Preloader.vue";
+import VPlug from "@/components/v-plug/VPlug.vue";
 
 export default {
   name: "UsersPage",
@@ -70,6 +78,7 @@ export default {
     PanelFilterItems,
     Pagination,
     Preloader,
+    VPlug
   },
 
   data() {

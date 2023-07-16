@@ -1,6 +1,6 @@
 <template>
   <PageWrapper>
-    
+
     <h1>User page</h1>
 
     <div>user id: {{ $route.params.id }}</div>
@@ -28,6 +28,7 @@ export default {
 
   mounted() {
     console.log(this.$route.params.id);
+    console.log(this.$route);
   },
 };
 </script>

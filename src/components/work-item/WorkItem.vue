@@ -25,12 +25,12 @@
             {{ code }}
           </span>
           <span class="work-item__state">
-            {{ info.author.name }} создал(а) {{ info.dateCreated }}
+            {{ info.author.name }} создал(а) {{ validData(info.dateCreated) }}
           </span>
           <StateItem v-if="info.status" :status="info.status" />
         </div>
         <span v-if="info.dateEdited" class="work-item__state">
-          {{ info.authorEdited.name }} изменил(а) {{ info.dateEdited }}
+          {{ info.authorEdited.name }} изменил(а) {{ validData(info.dateEdited) }}
         </span>
       </div>
     </div>
@@ -145,6 +145,56 @@ export default {
 
     handleNameClick() {
       this.$emit("onNameClick", this.info);
+    },
+
+    validData(enterDate) {
+      let time = new Date(enterDate);
+      let now = new Date();
+
+      let months = [
+        "Янв",
+        "Фев",
+        "Мар",
+        "Апр",
+        "Мая",
+        "Июн",
+        "Июл",
+        "Авг",
+        "Сен",
+        "Окт",
+        "Ноя",
+        "Дек",
+      ];
+
+      function minuteFix(value) {
+        if (value < 10) return `0${value}`;
+
+        return value;
+      }
+
+      let diff = Math.ceil((now.getTime() - time.getTime()) / 60000);
+
+      if (diff < 60) return `${diff} минут назад`;
+
+      if (diff < 300) return `${Math.ceil(diff / 60)} часа назад`;
+
+      if (diff < 300) return `${Math.ceil(diff / 60)} часа назад`;
+
+      if (time.getDate() === now.getDate())
+        return `Сегодня в ${time.getHours()}:${time.getMinutes()}`;
+
+      if (time.getDate() !== now.getDate() && diff < 2880)
+        return `Вчера в ${time.getHours()}:${time.getMinutes()}`;
+
+      if (time.getFullYear() === now.getFullYear() && diff >= 2880)
+        return `${time.getDate()} ${
+          months[time.getMonth()]
+        } в ${time.getHours()}:${minuteFix(time.getMinutes())}`;
+
+      if (time.getFullYear() !== now.getFullYear() && diff >= 2880)
+        return `${time.getDate()} ${
+          months[time.getMonth()]
+        } ${time.getFullYear()} в ${time.getHours()}:${minuteFix(time.getMinutes())}`;
     },
   },
 };

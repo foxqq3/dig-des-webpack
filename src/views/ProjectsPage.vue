@@ -39,9 +39,11 @@
       @onCreated="handleCreatePopupCreated"
     />
 
-    <ProjectDeletePopup
+    <WorkItemDeletePopup
       v-if="isDeletePopupOpen"
       :initialData="initialDataProject"
+      itemName="проект"
+      itemsUrl="projects"
       @onClose="handleDeletePopupClose"
       @onDeleted="handleDeletePopupDeleted"
     />
@@ -72,7 +74,7 @@ import PanelFilterItems from "@/components/panel-filter-items/PanelFilterItems.v
 import ListWorkItems from "@/components/list-work-items/ListWorkItems.vue";
 import VPlug from "@/components/v-plug/VPlug.vue";
 import ProjectCreatePopup from "@/components/popups/project-create-popup/ProjectCreatePopup.vue";
-import ProjectDeletePopup from "@/components/popups/project-delete-popup/ProjectDeletePopup.vue";
+import WorkItemDeletePopup from "@/components/popups/work-item-delete-popup/WorkItemDeletePopup.vue";
 import ProjectEditPopup from "@/components/popups/project-edit-popup/ProjectEditPopup.vue";
 import Preloader from "@/components/preloader/Preloader.vue";
 import Pagination from "@/components/pagination/Pagination.vue";
@@ -83,7 +85,7 @@ export default {
   components: {
     PageWrapper,
     ProjectCreatePopup,
-    ProjectDeletePopup,
+    WorkItemDeletePopup,
     ProjectEditPopup,
     PanelFilterItems,
     ListWorkItems,
@@ -247,7 +249,7 @@ export default {
       try {
         const projectsResponse = await axios.post(`${BASE_API_URL}/projects/search`, {
           page: this.currentPage,
-          limit: 100,
+          limit: 10,
           filter: {
             name: this.search,
           },

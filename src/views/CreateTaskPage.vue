@@ -1,20 +1,23 @@
 <template>
   <PageWrapper>
-    <EditOrCreateSample>
+    <EditOrCreateSample @onSubmit="handleSubmit">
       <template v-slot:header>
         <h1>Создание задачи</h1>
       </template>
 
       <template v-slot:body-form>
+        <span v-if="isErrorSubmit" class="font_error">Заполните обязательные поля</span>
         <div class="create-task__field">
-          <label for="" class="create-task__label">
+          <label for="name" class="create-task__label">
             <span>Название</span> <span class="font_error">*</span></label
           >
-          <VInput />
+          <VInput id="name" v-model="name" :isError="isErrorSubmit" />
         </div>
         <div class="create-task__field">
-          <label for="" class="create-task__label"> <span>Описание</span></label>
-          <VTextArea />
+          <label for="description" class="create-task__label">
+            <span>Описание</span><span class="font_error">*</span></label
+          >
+          <VTextArea id="description" v-model="description" :isError="isErrorSubmit" />
         </div>
         <div class="create-task__field">
           <div for="" class="create-task__label">
@@ -24,6 +27,7 @@
             :activeValues="projectActiveValue"
             :options="projectsOptions"
             :isDisabled="isProjectsLoading"
+            :isError="isErrorSubmit"
             @onChange="handleProjectsSelectChange"
           />
         </div>
@@ -41,8 +45,14 @@
       </template>
 
       <template v-slot:footer>
-        <VButton theme="secondary" text="Отмена" @onClick="handleCancelClick" />
-        <VButton text="Создать задачу" type="submit" />
+        <VButton
+          theme="secondary"
+          text="Отмена"
+          :disabled="isPageLoading"
+          type="button"
+          @onClick="handleCancelClick"
+        />
+        <VButton text="Создать задачу" type="submit" :disabled="isPageLoading" />
       </template>
     </EditOrCreateSample>
   </PageWrapper>
@@ -60,7 +70,7 @@ import VTextArea from "@/components/v-textarea/VTextArea.vue";
 import VSelect from "@/components/v-select/VSelect.vue";
 
 export default {
-  name: "CreateTask",
+  name: "CreateTaskPage",
 
   components: {
     EditOrCreateSample,
@@ -72,20 +82,25 @@ export default {
   },
 
   data: () => ({
+    name: "",
+    description: "",
+    isErrorSubmit: false,
+
+    isPageLoading: false,
+
     isProjectsLoading: true,
     projectsOptions: [],
-    projectActiveValue: '',
+    projectActiveValue: "",
 
     isUsersLoading: true,
     usersOptions: [],
-    userActiveValue: '',
+    userActiveValue: "",
   }),
 
   methods: {
     handleCancelClick() {
       this.$router.push({
         name: "tasks-page",
-        query: { authorId: this.$store.state.user._id },
       });
     },
 
@@ -95,6 +110,31 @@ export default {
 
     handleUsersSelectChange(value) {
       this.userActiveValue = value;
+    },
+
+    async handleSubmit() {
+      if (!this.projectActiveValue || !this.name || !this.description)
+        return (this.isErrorSubmit = true);
+
+      this.isErrorSubmit === false;
+      this.isPageLoading = true;
+      try {
+        await axios.post(`${BASE_API_URL}/tasks`, {
+          name: this.name,
+          description: this.description || undefined,
+          projectId: this.projectActiveValue,
+          executor: this.userActiveValue || undefined,
+        });
+        this.$emit("onCreated");
+
+        this.$router.push({
+          name: "tasks-page",
+        });
+      } catch (error) {
+        alert("что-то пошло не так");
+      } finally {
+        this.isPageLoading = false;
+      }
     },
 
     async loadProjects() {
