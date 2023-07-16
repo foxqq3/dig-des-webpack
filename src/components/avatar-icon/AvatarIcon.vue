@@ -7,7 +7,6 @@
       alt="Фото пользователя"
       :title="name"
     />
-
     <span v-if="!avatar" class="avatar-icon__initials" :title="name">{{ initials }}</span>
   </div>
 </template>

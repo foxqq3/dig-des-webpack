@@ -1,7 +1,7 @@
 <template>
   <div class="profile-user">
     <div class="profile-user__image">
-      <ProfileImage />
+      <ProfileImage :name="userName" :picture="userPicture" />
     </div>
     <div class="profile-user__main-content">
       <div class="profile-user__content-header">
@@ -74,6 +74,9 @@ export default {
     },
     userDescription() {
       return (this.user && this.user.description) || "Описание пользователя";
+    },
+    userPicture() {
+      return (this.user && this.user.picture) || undefined;
     },
   },
 

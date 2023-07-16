@@ -5,7 +5,12 @@
     @mouseleave="handleMouseLeaveImage"
   >
     <span class="profile-image__initials">{{ initials }}</span>
-    <img :src="image" class="profile-image__image" alt="Фото пользователя" />
+    <img
+      v-if="avatar"
+      :src="avatar"
+      class="profile-image__image"
+      alt="Фото пользователя"
+    />
     <div class="profile-image__button">
       <DropdownButton
         v-if="dropdownStatus || hoverStatus"
@@ -23,6 +28,7 @@
 </template>
 
 <script>
+import { BASE_URL } from "@/data";
 import DropdownButton from "@/components/dropdown/dropdown-button/DropdownButton.vue";
 import travolta from "@/assets/images/travolta.jpg";
 
@@ -34,7 +40,12 @@ export default {
   },
 
   props: {
-    userName: {
+    picture: {
+      type: String,
+      default: "",
+    },
+
+    name: {
       type: String,
       default: "",
     },
@@ -65,8 +76,18 @@ export default {
   },
 
   computed: {
+    avatar() {
+      if (this.picture) {
+        return `${BASE_URL}${this.picture}`;
+      }
+      return "";
+    },
+
     initials() {
-      return "ДТ";
+      if (this.name && this.name.split(" ").length > 1) {
+        let nameAsArray = this.name.split(" ");
+        return nameAsArray[0][0] + nameAsArray[1][0];
+      }
     },
   },
 
