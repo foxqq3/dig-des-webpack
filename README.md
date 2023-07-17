@@ -18,7 +18,7 @@
 * second-lesson - перенос верстки HTML на JS
 * third-lesson - работа с внешним API
 * vue-first-lesson - создание компонентов на вью, изучение router, axios, vuex с привязкой к внешнему API
-* final-task - выполнение финального задания
+* final-task - выполнение финального задания (описание выполненной работы в read.me к ветке)
 
 ## Макеты
 https://www.figma.com/file/HSP4iiwfVzdE6LFngzQ90f/FE-School-2023-(Copy)?type=design&node-id=23%3A399&mode=dev
