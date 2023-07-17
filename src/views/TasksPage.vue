@@ -165,7 +165,6 @@ export default {
 
     handleEditTaskClick(value) {
       alert(`Редактирование задачи ${value}`);
-      console.log(value);
       this.$router.push({
         name: "tasks-page-edit",
         params: { id: value._id, info: value },
@@ -281,7 +280,6 @@ export default {
           project: task.projectId ? projectsAsObject[task.projectId] : null,
           search: this.search,
         }));
-        console.log(this.tasks);
       } catch (error) {
         this.isError = true;
         console.log(error);

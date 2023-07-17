@@ -189,7 +189,6 @@ export default {
         this.users = [...usersResponse.data.users];
         this.totalPages = usersResponse.data.total;
 
-        console.log(this.users);
       } catch (error) {
         this.isError = true;
         console.log(error);

@@ -128,7 +128,6 @@ export default {
   watch: {
     current: function (value) {
       this.$emit("onPageChange", value);
-      console.log(value);
     },
   },
 
