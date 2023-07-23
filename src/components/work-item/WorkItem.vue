@@ -18,7 +18,7 @@
       <div class="work-item__description">
         <div class="work-item__description-wrapper">
           <span
-            v-if="this.info.project || this.info.code"
+            v-if="this.info.number || this.info.code"
             class="work-item__number"
             :title="info.code"
           >
@@ -104,6 +104,10 @@ export default {
         return `${this.info.project.code}#${this.info.number}`;
       }
 
+      if (this.info.number) {
+        return `#${this.info.number}`;
+      }
+
       if (this.info.code) {
         return `#${this.info.code}`;
       }
@@ -183,15 +187,15 @@ export default {
       if (time.getDate() === now.getDate())
         return `Сегодня в ${time.getHours()}:${time.getMinutes()}`;
 
-      if (time.getDate() !== now.getDate() && diff < 2880)
+      if (time.getDate() === now.getDate() - 1)
         return `Вчера в ${time.getHours()}:${time.getMinutes()}`;
 
-      if (time.getFullYear() === now.getFullYear() && diff >= 2880)
+      if (time.getFullYear() === now.getFullYear())
         return `${time.getDate()} ${
           months[time.getMonth()]
         } в ${time.getHours()}:${minuteFix(time.getMinutes())}`;
 
-      if (time.getFullYear() !== now.getFullYear() && diff >= 2880)
+      if (time.getFullYear() !== now.getFullYear())
         return `${time.getDate()} ${
           months[time.getMonth()]
         } ${time.getFullYear()} в ${time.getHours()}:${minuteFix(time.getMinutes())}`;

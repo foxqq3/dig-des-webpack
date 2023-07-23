@@ -8,16 +8,21 @@
       :class="classInput"
       :disabled="isDisabled"
       :id="id"
+      :minlength="minLength"
+      :maxlength="maxLength"
       @input="handleInput"
       @keyup.enter="handleEnterKey"
       @blur="handleBlur"
     />
-    <div v-if="isSearch" class="input__svg">
-      <div class="input__svg-clear" @click="handleClickClear">
-        <VSvgIcon v-if="value" name="clear" width="16px" height="16px" />
+    <div class="input__svg">
+      <div v-if="value && isSearch" class="input__svg-clear" @click="handleClickClear">
+        <VSvgIcon name="clear" width="16px" height="16px" />
       </div>
-      <div :class="classSearch">
+      <div v-if="isSearch" :class="classSearch">
         <VSvgIcon name="search" />
+      </div>
+      <div v-if="isPassword" class="input__password-svg" @click="handlePasswordVisionToggle">
+        <VSvgIcon :name="passwordSvg" />
       </div>
     </div>
   </div>
@@ -31,6 +36,8 @@ export default {
 
   components: { VSvgIcon },
 
+  inheritAttrs: false,
+
   model: {
     prop: "value",
     event: "change",
@@ -42,6 +49,10 @@ export default {
       default: "",
     },
     isSearch: {
+      type: Boolean,
+      default: false,
+    },
+    isPassword: {
       type: Boolean,
       default: false,
     },
@@ -73,6 +84,14 @@ export default {
       type: String,
       default: "text",
     },
+    minLength: {
+      type: Number,
+      default: null,
+    },
+    maxLength: {
+      type: Number,
+      default: null,
+    },
   },
 
   methods: {
@@ -91,9 +110,17 @@ export default {
     handleBlur() {
       this.$emit("blur", "");
     },
+
+    handlePasswordVisionToggle() {
+      this.$emit("passwordVisionToggle", "");
+    },
   },
 
   computed: {
+    passwordSvg() {
+      return this.type === "password" ? "password-hide" : "password-show";
+    },
+
     classInput() {
       return [
         "input",

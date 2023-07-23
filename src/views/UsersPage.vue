@@ -188,7 +188,6 @@ export default {
 
         this.users = [...usersResponse.data.users];
         this.totalPages = usersResponse.data.total;
-
       } catch (error) {
         this.isError = true;
         console.log(error);
@@ -202,8 +201,6 @@ export default {
     this.loadUsersWithDebounce = debounce(function () {
       this.loadUsers();
     }, 500);
-
-    this.loadUsers();
   },
 
   mounted() {

@@ -42,6 +42,14 @@
 
   &.error {
     border-color: color('error');
+
+    &:active {
+      border-color: color('border-active');
+    }
+
+    &:focus {
+      border-color: color('border-active');
+    }
   }
 
   &__wrapper {
@@ -90,5 +98,10 @@
     &.disabled {
       color: color('font-placeholder');
     }
+  }
+
+  &__password-svg {
+    color: color('font-disabled');
+    cursor: pointer;
   }
 }

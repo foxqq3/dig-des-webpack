@@ -110,8 +110,8 @@
 
     &.active {
       color: color('font-primary');
-      background-color: color('secondary-active');
-      border-color: color('secondary-active');
+      background-color: color('secondary-default');
+      border-color: color('secondary-default');
 
       &:hover {
         color: color('font-primary');

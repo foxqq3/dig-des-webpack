@@ -6,7 +6,7 @@
       </div>
       <div class="login-page__body">
         <div class="login-page__body-wrapper">
-          <!-- <span class="font_error">Неправильный логин или пароль.</span> -->
+          <span v-if="validError" class="font_error">Неправильный логин или пароль.</span>
           <div class="login-page__field">
             <label class="login-page__label" for="login">
               <span>Логин</span>
@@ -17,7 +17,9 @@
               id="login"
               placeholder="Введите логин..."
               :isDisabled="loading"
+              :isError="validError"
               @change="handleLoginChange"
+              :maxLength="20"
             />
           </div>
           <div class="login-page__field">
@@ -28,9 +30,14 @@
             <VInput
               id="password"
               :value="password"
+              :isError="validError"
+              :type="typePassword"
               placeholder="Введите пароль..."
               :isDisabled="loading"
+              isPassword
+              :maxLength="15"
               @change="handlePasswordChange"
+              @passwordVisionToggle="handlePasswordVisionToggle"
             />
           </div>
         </div>
@@ -59,22 +66,34 @@ export default {
 
   data: () => ({
     loading: false,
+    validError: false,
     login: "rozhdestvensky.d",
     password: "jc63fk",
+    typePassword: "password",
   }),
 
   methods: {
     handleLoginChange(value) {
       this.login = value;
     },
+
     handlePasswordChange(value) {
       this.password = value;
     },
+
+    handlePasswordVisionToggle() {
+      this.typePassword === "password"
+        ? (this.typePassword = "text")
+        : (this.typePassword = "password");
+    },
+
     async handleSubmit() {
       this.loading = true;
+      this.validError = false;
 
       if (!this.login || !this.password) {
-        alert("Логин и пароль пусты");
+        this.validError = true;
+        this.loading = false;
         return;
       }
 
@@ -88,7 +107,7 @@ export default {
         await this.$store.dispatch("loadCurrentUser");
         this.$router.push({ name: "projects-page" });
       } catch (error) {
-        alert("что-то пошло не так");
+        this.validError = true;
       } finally {
         this.loading = false;
       }

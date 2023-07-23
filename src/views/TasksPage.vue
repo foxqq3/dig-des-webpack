@@ -256,9 +256,11 @@ export default {
           return acc;
         }, []);
 
+        console.log(projectsIds)
+
         const projectsResponse = await axios.post(`${BASE_API_URL}/projects/search`, {
           filter: {
-            page: 1,
+            page: 2,
             limit: 10,
             _id: projectsIds,
           },
@@ -280,6 +282,8 @@ export default {
           project: task.projectId ? projectsAsObject[task.projectId] : null,
           search: this.search,
         }));
+
+        console.log(this.tasks)
       } catch (error) {
         this.isError = true;
         console.log(error);
